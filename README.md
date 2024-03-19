@@ -53,32 +53,32 @@ No external APIs will be used as of current planning.
 ### Mockups
 **Home Page**
 
-![home-page][https://drive.google.com/file/d/19mIXKt17OnpaEmXYYpWKu4gbeHs4C09x/view?usp=drive_link]
+![home-page](./public/images/homepage.png)
 
 **Service details Page**
 
-![service-details-page](https://drive.google.com/file/d/1gEAswjX4XZFXnfzs4eVyTeHag-EuA-k2/view?usp=drive_link)
+![service-details-page](./public/images/service%20page.png)
 
 **Provider details**
 
-![provider-details](https://drive.google.com/file/d/1HLtPxh7BEQOphYzl74LecqVFjr9Dfjyg/view?usp=drive_link)
+![provider-details](./public/images/provider-details.png)
 
 **Booking page**
 
-![booking-page](https://drive.google.com/file/d/1xIfuQYC8dJKZVNq3HZbeSPGvFtNdVWYu/view?usp=drive_link)
+![booking-page](./public/images/booking%20page.png)
 
 **User-login page**
 
-![user-login-page](https://drive.google.com/file/d/1U7oQ2p-44MpHlOB2HDq9myKbam8VBsCd/view?usp=drive_link)
+![user-login-page](./public/images/user-login.png)
 
 **User-register page**
 
-![user-register-page](https://drive.google.com/file/d/12pqWzxilH08jvJS85sTqxEOAuQDoq3xg/view?usp=drive_link)
+![user-register-page](./public/images/user-register.png)
 
 ### Data
 **Database Relationship**
 
-![Database-relationship](https://drive.google.com/file/d/1SOBiG8ofnvDK_6n37JyfUQGtdB4v9Sp4/view?usp=drive_link)
+![Database-relationship](./public/images/Database_plan.png)
 
 ### Endpoints
 
