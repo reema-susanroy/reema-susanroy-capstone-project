@@ -1,34 +1,58 @@
 # Project Title
+Household Assistance / Buddy??
 
 ## Overview
 
-What is your app? Brief description in a couple of sentences.
+Household Assistance is to empower users with swift access to home services, which enables hassle-free requests for various home-related needs. Users can effortlessly connect with service providers by either raising a request or accessing contact details directly. The goal is to provide a fast and easy solution, making essential home services readily available to users.
 
 ### Problem
 
-Why is your app needed? Background information around any pain points or other reasons.
+In our fast-paced lives, finding time for home maintenance is a challenge. Unexpected issues like plumbing or electrical problems add stress as users struggle to find immediate help. Difficulty in accessing contact details and reviews for local service providers compounds the problem. This platform addresses these challenges, providing a convenient, reliable solution for users to efficiently manage their home-related concerns.
 
 ### User Profile
 
-Who will use your app? How will they use it? Any special considerations that your app must take into account.
+-Users looking for home related services.
+-Verified users who are willing to provide their service.
 
 ### Features
 
-List the functionality that your app will include. These can be written as user stories or descriptions with related details. Do not describe _how_ these features are implemented, only _what_ needs to be implemented.
+- As a user, I want to be able to search for available services .
+- As a user, I want to be able to create an account and manage the bookings I have made. 
+
+- As a user, I want to be able to see the service providers closest to my location, their reviews and contact information.
+- As a user, I want to be able to book services for a scheduled time.
+- As a user, I want to be able to provide a review to the assistant. 
+
+- As a service provider, I want to be able to see user requests.
+- As a user/service provider, I want to be able to see the loaction of each other during the request in-progress time.
 
 ## Implementation
 
 ### Tech Stack
 
-List technologies that will be used in your app, including any libraries to save time or provide more functionality. Be sure to research any potential limitations.
+- React
+- MySQL
+- Express
+- Client libraries: 
+    - react
+    - react-router
+    - axios
+    - react-map-gl
+- Server libraries:
+    - knex
+    - express
 
 ### APIs
 
-List any external sources of data that will be used in your app.
+No external APIs will be used as of current planning.
 
 ### Sitemap
 
-List the pages of your app with brief descriptions. You can show this visually, or write it out.
+- Home page
+- Services
+- Booking
+- User Dashboard
+- Service provider dashboard
 
 ### Mockups
 
