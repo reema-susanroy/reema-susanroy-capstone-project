@@ -1,9 +1,9 @@
 # Project Title
-Household Assistance / Buddy??
+Service Buddy
 
 ## Overview
 
-Household Assistance is to empower users with swift access to home services, which enables hassle-free requests for various home-related needs. Users can effortlessly connect with service providers by either raising a request or accessing contact details directly. The goal is to provide a fast and easy solution, making essential home services readily available to users.
+Service Buddy is to empower users with swift access to home services, which enables hassle-free requests for various home-related needs. Users can effortlessly connect with service providers by either raising a request or accessing contact details directly. The goal is to provide a fast and easy solution, making essential home services readily available to users.
 
 ### Problem
 
@@ -18,13 +18,9 @@ In our fast-paced lives, finding time for home maintenance is a challenge. Unexp
 
 - As a user, I want to be able to search for available services .
 - As a user, I want to be able to create an account and manage the bookings I have made. 
-
 - As a user, I want to be able to see the service providers closest to my location, their reviews and contact information.
 - As a user, I want to be able to book services for a scheduled time.
 - As a user, I want to be able to provide a review to the assistant. 
-
-- As a service provider, I want to be able to see user requests.
-- As a user/service provider, I want to be able to see the loaction of each other during the request in-progress time.
 
 ## Implementation
 
@@ -49,31 +45,220 @@ No external APIs will be used as of current planning.
 ### Sitemap
 
 - Home page
-- Services
+- Services deatils
+- Provider details
 - Booking
 - User Dashboard
-- Service provider dashboard
 
 ### Mockups
+**Home Page**
+![home-page][https://drive.google.com/file/d/19mIXKt17OnpaEmXYYpWKu4gbeHs4C09x/view?usp=drive_link]
 
-Provide visuals of your app's screens. You can use tools like Figma or pictures of hand-drawn sketches.
+**Service details Page**
+![service-details-page][https://drive.google.com/file/d/1gEAswjX4XZFXnfzs4eVyTeHag-EuA-k2/view?usp=drive_link]
+
+**Provider details**
+![provider-details][https://drive.google.com/file/d/1HLtPxh7BEQOphYzl74LecqVFjr9Dfjyg/view?usp=drive_link]
+
+**Booking page**
+![booking-page][https://drive.google.com/file/d/1xIfuQYC8dJKZVNq3HZbeSPGvFtNdVWYu/view?usp=drive_link]
+
+**User-login page**
+![user-login-page][https://drive.google.com/file/d/1U7oQ2p-44MpHlOB2HDq9myKbam8VBsCd/view?usp=drive_link]
+
+**User-register page**
+![user-register-page][https://drive.google.com/file/d/12pqWzxilH08jvJS85sTqxEOAuQDoq3xg/view?usp=drive_link]
 
 ### Data
 
-Describe your data and the relationships between them. You can show this visually using diagrams, or write it out. 
+![Database-relationship][https://drive.google.com/file/d/1SOBiG8ofnvDK_6n37JyfUQGtdB4v9Sp4/view?usp=drive_link]
 
 ### Endpoints
 
-List endpoints that your server will implement, including HTTP methods, parameters, and example responses.
+**GET /services**
+- Get list of services
+
+Response: 
+```
+[
+    {
+        "id": 1,
+        "name": "Kitchen Cleaning"
+    },
+]
+```
+**GET /services/:id**
+- Get details of a particular service
+
+Parameter:
+- id : service id
+
+Response: 
+```
+{
+    "id" : 1,
+    "service_name" : Plumbing,
+    "description" : "Expert plumbing solutions tailored to your needs. From repairs and installations to maintenance and emergency services, we deliver reliable and efficient plumbing solutions to keep your home or business running smoothly."
+},
+```
+
+**GET /providers**
+- Get list of service providers in the vacinity
+
+Response: 
+```
+[
+    {
+        "id" : 1,
+        "service_id" : 1,
+        "name" : "Riana"
+        "contact_info" : +1 123 409-45690,
+        "email" : "riana100@gmail.com",
+        "rating": 4.5
+    },
+]
+```
+**GET /providers/:id/**
+- Get data of a particular provider
+
+Parameter:
+- id : provider id 
+
+Response: 
+```
+{
+    "id" : 1,
+    "service_id" : 1,
+    "name" : "Riana"
+    "contact_info" : +1 123 409-45690,
+    "email" : "riana100@gmail.com",
+    "rating": 4.5
+},
+```
+**POST /providers/:id/reviews**
+- Post a review for the provider with provider id
+
+Parameter:
+-id : provider id
+
+Request body:
+```
+{
+    "id" : 1,
+    "name" : "Anna",
+    "description": "Best service!",
+    "timestamp": new Date()
+}
+```
+Response: 
+```
+{
+    "id" : 1,
+    "name" : "Anna",
+    "description": "Best service!",
+    "timestamp": Timestamp
+},
+```
+**POST /users/register**
+
+- Add a user account
+
+Parameters:
+
+- email: User's email
+- password: User's provided password
+
+Request body:
+```
+{
+    "id" : 1,
+    "name" : "Richard",
+    "email": "richard@gmail.com",
+    "password": "**********"
+}
+```
+
+**POST /booking/:serviceId/:providerId/:userId**
+- Confirm the booking on submit form.
+
+Paramters:
+- service id : id of the selected service
+- provider id : id of the provider selected
+- userid : id of the user making request
+
+Response body:
+```
+{
+    "booking_id" : 1,
+    "message" : "Your booking is confirmed with <name of provider> on <date> "
+}
+```
+
+**DELETE /booking/:serviceId/:providerId/:userId**
+- Confirm the booking on submit form.
+
+Paramters:
+- service id : id of the selected service
+- provider id : id of the provider selected
+- userid : id of the user 
+
 
 ### Auth
 
-Does your project include any login or user profile functionality? If so, describe how authentication/authorization will be implemented.
+- Nice to have: JWT auth
+- To be considered after functionalities are implemented
 
 ## Roadmap
 
-Scope your project as a sprint. Break down the tasks that will need to be completed and map out timeframes for implementation. Think about what you can reasonably complete before the due date. The more detail you provide, the easier it will be to build.
+- Create client
+    - react project with routes and boilerplate pages
+
+- Create server
+    - express project with routing, with placeholder 200 responses
+
+- Create migrations
+
+- Gather dummy data for users, providers, services
+
+- Create seeds with sample data
+
+- Deploy client and server projects so all commits will be reflected in production
+
+- Feature: List services provided
+    - Implement services page with cards containing types of services
+    - Create GET /services endpoint
+
+- Feature: View service
+    - Implement service details page 
+    - Create GET /services/:id endpoint
+
+- Feature: Providers in the vicinity
+    - Add an input field to enter location
+    - Nice to have: A map view with markers pointing service providers in the area. 
+    - List the suitable services providers
+    - Get /providers/:serviceId/:location
+
+- Feature: View provider
+    - View the services provider details
+    - Display exisitng reviews
+    - Get /providers/:id
+    - Get /reviews/:providerId
+    
+- Feature: Booking page
+     - Form for booking
+     - Create POST /bookings
+     - Add & delete bookings 
+     - Booking confirmation message on successful booking
+
+- Feature: Login
+    - Implement login page + form
+    - Create POST /users/login endpoint
+
+- Bug fixes
 
 ## Nice-to-haves
 
-Your project will be marked based on what you committed to in the above document. Under nice-to-haves, you can list any additional features you may complete if you have extra time, or after finishing.
+- Implement JWT tokens
+- Integrate Map view
+- Ability for users to upload images.
+- Ability to login as Service providers and view dashboard.
