@@ -11,8 +11,8 @@ In our fast-paced lives, finding time for home maintenance is a challenge. Unexp
 
 ### User Profile
 
--Users looking for home related services.
--Verified users who are willing to provide their service.
+- Users looking for home related services.
+- Verified users who are willing to provide their service.
 
 ### Features
 
@@ -33,10 +33,13 @@ In our fast-paced lives, finding time for home maintenance is a challenge. Unexp
     - react
     - react-router
     - axios
+    -  scss
     - react-map-gl
 - Server libraries:
     - knex
     - express
+    - cors
+    - mysql2
 
 ### APIs
 
