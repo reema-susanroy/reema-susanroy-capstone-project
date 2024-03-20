@@ -1,0 +1,28 @@
+@use  './typography' as*;
+*,
+  ::before,
+  ::after {
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Roboto';
+    // color: $primary_color_brainflix;
+    font-size: 1rem;
+    margin: 0;
+  }
+  
+  h1,h2,h3, ul{
+    margin: 0;
+  }
+  ul,
+  li,
+  p {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  Link{
+    list-style-type: none;
+    text-decoration: none;
+  }

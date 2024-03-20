@@ -1,0 +1,16 @@
+.service{
+    padding: 1rem;
+}
+.service__details{
+    // display: flex;
+    // flex-direction: column;
+}
+.service__location{
+    display: flex;
+    flex-direction: row;
+    padding: 1rem;
+
+    &--pin{
+        font-size: 14px;
+    }
+}

@@ -1,0 +1,67 @@
+@use '../../styles/partials/resets' as *;
+
+.navbar{
+    display: flex;
+    padding: 1rem 0;
+
+    &__logo{
+        //
+        width: 50%;
+
+        // &--image{
+        //     //
+        // }
+    }
+}
+.navbar__side-container{
+    display: flex;
+    width: 50%;
+    gap: 1rem;
+}
+.navbar__welcome{
+    font-size: 15px;
+}
+.navbar__menu--item{
+    display: none;
+}
+
+.navbar__dropdown {
+    display: flex;
+    align-items: center;
+}
+
+.navbar__dropdown--hamburger {
+    // display: none;
+    flex-direction: column;
+    cursor: pointer;
+    .bar {
+        width: 20px;
+        height: 2px;
+        background-color: #333;
+        margin: 2px 0;
+        transition: all 0.3s ease;
+    }
+    @media (max-width: 768px) {
+        display: flex;
+    }
+}
+
+.navbar__dropdown--links {
+    display: none;
+    // display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    &.open {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+    }
+    li {
+        margin-right: 20px;
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}
