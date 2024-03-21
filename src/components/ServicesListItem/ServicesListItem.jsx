@@ -11,9 +11,9 @@ function ServicesListItem({ services }) {
     // }
     return (
         <>
-            <article>
+            <article className='service-cont'>
                 <li key={services.id} className="service-cards">
-                    <Link to={`/services/${services.id}`}>
+                    <Link to={`/services/${services.id}`} className="service-card">
                         <h3 className="service-cards__name">{services.service_name}</h3>
                         <div className="service-cards__cont">
                             <img className="service-cards__image" src={`http://localhost:8080/${services.service_image}`} />

@@ -1,3 +1,4 @@
+@use '../../styles/partials/mixins' as *;
 @use '../../styles/partials/resets' as *;
 
 .navbar{
@@ -7,6 +8,9 @@
     &__logo{
         //
         width: 50%;
+        @include tablet{
+            width: 70%;
+        }
 
         // &--image{
         //     //
@@ -17,6 +21,9 @@
     display: flex;
     width: 50%;
     gap: 1rem;
+    @include tablet{
+        width: 20%;
+    }
 }
 .navbar__welcome{
     font-size: 15px;

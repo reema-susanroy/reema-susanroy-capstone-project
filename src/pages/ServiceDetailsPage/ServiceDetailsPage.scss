@@ -1,16 +1,41 @@
-.service{
+@use '../../styles/partials/mixins' as *;
+
+.service {
     padding: 1rem;
+    display: flex;
+    flex-direction: column;
+
+    // @include tablet() {
+    //     flex-direction: row;
+    // }
 }
-.service__details{
+
+.service__details {
     // display: flex;
     // flex-direction: column;
 }
-.service__location{
+
+.service__location {
     display: flex;
     flex-direction: row;
     padding: 1rem;
 
-    &--pin{
+    &--pin {
         font-size: 14px;
+
+        //look for professional button
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
     }
+}
+
+.map__container {
+    height: 250px;
+    // width: 500px;
+}
+
+.map {
+    height: 100%;
 }

@@ -1,3 +1,4 @@
+@use '../../styles/partials/mixins' as *;
 @use '../../styles/partials/variables' as *;
 
 .hero__section{
@@ -19,6 +20,10 @@
         background-position: right;
         background-repeat: no-repeat;
 
+        @include tablet{
+            gap: 1.5rem;
+        }
+
     }
 }
 
@@ -27,6 +32,10 @@
     padding-bottom: 0;
     line-height: 2.5rem;
     font-size: 30px;
+
+    @include tablet{
+        font-size: 38px;
+    }
 
 }
 
@@ -37,6 +46,9 @@
     padding: 1rem;
     padding-top: 0;
     margin-top: 0;
+    @include tablet{
+        font-size: 18px;
+    }
     // background-image: url('../../assets//images/ServiceBuddy.jpg');
     // background-size: cover;
     // background-position: center;
@@ -68,6 +80,9 @@
     gap: .5rem;
     &__slogan{
         font-size: 14px;
+        @include tablet{
+            font-size: 16px;
+        }
     }
 
     &__search{
@@ -92,6 +107,9 @@
     padding-left: 2rem;
     background-size: 1rem;
     background-position: (0.5rem 0.3rem);
+    @include tablet{
+        width: 60%;
+    }
 }
 .input::placeholder {
     padding-left: 0.25rem;

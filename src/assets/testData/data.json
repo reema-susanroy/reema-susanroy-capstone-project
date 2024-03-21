@@ -1,0 +1,74 @@
+[
+    {
+        "id": 1,
+        "service_name": "Plumbing",
+        "service_description": "Plumbing involves the installation, repair, and maintenance of pipes, fixtures, and fittings for water supply and drainage systems in residential and commercial buildings. It encompasses tasks such as pipe repair, fixture installation, drain cleaning, and water heater repair.",
+        "how_it_is_done": "Plumbing tasks are typically done by licensed plumbers who use specialized tools and equipment. The process involves assessing the plumbing system, identifying issues, and performing necessary repairs or installations. This may include cutting, soldering, and connecting pipes, replacing fixtures, and testing the system for leaks and proper functioning.",
+        "service_image": "public/images/plumbing.jpg",
+        "importance": "Essential",
+        "why_essential": "Plumbing is essential for providing clean water for drinking, cooking, and sanitation purposes. It also ensures proper disposal of wastewater, preventing health hazards and maintaining hygiene."
+    },
+    {
+        "id": 2,
+        "service_name": "Electrical",
+        "service_description": "Electrical services include the installation, repair, and maintenance of electrical wiring, fixtures, and appliances in homes, offices, and industrial buildings. It encompasses tasks such as wiring installation, lighting fixtures, electrical panel upgrades, and outlet repairs.",
+        "how_it_is_done": "Electrical work is carried out by qualified electricians who follow safety standards and regulations. The process involves planning the electrical layout, routing wires, connecting circuits, and installing fixtures and appliances. Electricians use tools like wire cutters, pliers, and voltage testers to ensure proper installation and functioning.",
+        "service_image": "public/images/electrical.jpg",
+        "importance": "Essential",
+        "why_essential": "Electrical services are crucial for ensuring safety, providing power for lighting, heating, and operating appliances. Proper electrical installations prevent accidents like electric shocks, fires, and short circuits."
+    },
+    {
+        "id": 3,
+        "service_name": "Cleaning",
+        "service_description": "Cleaning services encompass a wide range of tasks including house cleaning, office cleaning, carpet cleaning, and janitorial services. It involves thorough cleaning of surfaces, floors, carpets, and other areas to maintain cleanliness and hygiene.",
+        "how_it_is_done": "Cleaning tasks are performed by trained cleaners using cleaning agents, equipment, and techniques suitable for different surfaces and environments. The process includes dusting, vacuuming, mopping, and disinfecting surfaces to remove dirt, stains, and germs. Cleaners may use specialized tools like steam cleaners, scrubbers, and carpet extractors for deep cleaning.",
+        "service_image": "public/images/cleaning.jpg",
+        "importance": "Important",
+        "why_essential": "Cleaning services are important for maintaining cleanliness, hygiene, and a healthy environment. Regular cleaning prevents the spread of diseases, removes allergens and pollutants, and improves indoor air quality."
+    },
+    {
+        "id": 4,
+        "service_name": "Landscaping",
+        "service_description": "Landscaping involves the design, installation, and maintenance of outdoor spaces including gardens, lawns, patios, and hardscapes. It encompasses tasks such as lawn care, garden design, hardscaping, and tree trimming.",
+        "how_it_is_done": "Landscaping is typically done by landscapers who assess the outdoor space, plan the design, and execute the installation and maintenance tasks. The process includes tasks like soil preparation, planting, irrigation system installation, and hardscape construction. Landscapers use tools like shovels, spades, lawn mowers, and pruning shears to shape and maintain outdoor landscapes.",
+        "service_image": "public/images/landscaping.jpg",
+        "importance": "Important",
+        "why_essential": "Landscaping enhances the aesthetic appeal of properties, increases property value, and provides recreational spaces. Well-designed landscapes also contribute to environmental conservation by reducing soil erosion and improving biodiversity."
+    },
+    {
+        "id": 5,
+        "service_name": "Painting",
+        "service_description": "Painting services include interior and exterior painting of residential and commercial properties, as well as surface preparation and color consultations. It involves applying paint to surfaces to protect them from damage and enhance their appearance.",
+        "how_it_is_done": "Painting tasks are carried out by professional painters who prepare surfaces by cleaning, sanding, and priming them for paint application. Painters use brushes, rollers, or spray guns to apply paint evenly to surfaces, ensuring smooth coverage and proper finish. They may also use masking tape and drop cloths to protect adjacent surfaces from paint splatters.",
+        "service_image": "public/images/painting.jpg",
+        "importance": "Important",
+        "why_essential": "Painting protects surfaces from damage, weathering, and corrosion while enhancing their appearance. It also allows customization of interior spaces, reflects personal style, and creates a pleasant atmosphere."
+    },
+    {
+        "id": 6,
+        "service_name": "HVAC",
+        "service_description": "HVAC (Heating, Ventilation, and Air Conditioning) services involve the installation, repair, and maintenance of heating, cooling, and ventilation systems. It encompasses tasks such as HVAC repair, AC installation, duct cleaning, and thermostat replacement.",
+        "how_it_is_done": "HVAC services are performed by HVAC technicians who assess heating and cooling needs, install equipment, and troubleshoot system issues. The process includes tasks like installing ductwork, connecting HVAC units, testing system performance, and adjusting airflow. Technicians use tools like gauges, thermometers, and HVAC diagnostic equipment to ensure proper system functioning.",
+        "service_image": "public/images/hvac.jpg",
+        "importance": "Essential",
+        "why_essential": "HVAC systems regulate indoor temperature, humidity, and air quality, providing comfort and health benefits. Proper HVAC maintenance ensures energy efficiency, reduces utility costs, and extends equipment lifespan."
+    },
+    {
+        "id": 7,
+        "service_name": "Roofing",
+        "service_description": "Roofing services include roof repair, replacement, and installation for residential and commercial buildings, covering various types of roofs like shingles, tiles, and flat roofs. It involves inspecting, repairing, and installing roofs to protect buildings from weather elements.",
+        "how_it_is_done": "Roofing tasks are performed by roofing contractors who assess the roof condition, remove old roofing materials, and install new roofing materials. The process includes tasks like sheathing installation, underlayment placement, shingle laying, and flashing installation. Roofers use tools like hammers, nail guns, roofing knives, and safety equipment for working at heights.",
+        "service_image": "public/images/roofing.jpg",
+        "importance": "Essential",
+        "why_essential": "Roofing protects buildings from weather elements such as rain, snow, wind, and sunlight. A well-maintained roof prevents water leaks, structural damage, and mold growth, ensuring the structural integrity of the building."
+    },
+    {
+        "id": 8,
+        "service_name": "Carpentry",
+        "service_description": "Carpentry services encompass woodworking tasks such as custom furniture making, cabinetry, trim work, and wood floor installation. It involves shaping, cutting, and assembling wood to create functional and aesthetic elements for homes and businesses.",
+        "how_it_is_done": "Carpentry work is performed by skilled carpenters who interpret blueprints, measure and cut wood, and assemble components to create structures or furnishings. The process includes tasks like sawing, drilling, sanding, and joining wood pieces using nails, screws, or adhesives. Carpenters use hand tools like saws, chisels, and planes, as well as power tools like drills, sanders, and routers.",
+        "service_image": "public/images/carpentry.jpg",
+        "importance": "Important",
+        "why_essential": "Carpentry adds functionality, beauty, and personality to spaces through custom-made furniture, storage solutions, and architectural details. Skilled carpentry work enhances property value and provides unique design elements tailored to individual needs."
+    }
+]
