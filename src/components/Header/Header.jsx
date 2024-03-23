@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import './Header.scss';
-import logo from '../../assets/images/slogan.jpg'
+import logo from '../../assets/images/slogan.png'
 function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const toggleMenu = () => {

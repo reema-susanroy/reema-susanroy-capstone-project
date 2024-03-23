@@ -8,7 +8,6 @@ import Map from "../../components/Map/Map";
 import { useNavigate } from "react-router-dom";
 import ProvidersPage from "../ProvidersPage/ProvidersPage";
 import ProvidersComponent from "../../components/ProvidersComponent/ProvidersComponent";
-import image from '../../assets/images/logo2.png'
 
 function ServiceDetailsPage() {
     const { serviceId } = useParams();
@@ -68,7 +67,7 @@ function ServiceDetailsPage() {
                                 <p className="service__details--description padding">{serviceData.service_need}</p>
                             </div>
                             <div className="service__background">
-                                <img className='service__background--image' src={image} alt="service-image" />
+                                <img className='service__background--image' src={`${process.env.REACT_APP_BASE_URL}/${serviceData.service_image}`} alt="service-image" />
                             </div>
                             {/* <div className="service-cards__cont">
                                 <img className="service-cards__image" src={`http://localhost:8080/${serviceData.service_image}`} />

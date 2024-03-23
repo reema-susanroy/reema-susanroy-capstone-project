@@ -79,7 +79,7 @@ function ProvidersComponent({ serviceId }) {
             <section className="provider--component">
                 <h3>Service Providers</h3>
                 <div className="provider--component--input">
-                    <input type="text" value={searchLocation} placeholder="Search by City" onChange={(e) => setSearchLocation(e.target.value)} />
+                    <input className='input' type="text" value={searchLocation} placeholder="Search by City" onChange={(e) => setSearchLocation(e.target.value)} />
                     {/* <button onClick={handleSearch}>Search</button> */}
                 </div>
             </section>

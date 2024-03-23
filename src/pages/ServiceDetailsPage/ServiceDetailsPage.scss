@@ -35,7 +35,9 @@
     &--description {
         font-size: 14px;
         letter-spacing: .2px;
-        line-height: 20px;
+        line-height: 20px;    
+        text-align: justify;
+
     }
 }
 
@@ -82,9 +84,19 @@
 
 
     &--image {
-        border-radius: 40px;
-        object-fit: cover;
-        object-position: right;
+        border-radius: 4px;
+        object-fit: contain;
+        // object-position: right;
+
+        @include tablet{
+            border-radius: 4px;
+            object-fit: contain;
+            object-position: right;
+            position: absolute;
+            width: 30%;
+            height: 40%;
+            bottom: 45%;
+        }
     }
 }
 
