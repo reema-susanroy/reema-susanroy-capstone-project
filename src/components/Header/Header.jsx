@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import './Header.scss';
-
+import logo from '../../assets/images/slogan.jpg'
 function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const toggleMenu = () => {
@@ -12,7 +12,9 @@ function Header() {
             <nav className='navbar'>
                 <div className='navbar__logo'>
                     <Link to="/">
-                        <img className='navbar__logo--image' alt='logo' />
+                        <div className="navbar__logo--cont">
+                        <img className='navbar__logo--image' src={logo} alt='logo' />
+                        </div>
                     </Link>
                 </div>
                 <div className='navbar__side-container'>

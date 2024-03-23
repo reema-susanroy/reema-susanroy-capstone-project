@@ -1,14 +1,38 @@
-import { useParams } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import './ProviderDetailsPage.scss'
+import { useNavigate, useParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import axios from 'axios';
+import { TimeFormat } from '../../utils/TimeFormat';
 
 function ProviderDetailsPage() {
     const location = useLocation();
     let resultName;
     const { provider } = location.state;
     console.log(provider)
-    const { providerId } = useParams();
-   
-   
+    const { id } = useParams();
+
+    const [isLoading, setIsLoading] = useState(true);
+    const [reviewContent, setReviewContent] = useState();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const getReviews = async () => {
+            try {
+                const review = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/providers/${id}/reviews`)
+                console.log("hi");
+                // const reviewData = review.data;
+                console.log(review.data)
+                setIsLoading(false);
+                setReviewContent(review.data);
+
+            } catch (error) {
+                setIsLoading(false);
+                console.log("Error while fecthing reviews: " + error);
+            }
+        }
+        getReviews();
+    }, [])
     // const getServiceName = () => {
     //     console.log(provider.service_id)
     //     switch (provider.service_id) {
@@ -31,16 +55,56 @@ function ProviderDetailsPage() {
     //     }
     // }
     // getServiceName();
-console.log(resultName)
+    const handleGoBack = () => {
+        navigate(`/services/${id}`)
+    }
+    const handleAddToCart = () => {
+
+    }
+    console.log(reviewContent)
     return (
         <>
-            <h2>{provider.provider_name}</h2>
-            <p> Expert in : {provider.service_name}</p>
-            <p> Experience : </p>
-            <p> Contact Details:</p>
-                <p>Phone: {provider.contact_phone}</p>
-                <p>Email: {provider.contact_email}</p>
+            <div className="providerDetails">
+                <section className='providerDetails__data'>
 
+                    <h2 className="providerDetails__name padding">{provider.provider_name}</h2>
+                    <section>
+                        <p className="providerDetails__data--service padding"> Expertise: {provider.service_name}</p>
+                        <p className="providerDetails__data--exp padding"> Experience : </p>
+                        <p className="providerDetails__data--contact padding"> Contact Details:</p>
+                        <p className="providerDetails__data--contact--value padding">Phone: {provider.contact_phone}</p>
+                        <p className="providerDetails__data--contact--value padding">Email: {provider.contact_email}</p>
+                    </section>
+
+                </section>
+                <section className='providerDetails__avatar--cont'>
+                    {/* <p className="providerDetails__data--avatar"> </p> */}
+                    <div className="providerDetails__data--avatar--cont">
+                        <img className='providerDetails__data--avatar--img' src={`${process.env.REACT_APP_BASE_URL}${provider.provider_image}`} />
+                    </div>
+                </section>
+            </div>
+            <section className='provider__reviews'>
+                <h3 className='provider__reviews--review'>Reviews</h3>
+                {Array.isArray(reviewContent) && reviewContent.map((review, index) => (
+                    <li key={index} className='provider__reviews__list'>
+                        <div className='provider__reviews__list--cont'>
+                            <div className='provider__reviews__list--image padding'></div>
+                            <div className='provider__reviews__list--details'>
+                                <p className='provider__reviews__list--name padding'>{review.user_name}</p>
+                                <p className='provider__reviews__list--review padding'>{review.user_review}</p>
+                            </div>
+                            <div className='provider__reviews__list--dateCont'>
+                                <p className='provider__reviews__list--date padding'>{TimeFormat(review.created_at)}</p>
+                            </div>
+                        </div>
+                    </li>
+                ))}
+            </section>
+            <section>
+                <button onClick={handleGoBack}>Go Back</button>
+                <button onClick={handleAddToCart}>Make a booking</button>
+            </section>
         </>
     )
 }

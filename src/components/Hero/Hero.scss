@@ -5,7 +5,7 @@
     // display: flex;
 
     &--slogan{
-        color: white;
+        color: #222;
         height: 15rem;
         /* align-items: center; */
         display: flex;
@@ -15,7 +15,9 @@
         align-self: center;
         /* text-align: center;*/
         position: relative;
-        background: linear-gradient(rgba(50, 50, 50, .5), rgba(50, 50, 50, 1)), url('../../assets/images/slogan.jpg');
+        background: linear-gradient(rgba(0, 50, 50, .5), rgba(50, 50, 50, 0)), url('../../assets/images/logo2.png');
+        background-color: #fdfeff;
+
         background-size: contain; /* Adjust the size of the background image */
         background-position: right;
         background-repeat: no-repeat;
