@@ -1,4 +1,3 @@
-import hero_image from '../../assets/images/ServiceBuddy.jpg'
 import './Hero.scss';
 function Hero() {
 
@@ -6,7 +5,7 @@ function Hero() {
         <>
             <section className='hero__section'>
                 <section className='hero__section--slogan'>
-                    <h1 className='homepage'>Service Buddy</h1>
+                    <h1 className='homepage'>SERVICE BUDDY</h1>
                     <p className='homepage__slogan'>Your companion for all your home service needs!</p>
                 </section>
             </section>

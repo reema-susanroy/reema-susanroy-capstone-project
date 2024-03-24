@@ -15,15 +15,21 @@
         align-self: center;
         /* text-align: center;*/
         position: relative;
-        background: linear-gradient(rgba(0, 50, 50, 0), rgba(50, 50, 50, 0)), url('../../assets/images/logo2.png');
-        background-color: #fdfeff;
+        // background: linear-gradient(rgba(0, 50, 50, 0), rgba(50, 50, 50, 0)), url('../../assets/images/logo2.png');
+        background-image: url('../../assets/images/background-image-hero.jpg');
+        // background-image: url('../../assets/images/logo2.png');
 
-        background-size: contain; /* Adjust the size of the background image */
+        // background-color: #fdfeff;
+        // background-color: beige;
+
+        background-size: cover; /* Adjust the size of the background image */
         background-position: right;
         background-repeat: no-repeat;
+        text-align: center;
 
         @include tablet{
             gap: 1.5rem;
+            height: 25rem;
         }
 
     }
@@ -42,12 +48,15 @@
 }
 
 .homepage__slogan{
+    font-family: cursive;
     font-size: 14px;
     line-height: 2rem;
     letter-spacing: 0.2px;
     padding: 1rem;
     padding-top: 0;
     margin-top: 0;
+    background-color: beige;
+    opacity: 90%;
     @include tablet{
         font-size: 18px;
     }
@@ -116,5 +125,5 @@
 .input::placeholder {
     padding-left: 0.25rem;
     color: gray;
-    font-family: "Roboto";
+    font-family: "sans-serif";
 }

@@ -4,19 +4,19 @@ import axios from "axios";
 import Loading from "../Loading/Loading";
 import ErrorPage from "../ErrorPage/ErrorPage";
 import './ServiceDetailsPage.scss';
-import Map from "../../components/Map/Map";
-import { useNavigate } from "react-router-dom";
-import ProvidersPage from "../ProvidersPage/ProvidersPage";
+// import Map from "../../components/Map/Map";
+// import { useNavigate } from "react-router-dom";
+// import ProvidersPage from "../ProvidersPage/ProvidersPage";
 import ProvidersComponent from "../../components/ProvidersComponent/ProvidersComponent";
 
 function ServiceDetailsPage() {
     const { serviceId } = useParams();
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(true);
     const [hasError, sethasError] = useState(false);
     const [serviceData, setServiceData] = useState();
-    const [dataFetched, setDataFetched] = useState(false);
-    const [serviceProvided, setServiceProvided] = useState();
+    // const [dataFetched, setDataFetched] = useState(false);
+    // const [serviceProvided, setServiceProvided] = useState();
 
     const getServiceData = async () => {
         try {
@@ -25,7 +25,7 @@ function ServiceDetailsPage() {
             // setServiceProvided(response.data.service_provided)
             setIsLoading(false);
             sethasError(false);
-            setDataFetched(true);
+            // setDataFetched(true);
         }
         catch (error) {
             sethasError(true);
@@ -38,9 +38,9 @@ function ServiceDetailsPage() {
         getServiceData();
     }, [serviceId])
 
-    const handleLook = () => {
-        navigate('/providers');
-    }
+    // const handleLook = () => {
+    //     navigate('/providers');
+    // }
 
     if (isLoading) {
         return (
@@ -67,7 +67,7 @@ function ServiceDetailsPage() {
                                 <p className="service__details--description padding">{serviceData.service_need}</p>
                             </div>
                             <div className="service__background">
-                                <img className='service__background--image' src={`${process.env.REACT_APP_BASE_URL}/${serviceData.service_image}`} alt="service-image" />
+                                <img className='service__background--image' src={`${process.env.REACT_APP_BASE_URL}/${serviceData.service_image}`} alt="serviceImage" />
                             </div>
                             {/* <div className="service-cards__cont">
                                 <img className="service-cards__image" src={`http://localhost:8080/${serviceData.service_image}`} />
@@ -80,7 +80,7 @@ function ServiceDetailsPage() {
                     </div> */}
                 </section>
                 <div>
-                            <h3 className="service__provided padding">+ Services Provided</h3>
+                            <h3 className="service__provided padding">+ Services Include</h3>
                             <ul>
                                 {serviceData.service_provided.map((providedService, index) => (
                                     <li className='service__provided--list padding' key={index}>{providedService}</li>
@@ -88,10 +88,10 @@ function ServiceDetailsPage() {
                             </ul>
                             {/* </div> */}
                         </div>
-                <div>
+                {/* <div>
                     <h3 className="service__rate padding">+ Rate Plan</h3>
                     <h3 className="service__professional padding">+ See Professtionals</h3>
-                </div>
+                </div> */}
             </div>
 
             <ProvidersComponent serviceId={serviceData.id} />

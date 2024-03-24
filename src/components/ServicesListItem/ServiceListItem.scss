@@ -5,6 +5,8 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    background-color: #d8bfd8b8;
+    background-color: lightgray;
 }
 
 .service-card {
@@ -26,13 +28,35 @@
 
     &__name {
         position: absolute;
-        left: 60%;
-        bottom: 8%;
-        color: white;
-        padding: .2rem;
-        background-color: black;
-        font-size: 14px;
-        letter-spacing: .52px;
+        // left: 35%;
+        // bottom: 45%;
+        left: 50%;
+        bottom: 50%;
+        transform: translate(-50%, 50%);
+        color: black;
+        padding: 0.2rem;
+        box-shadow: 2px 1px 10px rgba(0, 0, 0, .5);
+        opacity: 0.8;
+        font-size: 25px;
+        letter-spacing: 0.52px;
+        font-family: sans-serif;
+        background-color: lightgray;
+
+           //     transform: translate(-50%, -50%);
+    //     background-color: transparent;
+    //     color: white;
+    //     padding: 10px;
+    //     box-shadow: none;
+    //     opacity: 0;
+    //     transition: background-color 0.3s, box-shadow 0.3s, opacity 0.3s;
+    //     background-color: rgba(0, 0, 0, 0.5);
+    //     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    //     opacity: 1;
+
+        &:hover{
+             box-shadow: 2px 1px 10px rgba(0, 0, 0, .5);
+
+        }
     }
 
     &__cont {
@@ -41,6 +65,12 @@
         justify-content: center;
         object-fit: contain;
         width: 18rem;
+        &:hover{
+            // background-color: rgba(0, 0, 0, 0.5);
+            // box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            // opacity: 1;
+            filter: brightness(80%);
+        }
 
         // @include tablet {
         //     width: 30vw;
@@ -53,12 +83,44 @@
         height: 100%;
         cursor: pointer;
         border-radius: 8px;
+        
 
         &:hover{
             box-shadow: 0px 0px 10px rgba(0, 0, 0, .8);
 
         }
     }
+    // &__cont {
+    //     position: relative;
+    //     display: inline-block;
+    //     height: 12rem;
+    //     width: 18rem;
+
+    //     &:hover {
+    //         background-color: rgba(0, 0, 0, 0.5);
+    //         box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    //         opacity: 1;
+    //         filter: brightness(50%);
+
+    //     }
+    // }
+
+    // &__name {
+    //     position: absolute;
+    //     top: 50%;
+    //     left: 50%;
+    //     transform: translate(-50%, -50%);
+    //     background-color: transparent;
+    //     color: white;
+    //     padding: 10px;
+    //     box-shadow: none;
+    //     opacity: 0;
+    //     transition: background-color 0.3s, box-shadow 0.3s, opacity 0.3s;
+    //     background-color: rgba(0, 0, 0, 0.5);
+    //     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    //     opacity: 1;
+    //     font-family: sans-serif;
+    // }
 }
 
 img {

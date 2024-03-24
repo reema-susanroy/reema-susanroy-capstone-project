@@ -4,10 +4,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import axios from 'axios';
 import { TimeFormat } from '../../utils/TimeFormat';
+import Loading from "../Loading/Loading";
 
 function ProviderDetailsPage() {
     const location = useLocation();
-    let resultName;
     const { provider } = location.state;
     console.log(provider)
     const { id } = useParams();
@@ -32,7 +32,14 @@ function ProviderDetailsPage() {
             }
         }
         getReviews();
-    }, [])
+    }, []);
+
+    const serviceList = Object.entries(provider.pricing).map(([serviceName, price]) => ({
+        serviceName,
+        price
+    }));
+
+
     // const getServiceName = () => {
     //     console.log(provider.service_id)
     //     switch (provider.service_id) {
@@ -58,10 +65,16 @@ function ProviderDetailsPage() {
     const handleGoBack = () => {
         navigate(`/services/${id}`)
     }
-    const handleAddToCart = () => {
+    const handleBook = () => {
+        navigate(`/booking/${provider.id}`, { state: { provider } });
 
     }
-    console.log(reviewContent)
+    if(isLoading){
+        return (
+            <Loading />
+        )
+    }
+    console.log(provider.pricing)
     return (
         <>
             <div className="providerDetails">
@@ -69,12 +82,30 @@ function ProviderDetailsPage() {
 
                     <h2 className="providerDetails__name padding">{provider.provider_name}</h2>
                     <section>
-                        <p className="providerDetails__data--service padding"> Expertise: {provider.service_name}</p>
-                        <p className="providerDetails__data--exp padding"> Experience : </p>
-                        <p className="providerDetails__data--contact padding"> Contact Details:</p>
-                        <p className="providerDetails__data--contact--value padding">Phone: {provider.contact_phone}</p>
-                        <p className="providerDetails__data--contact--value padding">Email: {provider.contact_email}</p>
+                        <div className='provider--Details__container'>
+                            <div className='provider--Details__container--experience'>
+                                <p className="providerDetails__data--service padding"> Expertise: {provider.service_name}</p>
+                                <p className="providerDetails__data--exp padding"> Experience : </p>
+                            </div>
+                            <div>
+                                <p className="providerDetails__data--contact padding"> Contact Details:</p>
+                                <p className="providerDetails__data--contact--value padding">Phone: {provider.contact_phone}</p>
+                                <p className="providerDetails__data--contact--value padding">Email: {provider.contact_email}</p>
+                            </div>
+                        </div>
+
+
+                        <ul>
+                            {serviceList.map((service, index) => (
+                                <li className='service__provided--list padding' key={index}>
+                                    <strong>{service.serviceName}</strong>: {service.price}
+                                </li>
+                            ))}
+                        </ul>
+
+
                     </section>
+
 
                 </section>
                 <section className='providerDetails__avatar--cont'>
@@ -91,19 +122,26 @@ function ProviderDetailsPage() {
                         <div className='provider__reviews__list--cont'>
                             <div className='provider__reviews__list--image padding'></div>
                             <div className='provider__reviews__list--details'>
-                                <p className='provider__reviews__list--name padding'>{review.user_name}</p>
-                                <p className='provider__reviews__list--review padding'>{review.user_review}</p>
+                                <div className='provider__reviews__list--details--data'>
+                                    <p className='provider__reviews__list--name padding'>{review.user_name}</p>
+                                    <p className='provider__reviews__list--date padding'>{TimeFormat(review.created_at)}</p>
+
+                                </div>
+                                <div className='provider__reviews__list--dateCont'>
+                                    <p className='provider__reviews__list--review padding'>{review.user_review}</p>
+
+                                </div>
                             </div>
-                            <div className='provider__reviews__list--dateCont'>
-                                <p className='provider__reviews__list--date padding'>{TimeFormat(review.created_at)}</p>
-                            </div>
+
                         </div>
                     </li>
                 ))}
             </section>
-            <section>
-                <button onClick={handleGoBack}>Go Back</button>
-                <button onClick={handleAddToCart}>Make a booking</button>
+            <section className='button__cont'>
+                <button className='button__cont--item' onClick={handleGoBack}>Go Back</button>
+                {/* <Link to = {`/booking/${provider.id}`}  > */}
+                <button className='button__cont--item' onClick={handleBook}>Book</button>
+                {/* </Link> */}
             </section>
         </>
     )

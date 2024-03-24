@@ -4,6 +4,7 @@ import Header from './components/Header/Header';
 import ServiceDetailsPage from './pages/ServiceDetailsPage/ServiceDetailsPage';
 import ProvidersPage from './pages/ProvidersPage/ProvidersPage';
 import ProviderDetailsPage from './pages/ProviderDetailsPage/ProviderDetailsPage';
+import Booking from './pages/Booking/Booking';
 
 function App() {
   return (
@@ -14,8 +15,9 @@ function App() {
           <Route path='/' element={<HomePage />} />
           <Route path='/services' element={<HomePage />} />
           <Route path='/services/:serviceId' element = {<ServiceDetailsPage /> } />
-          <Route path='/providers' element={<ProvidersPage />} />
+          {/* <Route path='/providers' element={<ProvidersPage />} /> */}
           <Route path='/providers/:id' element={<ProviderDetailsPage />} />
+          <Route path='/booking/:id' element={<Booking/>} />
         </Routes>
       </BrowserRouter>
 

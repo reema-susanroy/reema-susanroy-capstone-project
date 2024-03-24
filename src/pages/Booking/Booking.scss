@@ -1,0 +1,84 @@
+@use '../../styles/partials/mixins' as *;
+.booking__details--form{
+    display: flex;
+    flex-direction: column;
+}
+.choose__date--option{
+    padding: 0 .3rem;
+}
+.booking__deatils--form--label{
+    display: flex;
+    flex-direction: column;
+    padding: .5rem 0;
+    gap: .2rem;
+    font-weight: 600;
+}
+.booking__deatils--form--input{
+    width: 90%;
+    height: fit-content;
+    border-radius: 20px;
+    margin: 0 auto;
+    padding: .5rem;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal {
+    background-color: lightgray;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    text-align: center;
+    position: relative;
+    top: 15rem;
+    margin: 0 auto;
+    font-size: 12px;
+
+    @include tablet {
+        font-size: 1rem;
+    }
+
+    &__title-cont {
+        color: black;
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    &__title--title {
+        font-size: 18px;
+    }
+
+    &__title {
+        color: black;
+
+        @include tablet {
+            font-size: 16px;
+        }
+    }
+
+    &__button {
+        cursor: pointer;
+        align-self: flex-end;
+        width: 2rem;
+        height: 2rem;
+        border: none;
+        background-color: lightgray;
+        color: white;
+        font-weight: bolder;
+
+        @include tablet {
+            width: 3rem;
+            height: 2rem;
+        }
+    }
+}
