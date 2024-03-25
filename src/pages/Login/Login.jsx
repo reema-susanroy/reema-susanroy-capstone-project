@@ -63,7 +63,7 @@ function Login() {
             </section>
 
             {!success && 
-                <div> <p>Please check the </p></div>
+                <div> <p>Please check your credentials </p></div>
             }
         </form>
     </div>

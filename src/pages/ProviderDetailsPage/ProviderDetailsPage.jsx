@@ -5,6 +5,13 @@ import { useLocation } from "react-router-dom";
 import axios from 'axios';
 import { TimeFormat } from '../../utils/TimeFormat';
 import Loading from "../Loading/Loading";
+import star from '../../assets/icons/star.svg'
+import fullstar from '../../assets/icons/full-star.svg'
+import star1 from '../../assets/icons/star-1.png'
+import star2 from '../../assets/icons/star-2.png'
+import black from '../../assets/icons/blac-star.png'
+
+
 
 function ProviderDetailsPage() {
     const location = useLocation();
@@ -14,6 +21,7 @@ function ProviderDetailsPage() {
 
     const [isLoading, setIsLoading] = useState(true);
     const [reviewContent, setReviewContent] = useState();
+    const [isFavorite, setIsFavorite] = useState(provider.isFavorite);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -39,6 +47,17 @@ function ProviderDetailsPage() {
         price
     }));
 
+    const toggleFavorite = async () => {
+        console.log("like")
+        try {
+          // Update the favorite status in the database
+          await axios.put(`${process.env.REACT_APP_BASE_URL}/api/providers/${id}/favorite`, { isFavorite: !isFavorite });
+        console.log("liked")
+          setIsFavorite(!isFavorite);
+        } catch (error) {
+          console.error('Error toggling favorite status:', error);
+        }
+      };
 
     // const getServiceName = () => {
     //     console.log(provider.service_id)
@@ -112,6 +131,11 @@ function ProviderDetailsPage() {
                     {/* <p className="providerDetails__data--avatar"> </p> */}
                     <div className="providerDetails__data--avatar--cont">
                         <img className='providerDetails__data--avatar--img' src={`${process.env.REACT_APP_BASE_URL}${provider.provider_image}`} />
+                    </div>
+                </section>
+                <section>
+                    <div className='providerDetails__favorite--cont'>
+                        <img onClick={toggleFavorite} src={isFavorite ? black : star} alt="favorite" />
                     </div>
                 </section>
             </div>

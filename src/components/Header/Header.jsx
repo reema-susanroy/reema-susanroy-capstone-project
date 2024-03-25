@@ -13,14 +13,14 @@ function Header() {
         <header>
             <nav className='navbar'>
                 <div className='navbar__logo'>
-                    <NavLink  to="/">
+                    <NavLink  to="/services">
                         <div className="navbar__logo--cont">
                         <img className='navbar__logo--image' src={logo} alt='logo' />
                         </div>
                     </NavLink >
                 </div>
                 <div className='navbar__side-container'>
-                    <h2 className='navbar__welcome'> Welcome User</h2>
+                    <h2 className='navbar__welcome'> Login</h2>
                     <ul className="navbar__menu">
                         <li className="navbar__menu--item">
                             <NavLink  to="/home" className="navbar__menu--link" activeClassName="active">Home</NavLink >
@@ -36,11 +36,11 @@ function Header() {
                             <div className="bar"></div>
                         </div>
                         <ul className={`navbar__dropdown--links ${isMenuOpen ? 'open' : ''}`}>
-                        <li className="navbar-item">
-                            <NavLink  to="/home" className="navbar__dropdown--link">Option 1</NavLink >
+                        <li className="navbar__dropdown--links--list dashboard">
+                            <NavLink  to="/dashboard" onClick={toggleMenu} className="navbar__dropdown--links--item">My Dashboard</NavLink >
                         </li>
-                        <li className="navbar-item">
-                            <NavLink  to="/about" className="navbar__dropdown--link">Option 2</NavLink >
+                        <li className="navbar__dropdown--links--list providers">
+                            <NavLink  to="/providers" onClick={toggleMenu} className="navbar__dropdown--links--item">See all Professionals</NavLink >
                         </li>
                     </ul>
 

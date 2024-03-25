@@ -1,42 +1,50 @@
 @use '../../styles/partials/mixins' as *;
 @use '../../styles/partials/resets' as *;
 
-.navbar{
+.navbar {
     display: flex;
     padding: .5rem 0;
     // background-color: rgb(244 244 244 / 80%);
     // background-color: #34a5cdcc;
     background-color: rgb(205 103 52 / 54%);
     background-color: #d8bfd8;
-    &__logo{
+
+    &__logo {
         //
         width: 50%;
         padding-left: 1rem;
-        @include tablet{
+
+        @include tablet {
             width: 70%;
         }
-        &--cont{
+
+        &--cont {
             width: 30px;
         }
+
         // &--image{
         //     //
         // }
     }
 }
-.navbar__side-container{
+
+.navbar__side-container {
     display: flex;
     width: 50%;
     gap: 1rem;
-    @include tablet{
+
+    @include tablet {
         width: 20%;
     }
 }
-.navbar__welcome{
+
+.navbar__welcome {
     font-size: 15px;
     align-items: center;
     display: flex
 }
-.navbar__menu--item{
+
+.navbar__menu--item {
     display: none;
 }
 
@@ -49,6 +57,8 @@
     // display: none;
     flex-direction: column;
     cursor: pointer;
+    z-index: 10;
+
     .bar {
         width: 20px;
         height: 2px;
@@ -56,6 +66,7 @@
         margin: 2px 0;
         transition: all 0.3s ease;
     }
+
     @media (max-width: 768px) {
         display: flex;
     }
@@ -67,16 +78,72 @@
     list-style: none;
     margin: 0;
     padding: 0;
+
+    position: absolute;
+    top: 50vh;
+    left: 50vw;
+    transform: translate(-50%, -50%);
+    background-color: lightgray;
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 1;
+
+    @include tablet {
+        top: 20%;
+        left: 90%;
+        // z-index: 1
+    }
+
+    &--list {
+        margin-top: .5rem;
+        padding: 1rem 0;
+
+        @include tablet {
+            display: flex;
+            justify-content: center;
+        }
+    }
+
+    &--item {
+        text-decoration: none;
+        list-style-type: none;
+    }
+
     &.open {
         display: flex;
         flex-direction: column;
         width: 100%;
         height: 100%;
     }
-    li {
-        margin-right: 20px;
-        &:last-child {
-            margin-right: 0;
-        }
+
+    // li {
+    //     margin-right: 20px;
+    //     @include tablet{
+    //         position: absolute;
+    //         bottom: 25rem;
+    //         padding: 1rem 0;
+    //     }
+
+    //     &:last-child {
+    //         margin-right: 0;
+    //     }
+    // }
+}
+
+.dashboard {
+    @include tablet{
+        position: absolute;
+        bottom: 23rem;
+        padding: 1rem;
     }
+    
+}
+
+.providers {
+    @include tablet{
+        position: absolute;
+        bottom: 20rem;
+        padding: 1rem;
+    }
+    
 }

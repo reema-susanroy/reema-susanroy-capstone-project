@@ -117,15 +117,33 @@ function ProvidersComponent({ serviceId }) {
 
                 {successFilter && filteredProviders.map((provider) => (
                     <li key={provider.id} className="provider--list__items" onClick={() => handleKnowMore(provider)}>
+                        
                         <div className="provider--list__items-wrap">
+                            <div className='provider--list__items-provider' >
+                                <img className='provider--list-__items-provider-img' src={`${process.env.REACT_APP_BASE_URL}${provider.provider_image}`} alt="provider-image" />
+                            </div>
+                            <div>
+                                <div className="provider--lists__items-nameCont">
+                                    <span>{provider.provider_name} </span>
+                                    <div className="provider--lis__items-rating"><p>Rating: {provider.rating} </p></div>
+                                </div>
+                                <div className="">
+                                    <div className="provider--list__items-wrapper">
+                                        <div className='provider--list__items-cont' >
+                                            <img className='provider--list-__items-img' src={pin} alt="location" />
+                                        </div>
+                                        <span>{provider.city} </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        {/* <div className="provider--list__items-wrap">
                             <div className='provider--list__items-provider' >
                                 <img className='provider--list-__items-provider-img' src={`${process.env.REACT_APP_BASE_URL}${provider.provider_image}`} alt="provider-image" />
                             </div>
                             <span>{provider.provider_name} </span>
                         </div>
-                        {/* <p>{provider.provider_name} </p> */}
-                        {/* <p>Contact: {provider.contact_phone} </p>
-                        <p>Email: {provider.contact_email} </p> */}
                         <div className="provider--list__items-wrap">
                             <div className='provider--list__items-cont' >
                                 <img className='provider--list-__items-img' src={pin} alt="location" />
@@ -133,7 +151,7 @@ function ProvidersComponent({ serviceId }) {
                             <span>{provider.city} </span>
                         </div>
                         <p>Rating: {provider.rating} </p>
-                        <button onClick={() => handleKnowMore(provider)}>Know More..</button>
+                        <button onClick={() => handleKnowMore(provider)}>Know More..</button> */}
                     </li>
                 ))}
             </ul>
