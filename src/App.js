@@ -5,6 +5,7 @@ import ServiceDetailsPage from './pages/ServiceDetailsPage/ServiceDetailsPage';
 import ProvidersPage from './pages/ProvidersPage/ProvidersPage';
 import ProviderDetailsPage from './pages/ProviderDetailsPage/ProviderDetailsPage';
 import Booking from './pages/Booking/Booking';
+import Login from './pages/Login/Login';
 
 function App() {
   return (
@@ -12,7 +13,8 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path='/' element={<HomePage />} />
+        <Route path='/' element={<Login />} />
+          <Route path='/home' element={<HomePage />} />
           <Route path='/services' element={<HomePage />} />
           <Route path='/services/:serviceId' element = {<ServiceDetailsPage /> } />
           {/* <Route path='/providers' element={<ProvidersPage />} /> */}

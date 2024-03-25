@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import './Header.scss';
-import logo from '../../assets/images/slogan.png'
+import logo from '../../assets/images/slogan.png';
+import { NavLink } from "react-router-dom";
+
 function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const toggleMenu = () => {
@@ -11,20 +13,20 @@ function Header() {
         <header>
             <nav className='navbar'>
                 <div className='navbar__logo'>
-                    <Link to="/">
+                    <NavLink  to="/">
                         <div className="navbar__logo--cont">
                         <img className='navbar__logo--image' src={logo} alt='logo' />
                         </div>
-                    </Link>
+                    </NavLink >
                 </div>
                 <div className='navbar__side-container'>
                     <h2 className='navbar__welcome'> Welcome User</h2>
                     <ul className="navbar__menu">
                         <li className="navbar__menu--item">
-                            <Link to="/home" className="navbar__menu--link">Home</Link>
+                            <NavLink  to="/home" className="navbar__menu--link" activeClassName="active">Home</NavLink >
                         </li>
                         <li className="navbar__menu--item">
-                            <Link to="/about" className="navbar__menu--link">About</Link>
+                            <NavLink  to="/about" className="navbar__menu--link" activeClassName="active">About</NavLink >
                         </li>
                     </ul>
                     <div className='navbar__dropdown'>
@@ -35,10 +37,10 @@ function Header() {
                         </div>
                         <ul className={`navbar__dropdown--links ${isMenuOpen ? 'open' : ''}`}>
                         <li className="navbar-item">
-                            <Link to="/home" className="navbar__dropdown--link">Option 1</Link>
+                            <NavLink  to="/home" className="navbar__dropdown--link">Option 1</NavLink >
                         </li>
                         <li className="navbar-item">
-                            <Link to="/about" className="navbar__dropdown--link">Option 2</Link>
+                            <NavLink  to="/about" className="navbar__dropdown--link">Option 2</NavLink >
                         </li>
                     </ul>
 

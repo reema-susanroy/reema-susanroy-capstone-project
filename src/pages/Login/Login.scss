@@ -1,0 +1,96 @@
+@use '../../styles/partials/mixins'as*;
+
+.login__form{
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+
+    @include tablet{
+        flex-direction: row;
+    }
+    &__cont{
+        display: flex;
+        flex-direction: column;
+        margin: auto auto;
+        gap: 2rem;
+
+        &--div{
+            // align-self: center;
+            display: flex;
+        }
+    }
+
+}
+// .login__form__cont{
+//     display: flex;
+//     flex-direction: column;
+//     margin: auto auto;
+// }
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh; /* Adjust as needed */
+
+    @include tablet{
+        height: 60vh;
+    }
+}
+
+form {
+    // width: 300px; /* Adjust the width of the form */
+    /* Add other styles as needed */
+}
+
+.login__form--label{
+    font-size: 18px;
+    margin-right: 2rem;
+    width: 100%;
+    font-family: cursive;
+    align-items: center;
+    display: flex;
+}
+.login__form--input{
+    padding: .5rem;
+}
+
+.login__form--button{
+    align-items: flex-start;
+    display: flex;
+    margin-left: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 1.2rem;
+    @include tablet{
+        // align-items: center;
+        // align-items: start;
+        justify-content: center;
+    }
+
+    &--item{
+        font-size: 18px;
+        font-family: cursive;
+        text-decoration: none;
+        color: black;
+        border: 1px solid lightblue;
+        padding: .2rem .5rem;
+        width: 50%;
+        border-radius: 6px;
+        text-align: center;
+    }
+
+    &--text{
+
+    }
+    &--navink{
+        // list-style-type: none;
+        text-decoration: none;
+        color: black;
+        cursor: pointer;
+        &:hover{
+            color: blue;
+        }
+    }
+}
