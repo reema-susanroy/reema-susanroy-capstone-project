@@ -51,7 +51,7 @@ function Register() {
         } else {
             console.log("inside")
             try {
-                const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/register`, {
+                const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/users/register`, {
                     user_name: name,
                     contact_email: email,
                     password: password,

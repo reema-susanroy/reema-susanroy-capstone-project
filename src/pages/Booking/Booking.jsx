@@ -2,11 +2,14 @@ import './Booking.scss';
 import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { timeCalc } from '../../utils/TimeCalc';
+
 function Booking() {
     const location = useLocation();
     const { provider } = location.state;
     console.log(provider)
     const { id } = useParams();
+    const [userId, setUserId] = useState('');
 
     const navigate=useNavigate();
     const [providerDate, setProviderDate] = useState();
@@ -15,7 +18,12 @@ function Booking() {
     const [address, setAddress] = useState();
     const [errorMessage , setErrorMessage] =useState(false);
     const [uploadForm, setUploadForm] = useState(false);
-
+    useEffect(() => {
+        const storedUserId = sessionStorage.getItem('userId');
+        if (storedUserId) {
+            setUserId(storedUserId);
+        }
+    }, []);
 
     useEffect(() => {
         getAvailability();
@@ -55,7 +63,7 @@ function Booking() {
                 const updateBooking = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/providers/${provider.id}/booking/confirm`, 
                 {
                     provider_id: provider.id,
-                    user_id: 1,
+                    user_id: userId,
                     service_id: provider.service_id,
                     issue_description: description,
                     booked_on: timeCalc(selectedDate),
@@ -75,14 +83,14 @@ function Booking() {
     const closePopup =() =>{
 
     }
-    const timeCalc = (data) => {
-        const date = new Date(data)
-        const utcString = date.toISOString();
-        const month = new Date(utcString).getUTCMonth() + 1;
-        const dateValue = new Date(utcString).getUTCDate();
-        const year = new Date(utcString).getUTCFullYear();
-        return (`${year}/${month}/${dateValue}`);
-    }
+    // const timeCalc = (data) => {
+    //     const date = new Date(data)
+    //     const utcString = date.toISOString();
+    //     const month = new Date(utcString).getUTCMonth() + 1;
+    //     const dateValue = new Date(utcString).getUTCDate();
+    //     const year = new Date(utcString).getUTCFullYear();
+    //     return (`${year}/${month}/${dateValue}`);
+    // }
     // console.log(providerDate)
     return (
         <>

@@ -17,20 +17,29 @@ function ProviderDetailsPage() {
     const location = useLocation();
     const { provider } = location.state;
     console.log(provider)
-    const { id } = useParams();
+    const { id } = useParams(); //serviceid
 
     const [isLoading, setIsLoading] = useState(true);
     const [reviewContent, setReviewContent] = useState();
     const [isFavorite, setIsFavorite] = useState(provider.isFavorite);
     const navigate = useNavigate();
+    const [userId, setUserId] = useState('');
+
+    useEffect(() => {
+        const storedUserId = sessionStorage.getItem('userId');
+        if (storedUserId) {
+            setUserId(storedUserId);
+        }
+    }, []);
 
     useEffect(() => {
         const getReviews = async () => {
             try {
-                const review = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/providers/${id}/reviews`)
+                const review = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/providers/${provider.id}/reviews`);
                 console.log("hi");
+                // const favorite = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/users/${userId}/providers/${id}/favorite`);
                 // const reviewData = review.data;
-                console.log(review.data)
+                console.log(review.data);
                 setIsLoading(false);
                 setReviewContent(review.data);
 
@@ -51,7 +60,11 @@ function ProviderDetailsPage() {
         console.log("like")
         try {
           // Update the favorite status in the database
-          await axios.put(`${process.env.REACT_APP_BASE_URL}/api/providers/${id}/favorite`, { isFavorite: !isFavorite });
+          await axios.put(`${process.env.REACT_APP_BASE_URL}/api/providers/${provider.id}/favorite`, { 
+            // user_id : userId,
+            // provider_id:provider.id,
+            isFavorite : !isFavorite
+           });
         console.log("liked")
           setIsFavorite(!isFavorite);
         } catch (error) {
