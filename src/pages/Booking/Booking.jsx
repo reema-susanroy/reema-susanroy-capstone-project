@@ -7,7 +7,7 @@ import { timeCalc } from '../../utils/TimeCalc';
 function Booking() {
     const location = useLocation();
     const { provider } = location.state;
-    const { id } = useParams();
+    const { id } = useParams(); //providerId
     const [userId, setUserId] = useState('');
 
     const navigate=useNavigate();
@@ -58,7 +58,7 @@ function Booking() {
             try{
                 const updateBooking = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/providers/${provider.id}/booking/confirm`, 
                 {
-                    provider_id: provider.id,
+                    provider_id: id,
                     user_id: userId,
                     service_id: provider.service_id,
                     issue_description: description,

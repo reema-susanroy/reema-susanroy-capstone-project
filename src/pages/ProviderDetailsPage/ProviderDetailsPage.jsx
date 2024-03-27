@@ -12,6 +12,7 @@ function ProviderDetailsPage() {
     const location = useLocation();
     const {flag} = location.state;
     const { id } = useParams(); //providerId
+    console.log("provider ID" + id);
     const [provider, setProvider] =useState();
     const [isLoading, setIsLoading] = useState(true);
     const [reviewContent, setReviewContent] = useState();

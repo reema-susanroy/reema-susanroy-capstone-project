@@ -95,7 +95,7 @@ function ServiceDetailsPage() {
                 </div> */}
             </div>
 
-            <ProvidersComponent serviceId={serviceData.id} flag={flag} />
+            {/* <ProvidersComponent serviceId={serviceData.id} flag={flag} /> */}
             {/* <div className="service__location"  style={{ display: 'flex' }}>
                 <button className="service__location--pin" onClick={handleLook}>Look for professional</button>
                 <form>
@@ -113,7 +113,7 @@ function ServiceDetailsPage() {
 
             <div className="map__container">
 
-                <Map />
+                <Map serviceId={serviceData.id}/>
 
             </div>
         </>
