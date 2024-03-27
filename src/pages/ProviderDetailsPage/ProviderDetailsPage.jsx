@@ -6,25 +6,20 @@ import axios from 'axios';
 import { TimeFormat } from '../../utils/TimeFormat';
 import Loading from "../Loading/Loading";
 import star from '../../assets/icons/star.svg'
-import fullstar from '../../assets/icons/full-star.svg'
-import star1 from '../../assets/icons/star-1.png'
-import star2 from '../../assets/icons/star-2.png'
 import black from '../../assets/icons/blac-star.png'
-
-
 
 function ProviderDetailsPage() {
     const location = useLocation();
-    const { provider } = location.state;
-    console.log(provider)
-    const { id } = useParams(); //serviceid
-
+    const {flag} = location.state;
+    const { id } = useParams(); //providerId
+    const [provider, setProvider] =useState();
     const [isLoading, setIsLoading] = useState(true);
     const [reviewContent, setReviewContent] = useState();
-    const [isFavorite, setIsFavorite] = useState(provider.isFavorite);
+    const [isFavorite, setIsFavorite] = useState();
+    const [pricing, setPricing] =useState();
     const navigate = useNavigate();
     const [userId, setUserId] = useState('');
-
+    let url;
     useEffect(() => {
         const storedUserId = sessionStorage.getItem('userId');
         if (storedUserId) {
@@ -32,14 +27,25 @@ function ProviderDetailsPage() {
         }
     }, []);
 
+    useEffect(()=>{
+        const getProviderData = async ()=>{
+            try{
+                const providerData=await axios.get(`${process.env.REACT_APP_BASE_URL}/api/providers/provider/${id}`)
+                setProvider(providerData.data[0]);
+                setIsFavorite(providerData.data[0].isFavorite);
+                setPricing(providerData.data[0].pricing);
+                setIsLoading(false);
+                
+            }catch(error){
+                console.log("Unable to load provider details :" +error);
+            }
+        }
+        getProviderData();
+    },[])
     useEffect(() => {
         const getReviews = async () => {
             try {
-                const review = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/providers/${provider.id}/reviews`);
-                console.log("hi");
-                // const favorite = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/users/${userId}/providers/${id}/favorite`);
-                // const reviewData = review.data;
-                console.log(review.data);
+                const review = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/providers/${id}/reviews`);
                 setIsLoading(false);
                 setReviewContent(review.data);
 
@@ -51,64 +57,42 @@ function ProviderDetailsPage() {
         getReviews();
     }, []);
 
-    const serviceList = Object.entries(provider.pricing).map(([serviceName, price]) => ({
+    const serviceList = pricing && Object.entries(pricing).map(([serviceName, price]) => ({
         serviceName,
         price
     }));
 
     const toggleFavorite = async () => {
-        console.log("like")
         try {
-          // Update the favorite status in the database
-          await axios.put(`${process.env.REACT_APP_BASE_URL}/api/providers/${provider.id}/favorite`, { 
-            // user_id : userId,
-            // provider_id:provider.id,
+          await axios.put(`${process.env.REACT_APP_BASE_URL}/api/providers/${id}/favorite`, { 
             isFavorite : !isFavorite
            });
-        console.log("liked")
           setIsFavorite(!isFavorite);
         } catch (error) {
           console.error('Error toggling favorite status:', error);
         }
       };
-
-    // const getServiceName = () => {
-    //     console.log(provider.service_id)
-    //     switch (provider.service_id) {
-    //         case 1: resultName = "Plumbing";
-    //         break;
-    //         case 2: resultName = 'Electrical';
-    //         break;
-    //         case 3: resultName = 'Cleaning';
-    //         break;
-    //         case 4: resultName = 'Landscaping';
-    //         break;
-    //         case 5: resultName = 'Painting';
-    //         break;
-    //         case 6: resultName = 'HVAC';
-    //         break;
-    //         case 7: resultName = 'Roofing';
-    //         break;
-    //         case 8: resultName = 'Carpentry';
-    //         break;
-    //     }
-    // }
-    // getServiceName();
+          
     const handleGoBack = () => {
-        navigate(`/services/${id}`)
+        if(flag === "servicePage"){
+                url =`/services/${provider.service_id}`;
+        }else if(flag==="dashboard"){
+            url = '/dashboard';
+        }
+        // navigate(`/services/${provider.service_id}`)
+        navigate(url);
     }
     const handleBook = () => {
-        navigate(`/booking/${provider.id}`, { state: { provider } });
-
+        navigate(`/booking/${id}`, { state: { provider } });
     }
     if(isLoading){
         return (
             <Loading />
         )
     }
-    console.log(provider.pricing)
     return (
         <>
+        {provider && (
             <div className="providerDetails">
                 <section className='providerDetails__data'>
 
@@ -125,8 +109,6 @@ function ProviderDetailsPage() {
                                 <p className="providerDetails__data--contact--value padding">Email: {provider.contact_email}</p>
                             </div>
                         </div>
-
-
                         <ul>
                             {serviceList.map((service, index) => (
                                 <li className='service__provided--list padding' key={index}>
@@ -134,11 +116,7 @@ function ProviderDetailsPage() {
                                 </li>
                             ))}
                         </ul>
-
-
                     </section>
-
-
                 </section>
                 <section className='providerDetails__avatar--cont'>
                     {/* <p className="providerDetails__data--avatar"> </p> */}
@@ -152,6 +130,7 @@ function ProviderDetailsPage() {
                     </div>
                 </section>
             </div>
+        )}
             <section className='provider__reviews'>
                 <h3 className='provider__reviews--review'>Reviews</h3>
                 {Array.isArray(reviewContent) && reviewContent.map((review, index) => (

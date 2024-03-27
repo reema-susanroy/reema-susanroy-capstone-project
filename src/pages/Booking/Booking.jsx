@@ -7,7 +7,6 @@ import { timeCalc } from '../../utils/TimeCalc';
 function Booking() {
     const location = useLocation();
     const { provider } = location.state;
-    console.log(provider)
     const { id } = useParams();
     const [userId, setUserId] = useState('');
 
@@ -33,12 +32,10 @@ function Booking() {
             const availability = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/providers/booking/${provider.id}/availability`);
             const datesSet = availability.data;
             setProviderDate(datesSet);
-            // console.log(providerDate)
         }
         catch (error) {
             console.log("Unable to fetch availability details : " + error);
         }
-
     }
     const handleDateChange = (value) => {
         setSelectedDate(value);
@@ -49,17 +46,16 @@ function Booking() {
     const handleAddressChange = (value) => {
         setAddress(value);
     }
-
+    const handleCancel=()=>{
+        navigate(`/services/${provider.service_id}`);
+    }
     const handleBook =async (event) =>{
         event.preventDefault();
-        console.log("clicked")
-        console.log(address + selectedDate + description);
         if(!address || !selectedDate || !description){
             console.log("here?")
             setErrorMessage(true);
         }else{
             try{
-                console.log("2")
                 const updateBooking = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/providers/${provider.id}/booking/confirm`, 
                 {
                     provider_id: provider.id,
@@ -69,29 +65,15 @@ function Booking() {
                     booked_on: timeCalc(selectedDate),
                   }
                 );
-                // setTimeout(()=>{
-                //     navigate("/")
-                // },3000)
+                setTimeout(()=>{
+                    navigate("/services")
+                },2000)
             }catch(error){
-                console.log("3")
                 console.log("Couldn't update the bookings table:" + error);
             }
             setUploadForm(true);
         }
     }
-
-    const closePopup =() =>{
-
-    }
-    // const timeCalc = (data) => {
-    //     const date = new Date(data)
-    //     const utcString = date.toISOString();
-    //     const month = new Date(utcString).getUTCMonth() + 1;
-    //     const dateValue = new Date(utcString).getUTCDate();
-    //     const year = new Date(utcString).getUTCFullYear();
-    //     return (`${year}/${month}/${dateValue}`);
-    // }
-    // console.log(providerDate)
     return (
         <>
             <h3>Confirm booking with <span> {provider.provider_name} </span> for <span>{provider.service_name} </span>service</h3>
@@ -117,7 +99,7 @@ function Booking() {
                         onChange={(e) => { handleDescriptionChange(e.target.value); }} />
                 </label>
             </section>
-
+            <button onClick={handleCancel}> Cancel</button>
             <button onClick={handleBook}> Book</button>
         </form>
 
@@ -127,7 +109,6 @@ function Booking() {
                         <section className='modal__title-cont'>
                             <h2 className='modal__title--title'>Success</h2>
                             <p className='modal__title'>Your booking has confirmed! Taking to homepage</p>
-                            {/* <button onClick={closePopup} className='modal__button'>OK</button> */}
                         </section>
                     </div>
                 </div>

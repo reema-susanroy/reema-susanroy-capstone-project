@@ -9,6 +9,7 @@ function Dashboard() {
     const [userId, setUserId] = useState('');
     const [bookingData, setBookingData] = useState([]);
     const [favoriteData, setFavoriteData] = useState([]);
+    const [profileData, setProfileData] = useState([]);
 
     const [showBooking, setShowBooking] = useState(false);
     const [showProfile, setShowProfile] = useState(false);
@@ -21,25 +22,31 @@ function Dashboard() {
         }
     }, []);
 
-    const handleProfile = () => {
-        setShowProfile(true);
-        setShowFavorites(false);
-        setShowBooking(false);
+    const handleProfile = async() => {
+        try {
+            const userDetails = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/users/${userId}`);
+            console.log(userDetails.data[0])
+            setProfileData(userDetails.data[0]);
+            setShowProfile(true);
+            setShowFavorites(false);
+            setShowBooking(false);
+        } catch (error) {
+            console.log("Unable to load the user details: "+error);
+        }
     }
     const handleFavorites = async () => {
-        try{
-            console.log("inside hanlde")
+        try {
             const favoriteDetails = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/providers/users/favorite`);
             console.log(favoriteDetails.data)
             setFavoriteData(favoriteDetails.data);
             setShowProfile(false);
             setShowFavorites(true);
             setShowBooking(false);
-        }catch(error){
+        } catch (error) {
             // if(error.message)
-            console.log("unable to fetch favorites: "+ error)
+            console.log("unable to fetch favorites: " + error)
         }
-        
+
     }
     const handleBooking = async () => {
         try {
@@ -53,6 +60,17 @@ function Dashboard() {
             console.log("Unable to fetch booking data :" + error);
         }
 
+    }
+
+    const updateDelete = async(bookingId) =>{
+        console.log("came here")
+        try{
+            const deleteBooking = await axios.delete(`${process.env.REACT_APP_BASE_URL}/api/users/manage-booking/${bookingId}`)
+            console.log(deleteBooking);
+            handleBooking();
+        }catch(error){
+            console.log("Unable to delete the booking: "+error);
+        }
     }
     return (
         <>
@@ -75,13 +93,13 @@ function Dashboard() {
             </section>
 
             {showBooking && !showProfile && !showFavorites &&
-                <ShowBooking showBooking={showBooking} bookingData={bookingData} />
+                <ShowBooking showBooking={showBooking} bookingData={bookingData} updateDelete={updateDelete}/>
             }
             {!showBooking && showProfile && !showFavorites &&
-                <ShowProfile />
+                <ShowProfile showProfile={showProfile} profileData={profileData} userId={userId}/>
             }
             {!showBooking && !showProfile && showFavorites &&
-                <ShowFavorite showFavorites={showFavorites} favoriteData={favoriteData}/>
+                <ShowFavorite showFavorites={showFavorites} favoriteData={favoriteData} />
             }
         </>
     )

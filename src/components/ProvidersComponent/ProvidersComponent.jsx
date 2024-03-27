@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import './ProvidersComponent.scss'
 import pin from '../../assets/images/pin.png'
 
-function ProvidersComponent({ serviceId }) {
+function ProvidersComponent({ serviceId , flag}) {
     const server_url = process.env.REACT_APP_BASE_URL;
     const navigate = useNavigate();
     const [providerData, setProviderData] = useState();
@@ -15,19 +15,14 @@ function ProvidersComponent({ serviceId }) {
     const [successFilter, setSuccessFilter] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const [notFound, setNotFound] = useState(false);
-
     useState(() => {
         const getProviders = async () => {
             try {
-                // const providerData = await axios.get(`${server_url}/api/providers`);
-                // setProviderData(providerData.data);
                 const serviceProvider = await axios.get(`${server_url}/api/providers/${serviceId}`);
                 const serviceProviderData = serviceProvider.data;
-                console.log(serviceProviderData);
                 setProviderData(serviceProviderData);
                 setDefaultProviders(true);
                 setIsLoading(false);
-
             }
             catch (error) {
                 setIsLoading(false);
@@ -38,9 +33,7 @@ function ProvidersComponent({ serviceId }) {
     }, [])
 
     useEffect(() => {
-
         const handleSearch = () => {
-            console.log("clicked")
             if (searchLocation.trim() === "") {
                 setDefaultProviders(true);
                 setSuccessFilter(false);
@@ -52,7 +45,6 @@ function ProvidersComponent({ serviceId }) {
                 }
                 else {
                     setFilteredProviders(filtered);
-                    console.log(filtered);
                     setDefaultProviders(false);
                     setSuccessFilter(true);
                     setNotFound(false);
@@ -64,16 +56,13 @@ function ProvidersComponent({ serviceId }) {
 
 
     const handleKnowMore = (provider) => {
-        // navigate(`/providers/:id`);
-        console.log(provider)
-        navigate(`/providers/${provider.id}`, { state: { provider } });
-
+        // navigate(`/providers/${provider.id}`, { state: { provider } });
+        navigate(`/providers/${provider.id}`, {state : {flag}});
     }
 
     if (isLoading) {
         return <Loading />
     }
-    console.log(providerData);
     return (
         <>
             <section className="provider--component">
@@ -107,17 +96,11 @@ function ProvidersComponent({ serviceId }) {
                                 </div>
                             </div>
                         </div>
-                        {/* <p>{provider.provider_name} </p> */}
-                        {/* <p>Contact: {provider.contact_phone} </p>
-                        <p>Email: {provider.contact_email} </p> */}
-
-                        {/* <button onClick={() => handleKnowMore(provider)}>Know More..</button> */}
                     </li>
                 ))}
 
                 {successFilter && filteredProviders.map((provider) => (
                     <li key={provider.id} className="provider--list__items" onClick={() => handleKnowMore(provider)}>
-                        
                         <div className="provider--list__items-wrap">
                             <div className='provider--list__items-provider' >
                                 <img className='provider--list-__items-provider-img' src={`${process.env.REACT_APP_BASE_URL}${provider.provider_image}`} alt="provider-image" />
@@ -137,31 +120,14 @@ function ProvidersComponent({ serviceId }) {
                                 </div>
                             </div>
                         </div>
-                        
-                        {/* <div className="provider--list__items-wrap">
-                            <div className='provider--list__items-provider' >
-                                <img className='provider--list-__items-provider-img' src={`${process.env.REACT_APP_BASE_URL}${provider.provider_image}`} alt="provider-image" />
-                            </div>
-                            <span>{provider.provider_name} </span>
-                        </div>
-                        <div className="provider--list__items-wrap">
-                            <div className='provider--list__items-cont' >
-                                <img className='provider--list-__items-img' src={pin} alt="location" />
-                            </div>
-                            <span>{provider.city} </span>
-                        </div>
-                        <p>Rating: {provider.rating} </p>
-                        <button onClick={() => handleKnowMore(provider)}>Know More..</button> */}
                     </li>
                 ))}
             </ul>
-
             {notFound &&
                 <div>
                     <p>Sorry, we are not available in this loaction yet. Coming soon.</p>
                 </div>
             }
-
         </>
     )
 }

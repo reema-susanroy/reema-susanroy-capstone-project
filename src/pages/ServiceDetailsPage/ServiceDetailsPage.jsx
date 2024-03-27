@@ -4,7 +4,7 @@ import axios from "axios";
 import Loading from "../Loading/Loading";
 import ErrorPage from "../ErrorPage/ErrorPage";
 import './ServiceDetailsPage.scss';
-// import Map from "../../components/Map/Map";
+import Map from "../../components/Map/Map";
 // import { useNavigate } from "react-router-dom";
 // import ProvidersPage from "../ProvidersPage/ProvidersPage";
 import ProvidersComponent from "../../components/ProvidersComponent/ProvidersComponent";
@@ -15,6 +15,7 @@ function ServiceDetailsPage() {
     const [isLoading, setIsLoading] = useState(true);
     const [hasError, sethasError] = useState(false);
     const [serviceData, setServiceData] = useState();
+    let flag = "servicePage";
     // const [dataFetched, setDataFetched] = useState(false);
     // const [serviceProvided, setServiceProvided] = useState();
 
@@ -94,7 +95,7 @@ function ServiceDetailsPage() {
                 </div> */}
             </div>
 
-            <ProvidersComponent serviceId={serviceData.id} />
+            <ProvidersComponent serviceId={serviceData.id} flag={flag} />
             {/* <div className="service__location"  style={{ display: 'flex' }}>
                 <button className="service__location--pin" onClick={handleLook}>Look for professional</button>
                 <form>
@@ -110,11 +111,11 @@ function ServiceDetailsPage() {
                 </form>
             </div> */}
 
-            {/* <div className="map__container">
+            <div className="map__container">
 
                 <Map />
 
-            </div> */}
+            </div>
         </>
 
     )
