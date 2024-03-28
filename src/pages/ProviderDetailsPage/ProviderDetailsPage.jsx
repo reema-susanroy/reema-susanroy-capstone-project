@@ -7,19 +7,21 @@ import { TimeFormat } from '../../utils/TimeFormat';
 import Loading from "../Loading/Loading";
 import star from '../../assets/icons/star.svg'
 import black from '../../assets/icons/blac-star.png'
+import LoginPopUp from '../../components/LoginPopUp/LoginPopUp';
 
 function ProviderDetailsPage() {
     const location = useLocation();
-    const {flag} = location.state;
+    const { flag } = location.state;
     const { id } = useParams(); //providerId
     console.log("provider ID" + id);
-    const [provider, setProvider] =useState();
+    const [provider, setProvider] = useState();
     const [isLoading, setIsLoading] = useState(true);
     const [reviewContent, setReviewContent] = useState();
     const [isFavorite, setIsFavorite] = useState();
-    const [pricing, setPricing] =useState();
+    const [pricing, setPricing] = useState();
     const navigate = useNavigate();
     const [userId, setUserId] = useState('');
+    const [loggedIn, setLoggedIn] = useState(true);
     let url;
     useEffect(() => {
         const storedUserId = sessionStorage.getItem('userId');
@@ -28,21 +30,21 @@ function ProviderDetailsPage() {
         }
     }, []);
 
-    useEffect(()=>{
-        const getProviderData = async ()=>{
-            try{
-                const providerData=await axios.get(`${process.env.REACT_APP_BASE_URL}/api/providers/provider/${id}`)
+    useEffect(() => {
+        const getProviderData = async () => {
+            try {
+                const providerData = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/providers/provider/${id}`)
                 setProvider(providerData.data[0]);
                 setIsFavorite(providerData.data[0].isFavorite);
                 setPricing(providerData.data[0].pricing);
                 setIsLoading(false);
-                
-            }catch(error){
-                console.log("Unable to load provider details :" +error);
+
+            } catch (error) {
+                console.log("Unable to load provider details :" + error);
             }
         }
         getProviderData();
-    },[])
+    }, [])
     useEffect(() => {
         const getReviews = async () => {
             try {
@@ -65,73 +67,78 @@ function ProviderDetailsPage() {
 
     const toggleFavorite = async () => {
         try {
-          await axios.put(`${process.env.REACT_APP_BASE_URL}/api/providers/${id}/favorite`, { 
-            isFavorite : !isFavorite
-           });
-          setIsFavorite(!isFavorite);
+            await axios.put(`${process.env.REACT_APP_BASE_URL}/api/providers/${id}/favorite`, {
+                isFavorite: !isFavorite
+            });
+            setIsFavorite(!isFavorite);
         } catch (error) {
-          console.error('Error toggling favorite status:', error);
+            console.error('Error toggling favorite status:', error);
         }
-      };
-          
+    };
+
     const handleGoBack = () => {
-        if(flag === "servicePage"){
-                url =`/services/${provider.service_id}`;
-        }else if(flag==="dashboard"){
+        if (flag === "servicePage") {
+            url = `/services/${provider.service_id}`;
+        } else if (flag === "dashboard") {
             url = '/dashboard';
         }
         // navigate(`/services/${provider.service_id}`)
         navigate(url);
     }
     const handleBook = () => {
-        navigate(`/booking/${id}`, { state: { provider } });
+        if (userId) {
+            setLoggedIn(true);
+            navigate(`/booking/${id}`, { state: { provider } });
+        } else {
+            setLoggedIn(false);
+        }
     }
-    if(isLoading){
+    if (isLoading) {
         return (
             <Loading />
         )
     }
     return (
         <>
-        {provider && (
-            <div className="providerDetails">
-                <section className='providerDetails__data'>
+            {provider && (
+                <div className="providerDetails">
+                    <section className='providerDetails__data'>
 
-                    <h2 className="providerDetails__name padding">{provider.provider_name}</h2>
-                    <section>
-                        <div className='provider--Details__container'>
-                            <div className='provider--Details__container--experience'>
-                                <p className="providerDetails__data--service padding"> Expertise: {provider.service_name}</p>
-                                <p className="providerDetails__data--exp padding"> Experience : </p>
+                        <h2 className="providerDetails__name padding">{provider.provider_name}</h2>
+                        <section>
+                            <div className='provider--Details__container'>
+                                <div className='provider--Details__container--experience'>
+                                    <p className="providerDetails__data--service padding"> Expertise: {provider.service_name}</p>
+                                    <p className="providerDetails__data--exp padding"> Experience : </p>
+                                </div>
+                                <div>
+                                    <p className="providerDetails__data--contact padding"> Contact Details:</p>
+                                    <p className="providerDetails__data--contact--value padding">Phone: {provider.contact_phone}</p>
+                                    <p className="providerDetails__data--contact--value padding">Email: {provider.contact_email}</p>
+                                </div>
                             </div>
-                            <div>
-                                <p className="providerDetails__data--contact padding"> Contact Details:</p>
-                                <p className="providerDetails__data--contact--value padding">Phone: {provider.contact_phone}</p>
-                                <p className="providerDetails__data--contact--value padding">Email: {provider.contact_email}</p>
-                            </div>
-                        </div>
-                        <ul>
-                            {serviceList.map((service, index) => (
-                                <li className='service__provided--list padding' key={index}>
-                                    <strong>{service.serviceName}</strong>: {service.price}
-                                </li>
-                            ))}
-                        </ul>
+                            <ul>
+                                {serviceList.map((service, index) => (
+                                    <li className='service__provided--list padding' key={index}>
+                                        <strong>{service.serviceName}</strong>: {service.price}
+                                    </li>
+                                ))}
+                            </ul>
+                        </section>
                     </section>
-                </section>
-                <section className='providerDetails__avatar--cont'>
-                    {/* <p className="providerDetails__data--avatar"> </p> */}
-                    <div className="providerDetails__data--avatar--cont">
-                        <img className='providerDetails__data--avatar--img' src={`${process.env.REACT_APP_BASE_URL}${provider.provider_image}`} />
-                    </div>
-                </section>
-                <section>
-                    <div className='providerDetails__favorite--cont'>
-                        <img onClick={toggleFavorite} src={isFavorite ? black : star} alt="favorite" />
-                    </div>
-                </section>
-            </div>
-        )}
+                    <section className='providerDetails__avatar--cont'>
+                        {/* <p className="providerDetails__data--avatar"> </p> */}
+                        <div className="providerDetails__data--avatar--cont">
+                            <img className='providerDetails__data--avatar--img' src={`${process.env.REACT_APP_BASE_URL}${provider.provider_image}`} />
+                        </div>
+                    </section>
+                    <section>
+                        <div className='providerDetails__favorite--cont'>
+                            <img onClick={toggleFavorite} src={isFavorite ? black : star} alt="favorite" />
+                        </div>
+                    </section>
+                </div>
+            )}
             <section className='provider__reviews'>
                 <h3 className='provider__reviews--review'>Reviews</h3>
                 {Array.isArray(reviewContent) && reviewContent.map((review, index) => (
@@ -160,6 +167,12 @@ function ProviderDetailsPage() {
                 <button className='button__cont--item' onClick={handleBook}>Book</button>
                 {/* </Link> */}
             </section>
+            {!loggedIn &&
+                <section className='login--popup'>
+                    <LoginPopUp provider={provider} providerId={id} />
+                </section>
+
+            }
         </>
     )
 }

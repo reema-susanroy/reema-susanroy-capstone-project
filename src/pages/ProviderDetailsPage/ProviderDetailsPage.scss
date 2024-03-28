@@ -11,7 +11,8 @@
     background-image: url('../../assets/images/background\ image\ 1.jpg');
 
     font-size: 12px;
-    @include tablet{
+
+    @include tablet {
         gap: 5rem;
     }
 
@@ -129,21 +130,37 @@
 
 }
 
-.provider--Details__container{
-    @include tablet{
+.provider--Details__container {
+    @include tablet {
         display: flex;
         gap: 2rem;
     }
 
-    &--experience{
-        @include tablet{
+    &--experience {
+        @include tablet {
             border-right: 1px solid gray;
             padding: 0 3rem 0 0;
         }
 
     }
 }
-.providerDetails__favorite--cont{
+
+.providerDetails__favorite--cont {
     height: 1.8rem;
     margin-right: 4rem;
+}
+
+.login--popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(35, 41, 64, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    border: 1px solid black;
+
+
 }

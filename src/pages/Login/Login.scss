@@ -1,26 +1,28 @@
-@use '../../styles/partials/mixins'as*;
+@use '../../styles/partials/mixins' as*;
 
-.login__form{
+.login__form {
     display: flex;
     flex-direction: column;
     gap: 3rem;
 
-    @include tablet{
+    @include tablet {
         flex-direction: row;
     }
-    &__cont{
+
+    &__cont {
         display: flex;
         flex-direction: column;
         margin: auto auto;
         gap: 2rem;
 
-        &--div{
+        &--div {
             // align-self: center;
             display: flex;
         }
     }
 
 }
+
 // .login__form__cont{
 //     display: flex;
 //     flex-direction: column;
@@ -31,9 +33,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 70vh; /* Adjust as needed */
+    height: 70vh;
+    /* Adjust as needed */
 
-    @include tablet{
+    @include tablet {
         height: 60vh;
     }
 }
@@ -43,7 +46,7 @@ form {
     /* Add other styles as needed */
 }
 
-.login__form--label{
+.login__form--label {
     font-size: 18px;
     margin-right: 2rem;
     width: 100%;
@@ -51,11 +54,12 @@ form {
     align-items: center;
     display: flex;
 }
-.login__form--input{
+
+.login__form--input {
     padding: .5rem;
 }
 
-.login__form--button{
+.login__form--button {
     align-items: flex-start;
     display: flex;
     margin-left: 2rem;
@@ -63,13 +67,14 @@ form {
     flex-direction: column;
     justify-content: flex-start;
     gap: 1.2rem;
-    @include tablet{
+
+    @include tablet {
         // align-items: center;
         // align-items: start;
         justify-content: center;
     }
 
-    &--item{
+    &--item {
         font-size: 18px;
         font-family: cursive;
         text-decoration: none;
@@ -81,20 +86,47 @@ form {
         text-align: center;
     }
 
-    &--text{
+    &--text {}
 
-    }
-    &--navink{
+    &--navink {
         // list-style-type: none;
         text-decoration: none;
         color: black;
         cursor: pointer;
-        &:hover{
+
+        &:hover {
             color: blue;
         }
     }
 }
 
-.errorMessage{
+.errorMessage {
     display: flex;
+}
+
+.popup--modal {
+    background-color: white;
+    padding: 1.25rem;
+    width: 90%;
+    height: 100%;
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    @include tablet {
+        // bottom: 20rem;
+        // left: 5rem;
+        border-radius: 4px;
+        width: 80%;
+        height: 70%;
+        margin: auto;
+        margin-top: 16vh;
+        padding: 2rem;
+    }
+
+    @include desktop {
+        width: 60%;
+        height: 70%;
+    }
 }
