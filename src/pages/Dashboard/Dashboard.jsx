@@ -53,8 +53,7 @@ function Dashboard() {
     }
     const handleBooking = async () => {
         try {
-            // const bookingDetails = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/users/manage-booking/${userId}`);
-            const bookingDetails = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/users/manage-booking/1`);
+            const bookingDetails = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/users/manage-booking/${userId}`);
             console.log(bookingDetails.data)
             setBookingData(bookingDetails.data);
             setShowBooking(true);

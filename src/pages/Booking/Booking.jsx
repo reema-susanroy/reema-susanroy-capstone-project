@@ -17,6 +17,8 @@ function Booking() {
     const [address, setAddress] = useState();
     const [errorMessage, setErrorMessage] = useState(false);
     const [uploadForm, setUploadForm] = useState(false);
+    const [posterImage, setPosterImage] = useState(`${process.env.REACT_APP_BASE_URL}/images/image1.jpg`); //set a default placeholder image
+
     useEffect(() => {
         const storedUserId = sessionStorage.getItem('userId');
         if (storedUserId) {
@@ -46,6 +48,9 @@ function Booking() {
     const handleAddressChange = (value) => {
         setAddress(value);
     }
+    const handleChangeImage = (event) => {
+        setPosterImage(event.target.files[0]);
+    }
     const handleCancel = () => {
         navigate(`/services/${provider.service_id}`);
     }
@@ -64,6 +69,7 @@ function Booking() {
                         service_id: provider.service_id,
                         issue_description: description,
                         booked_on: timeCalc(selectedDate),
+                        image: posterImage
                     }
                 );
 
@@ -100,6 +106,11 @@ function Booking() {
                         <textarea className="booking__deatils--form--input" type="text" rows={4} value={description}
                             onChange={(e) => { handleDescriptionChange(e.target.value); }} />
                     </label>
+
+                    <label htmlFor='image' className='form-video__title'>UPLOAD AN IMAGE
+                        <input onChange={handleChangeImage} className='form-video__title-input' type="file" accept='image/*' id='posterImage' name='posterImage' />
+                    </label>
+
                 </section>
                 <section className='booking__details--button'>
                     <button onClick={handleCancel} className='booking__details--button__item'> Cancel</button>

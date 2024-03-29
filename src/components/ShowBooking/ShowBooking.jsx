@@ -8,6 +8,7 @@ function ShowBooking({bookingData, updateDelete }) {
         console.log("clicked");
         updateDelete(bookingID);
     }
+    console.log(bookingData);
     return (
         <>
             {
@@ -32,6 +33,7 @@ function ShowBooking({bookingData, updateDelete }) {
                                         {/* <div className='dashboard__image--cont'>
                                             <img onClick={handleEdit} src={edit} alt="edit" />
                                         </div> */}
+                                        <p className={`${(bookings.status==='completed') ? 'green' : 'orange'}`}>{bookings.status}</p>
                                         <div className='dashboard__image--cont'>
                                             <img onClick={() => handleDelete(bookings.id)} src={del} alt="delete" />
                                         </div>
