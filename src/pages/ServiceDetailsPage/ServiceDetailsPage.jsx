@@ -57,42 +57,38 @@ function ServiceDetailsPage() {
 
     return (
         <>
-            <div className="service">
+            <div className="service background-color">
                 <section className="service__container">
-
                     {/* <div> */}
-                        <div className="service__details">
+                    <div className="service__details">
+                        {/* <div> */}
                             <div className="service__details--cont">
+                                <div>
                                 <h1 className="service__details--title padding">{serviceData.service_name}</h1>
-                                <p className="service__details--description padding">{serviceData.service_description}</p>
                                 <p className="service__details--description padding">{serviceData.service_need}</p>
+                                <h3 className="service__provided padding">+ Services Include</h3>
+                                <ul>
+                                    {serviceData.service_provided.map((providedService, index) => (
+                                        <li className='service__provided--list padding' key={index}>{providedService}</li>
+                                    ))}
+                                </ul>
+                                </div>
                             </div>
-                            <div className="service__background">
-                                <img className='service__background--image' src={`${process.env.REACT_APP_BASE_URL}/${serviceData.service_image}`} alt="serviceImage" />
-                            </div>
-                            {/* <div className="service-cards__cont">
+                        {/* </div> */}
+
+                        <div className="service__background">
+                            <img className='service__background--image' src={`${process.env.REACT_APP_BASE_URL}/${serviceData.service_image}`} alt="serviceImage" />
+                        </div>
+                        {/* <div className="service-cards__cont">
                                 <img className="service-cards__image" src={`http://localhost:8080/${serviceData.service_image}`} />
                             </div> */}
-                        </div>
-                        
+                    </div>
+
                     {/* </div> */}
                     {/* <div className="service__background">
                         <img src={image} alt="service-image"/>
                     </div> */}
                 </section>
-                <div>
-                            <h3 className="service__provided padding">+ Services Include</h3>
-                            <ul>
-                                {serviceData.service_provided.map((providedService, index) => (
-                                    <li className='service__provided--list padding' key={index}>{providedService}</li>
-                                ))}
-                            </ul>
-                            {/* </div> */}
-                        </div>
-                {/* <div>
-                    <h3 className="service__rate padding">+ Rate Plan</h3>
-                    <h3 className="service__professional padding">+ See Professtionals</h3>
-                </div> */}
             </div>
 
             {/* <ProvidersComponent serviceId={serviceData.id} flag={flag} /> */}
@@ -113,7 +109,7 @@ function ServiceDetailsPage() {
 
             <div className="map__container">
 
-                <Map serviceId={serviceData.id}/>
+                <Map serviceId={serviceData.id} />
 
             </div>
         </>

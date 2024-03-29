@@ -20,7 +20,8 @@ function Dashboard() {
         if (storedUserId) {
             setUserId(storedUserId);
         }
-    }, []);
+        handleProfile();
+    },[userId]);
 
     const handleProfile = async() => {
         try {
@@ -34,6 +35,8 @@ function Dashboard() {
             console.log("Unable to load the user details: "+error);
         }
     }
+
+    console.log({profileData});
     const handleFavorites = async () => {
         try {
             const favoriteDetails = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/providers/users/favorite`);
@@ -50,7 +53,8 @@ function Dashboard() {
     }
     const handleBooking = async () => {
         try {
-            const bookingDetails = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/users/manage-booking/${userId}`);
+            // const bookingDetails = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/users/manage-booking/${userId}`);
+            const bookingDetails = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/users/manage-booking/1`);
             console.log(bookingDetails.data)
             setBookingData(bookingDetails.data);
             setShowBooking(true);
@@ -74,7 +78,7 @@ function Dashboard() {
     }
     return (
         <>
-            <h2>My Dashboard</h2>
+            <h2>Hello {profileData.user_name},</h2>
 
             {userId ? (
                 <div>

@@ -14,14 +14,21 @@
         border-radius: 6px;
         text-align: center;
         width: 12rem;
+        height: 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         margin: 1rem;
         font-size: 14px;
         font-weight: 600;
         align-self: stretch;
-        cursor: pointer;
+        cursor: pointer;    
+        background-color: #13424a;
+        color: white;
+
 
         &:hover {
-            background-color: rgb(208, 195, 195);
+            background-color: #2e616a;
         }
     }
 }
@@ -29,7 +36,10 @@
 .dashboard__details {
     display: flex;
     flex-wrap: wrap;
-
+    &--link{
+        text-decoration: none;
+        font-weight: 900;
+    }
     &--list {
         display: flex;
         flex-direction: column;
@@ -42,6 +52,7 @@
         align-items: center;
         border-radius: 8px;
         width: 15rem;
+        font-weight: 400;
 
         &--label {}
 
@@ -54,6 +65,12 @@
                 border-radius: 20%;
             }
         }
+
+        // &--data{
+        //     // font-weight: 600;
+        //     // letter-spacing: 1px;
+        //     // line-height: 25px;
+        // }
     }
 
 }
@@ -77,6 +94,7 @@
 
 .data--container {
     display: flex;
+    line-height: 25px;
 }
 
 .profile {
@@ -128,8 +146,18 @@
         border: none;
         border: 1px solid gray;
         align-items: center;
+        text-align: center;
+        justify-content: center;
         gap: .4rem;
         border-radius: 6px;
+        background-color: #635046;
+        color: white;
+        width: 20%;
+        height: 2rem;
+
+        &:hover{
+            background-color: #222;
+        }
 
 
     }
@@ -149,3 +177,11 @@
 //     align-items: center;
 //     gap: .4rem;
 // }
+.backgroundBrown{
+    background-color: #8f786c;
+    color: black;
+}
+.backgroundOffwhite{
+    background-color: #dbd3d0;
+    color: black;
+}

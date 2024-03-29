@@ -1,0 +1,73 @@
+@use '../../styles/partials/mixins' as *;
+
+.footer {
+    padding: 1rem;
+    // margin: 2rem 0;
+    display: flex;
+    justify-content: space-between;
+    // align-items: center;
+    height: 3rem;
+    flex-wrap: nowrap;
+    background-color: gray;
+    // position: fixed;
+    z-index: 2;
+    bottom: 1.5rem;
+    left:20%;
+    background-color: #1a3238;
+    color: white;
+    height: 6rem;
+    display: flex;
+    flex-direction: column;
+
+    @include tablet {
+        padding: 1.5rem;
+        bottom: 1rem;
+        width: 100%;
+        left: 1%;
+        margin-top: 20rem;        
+        height: 8rem;
+    }
+
+    @include desktop {
+        padding: 1.5rem 8rem;
+    }
+    &--content{
+        display: flex;
+    justify-content: space-between;
+    }
+    &-copyright {
+        // font-family: "Titillium Web";
+        text-align: center;
+        // color: $slate;
+        // @include p3;
+        margin-top: 0.1rem;
+
+    }
+
+    &-copyright-icon {
+        padding-right: 0.2rem;
+        // color: $slate;
+
+    }
+}
+.footer__copy{
+    display: flex;
+    // flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+}
+.footer__social{
+    display: flex;
+    flex-direction: column;
+}
+.footer__social--icons{
+        /* width: 2.5rem; */
+        display: flex;
+        /* flex-direction: row; */
+        gap: 2rem;
+        height: 2rem;
+
+        &--iconimages{
+            background-color: white;
+        }
+}

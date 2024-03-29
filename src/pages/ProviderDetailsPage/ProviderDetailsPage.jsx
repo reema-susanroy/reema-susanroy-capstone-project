@@ -8,8 +8,11 @@ import Loading from "../Loading/Loading";
 import star from '../../assets/icons/star.svg'
 import black from '../../assets/icons/blac-star.png'
 import LoginPopUp from '../../components/LoginPopUp/LoginPopUp';
+import { useAuth } from '../../utils/AuthContext';
 
 function ProviderDetailsPage() {
+    const { login } = useAuth();
+
     const location = useLocation();
     const { flag } = location.state;
     const { id } = useParams(); //providerId
@@ -22,13 +25,14 @@ function ProviderDetailsPage() {
     const navigate = useNavigate();
     const [userId, setUserId] = useState('');
     const [loggedIn, setLoggedIn] = useState(true);
+    const [close, setClose] = useState(false);
     let url;
     useEffect(() => {
         const storedUserId = sessionStorage.getItem('userId');
         if (storedUserId) {
             setUserId(storedUserId);
         }
-    }, []);
+    });
 
     useEffect(() => {
         const getProviderData = async () => {
@@ -86,13 +90,20 @@ function ProviderDetailsPage() {
         navigate(url);
     }
     const handleBook = () => {
-        if (userId) {
+        if (userId !== '') {
+            console.log("??")
             setLoggedIn(true);
+            login();
             navigate(`/booking/${id}`, { state: { provider } });
         } else {
             setLoggedIn(false);
         }
     }
+    const closePopup = () => {
+        setClose(true);
+        setLoggedIn(true);
+    }
+
     if (isLoading) {
         return (
             <Loading />
@@ -103,21 +114,32 @@ function ProviderDetailsPage() {
             {provider && (
                 <div className="providerDetails">
                     <section className='providerDetails__data'>
+                        <section className='providerDetails__avatar--cont'>
+                            {/* <p className="providerDetails__data--avatar"> </p> */}
+                            <div className="providerDetails__data--avatar--cont">
+                                <img className='providerDetails__data--avatar--img' src={`${process.env.REACT_APP_BASE_URL}${provider.provider_image}`} />
+                            </div>
+                            <div className='providerDetails__favorite--cont'>
+                                <img onClick={toggleFavorite} src={isFavorite ? black : star} alt="favorite" />
+                            </div>
+                        </section>
 
                         <h2 className="providerDetails__name padding">{provider.provider_name}</h2>
-                        <section>
+                        <section className='provider--details'>
                             <div className='provider--Details__container'>
                                 <div className='provider--Details__container--experience'>
                                     <p className="providerDetails__data--service padding"> Expertise: {provider.service_name}</p>
                                     <p className="providerDetails__data--exp padding"> Experience : </p>
-                                </div>
-                                <div>
+                                {/* </div>
+                                <div className='provider--details__contact'> */}
                                     <p className="providerDetails__data--contact padding"> Contact Details:</p>
                                     <p className="providerDetails__data--contact--value padding">Phone: {provider.contact_phone}</p>
                                     <p className="providerDetails__data--contact--value padding">Email: {provider.contact_email}</p>
                                 </div>
                             </div>
+                            
                             <ul>
+                            <p>Service Charge:</p>
                                 {serviceList.map((service, index) => (
                                     <li className='service__provided--list padding' key={index}>
                                         <strong>{service.serviceName}</strong>: {service.price}
@@ -126,33 +148,22 @@ function ProviderDetailsPage() {
                             </ul>
                         </section>
                     </section>
-                    <section className='providerDetails__avatar--cont'>
-                        {/* <p className="providerDetails__data--avatar"> </p> */}
-                        <div className="providerDetails__data--avatar--cont">
-                            <img className='providerDetails__data--avatar--img' src={`${process.env.REACT_APP_BASE_URL}${provider.provider_image}`} />
-                        </div>
-                    </section>
-                    <section>
-                        <div className='providerDetails__favorite--cont'>
-                            <img onClick={toggleFavorite} src={isFavorite ? black : star} alt="favorite" />
-                        </div>
-                    </section>
                 </div>
             )}
             <section className='provider__reviews'>
                 <h3 className='provider__reviews--review'>Reviews</h3>
                 {Array.isArray(reviewContent) && reviewContent.map((review, index) => (
-                    <li key={index} className='provider__reviews__list'>
+                    <li key={index} className={`provider__reviews__list ${(index % 2 == 0) ? 'backgroundTeal' : 'backgroundWhite'}`}>
                         <div className='provider__reviews__list--cont'>
                             <div className='provider__reviews__list--image padding'></div>
                             <div className='provider__reviews__list--details'>
                                 <div className='provider__reviews__list--details--data'>
-                                    <p className='provider__reviews__list--name padding'>{review.user_name}</p>
+                                    <p className={`provider__reviews__list--name padding ${(index % 2 == 0) ? 'backgroundTeal' : 'backgroundWhite'}`}>{review.user_name}</p>
                                     <p className='provider__reviews__list--date padding'>{TimeFormat(review.created_at)}</p>
 
                                 </div>
                                 <div className='provider__reviews__list--dateCont'>
-                                    <p className='provider__reviews__list--review padding'>{review.user_review}</p>
+                                    <p className={`provider__reviews__list--review padding ${(index % 2 == 0) ? 'backgroundTeal' : 'backgroundWhite'}`}>{review.user_review}</p>
 
                                 </div>
                             </div>
@@ -168,8 +179,8 @@ function ProviderDetailsPage() {
                 {/* </Link> */}
             </section>
             {!loggedIn &&
-                <section className='login--popup'>
-                    <LoginPopUp provider={provider} providerId={id} />
+                <section className={`login--popup ${(close) ? 'close' : ''}`}>
+                    <LoginPopUp provider={provider} providerId={id} onClose={closePopup} />
                 </section>
 
             }

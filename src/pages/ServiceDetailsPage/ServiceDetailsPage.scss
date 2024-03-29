@@ -1,14 +1,21 @@
 @use '../../styles/partials/mixins' as *;
 
 .service {
-    padding: 1rem;
+    justify-content: center;
+    // display: flex;
+    align-items: center;
+    color: black;
+    // background-color: #edddc8;
+    // padding: 1rem;
     display: flex;
     flex-direction: column;
+    margin: 1rem;
+    gap: 1rem;
     // background-color: #f5f5f6;
     // background-color: rgb(249 255 212 / 80%);
-    background-color: rgba(244, 244, 244, 0.8);
-    background-image: url('../../assets/images/background\ image\ 1.jpg');
-    margin: 2rem 0;
+    // background-color: rgba(244, 244, 244, 0.8);
+    // background-image: url('../../assets/images/background\ image\ 1.jpg');
+    // margin: 2rem 0;
 
     // @include tablet() {
     //     flex-direction: row;
@@ -19,16 +26,26 @@
     // display: flex;
     // flex-direction: column;
     width: 100%;
+    height: 19rem;
+    // background-color: #1a3238;
+    /* height: max-content; */
+    flex: 1;
 
     @include tablet {
+        width: 40%;
         display: flex;
-        gap: 1.5rem;
+        gap: 2rem;
+        // height: 23rem;
     }
 
     &--cont {
         width: 100%;
-        @include tablet{
-            width: 80%;
+        // background-color: #1a3238;
+
+
+        @include tablet {
+            // width: 50%;
+            width: 50%;
         }
     }
 
@@ -37,7 +54,7 @@
     &--description {
         font-size: 14px;
         letter-spacing: .2px;
-        line-height: 20px;    
+        line-height: 20px;
         text-align: justify;
 
     }
@@ -64,7 +81,7 @@
 }
 
 .map__container {
-    height: 250px;
+    height: 350px;
     // width: 500px;
 }
 
@@ -79,25 +96,41 @@
 .service__background {
     width: 100%;
     height: 13rem;
-    @include tablet{
-        width: 40%;
+
+    @include tablet {
+        // width: 40%;
         // height: 13rem;
+        width: 40%;
+        // height: auto;
+        flex: 1;
     }
 
 
     &--image {
-        border-radius: 4px;
-        object-fit: contain;
+        border: 1px solid white;
+        // background-color: transparent;
+        padding: .5rem;
         // object-position: right;
 
-        @include tablet{
-            border-radius: 4px;
-            object-fit: contain;
-            object-position: right;
-            position: absolute;
-            width: 30%;
-            height: 40%;
-            bottom: 45%;
+        @include tablet {
+            // border-radius: 4px;
+            // object-fit: contain;
+            // object-position: right;
+            // position: absolute;
+            // width: 30%;
+            // height: 40%;
+            // bottom: 45%;
+            // border-radius: 4px;
+            // object-fit: contain;
+            // object-position: right;
+            // position: absolute;
+            // width: 30%;
+            // height: 40%;
+            // bottom: 45%;
+            // flex: 1;
+            // display: flex;
+            // background-color: #1a3238;
+
         }
     }
 }
@@ -116,4 +149,10 @@
 
 .service__professional {
     font-size: 14px;
+}
+
+.background-color {
+    background-color: #13424a;
+    color: white;
+    margin: 0;
 }

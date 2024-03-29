@@ -8,10 +8,10 @@ function ShowFavorite({ showFavorites, favoriteData }) {
             {
                 favoriteData.length > 0 ?
                     (<section className='dashboard__details'>
-                        {favoriteData.map((favorites) => (
+                        {favoriteData.map((favorites ,index) => (
                             <>
-                                <Link to= {`/providers/${favorites.id}`} state= {{flag} }>
-                                    <li key={favorites.id} className='dashboard__details--list'>
+                                <Link to= {`/providers/${favorites.id}`} state= {{flag} } className="dashboard__details--link">
+                                    <li key={favorites.id} className={`dashboard__details--list ${(index % 2 == 0) ? 'backgroundBrown' : 'backgroundOffwhite'}`}>
                                         <section className='dashboard__details--list--label'>
                                             <div className="dashboard__details--list--image">
                                                 <img className="dashboard__details--list--image--src" src={`${process.env.REACT_APP_BASE_URL}${favorites.provider_image}`} alt={"provider-image"} />

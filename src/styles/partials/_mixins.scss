@@ -9,3 +9,8 @@
         @content;
     }
 }
+
+
+@mixin desktop-margin{
+    margin: 1rem 2rem;
+}

@@ -1,53 +1,101 @@
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import './Header.scss';
 import logo from '../../assets/images/slogan.png';
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import LoginPopUp from "../LoginPopUp/LoginPopUp";
+import { useAuth } from '../../utils/AuthContext';
+import ProfessionalLogin from "../ProfessionalLogin/ProfessionalLogin";
 
 function Header() {
+    let { isLoggedIn, logout } = useAuth();
+    // console.log({isLoggedIn});
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [userId, setUserId] = useState();
+    const [showDropDown, setShowDropDown] = useState(false);
+    const [loggedIn, setLoggedIn] = useState(true);
+    const [loggedOut, setLoggedOut] = useState(false);
+    const navigate = useNavigate();
+
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
-    return (
-        <header>
-            <nav className='navbar'>
-                <div className='navbar__logo'>
-                    <NavLink  to="/services">
-                        <div className="navbar__logo--cont">
-                        <img className='navbar__logo--image' src={logo} alt='logo' />
-                        </div>
-                    </NavLink >
-                </div>
-                <div className='navbar__side-container'>
-                    <h2 className='navbar__welcome'> Login</h2>
-                    <ul className="navbar__menu">
-                        <li className="navbar__menu--item">
-                            <NavLink  to="/home" className="navbar__menu--link" activeClassName="active">Home</NavLink >
-                        </li>
-                        <li className="navbar__menu--item">
-                            <NavLink  to="/about" className="navbar__menu--link" activeClassName="active">About</NavLink >
-                        </li>
-                    </ul>
-                    <div className='navbar__dropdown'>
-                        <div className="navbar__dropdown--hamburger" onClick={toggleMenu}>
-                            <div className="bar"></div>
-                            <div className="bar"></div>
-                            <div className="bar"></div>
-                        </div>
-                        <ul className={`navbar__dropdown--links ${isMenuOpen ? 'open' : ''}`}>
-                        <li className="navbar__dropdown--links--list dashboard">
-                            <NavLink  to="/dashboard" onClick={toggleMenu} className="navbar__dropdown--links--item">My Dashboard</NavLink >
-                        </li>
-                        <li className="navbar__dropdown--links--list providers">
-                            <NavLink  to="/providers" onClick={toggleMenu} className="navbar__dropdown--links--item">See all Professionals</NavLink >
-                        </li>
-                    </ul>
+    useEffect(() => {
+        const storedUserId = sessionStorage.getItem('userId');
+        if (storedUserId) {
+            setUserId(storedUserId);
+            setShowDropDown(true);
+            setLoggedIn(true);//added
+        }
+    }, []);
 
+    const handleLogin = () => {
+        setLoggedIn(false);
+    }
+    const handleLogout = () => {
+        sessionStorage.clear();
+        setUserId(null);
+        // alert("logged out successfully")
+        setLoggedOut(true);
+        logout();
+        setTimeout(() => {
+            setLoggedOut(false);
+            navigate('/');
+        }, 2000)
+    }
+    const closePopup = () => {
+        setLoggedIn(true)
+    }
+    return (
+        <>
+            <header>
+                <nav className='navbar'>
+                    <div className='navbar__logo'>
+                        <NavLink to="/">
+                            <div className="navbar__logo--cont">
+                                <img className='navbar__logo--image' src={logo} alt='logo' />
+                            </div>
+                        </NavLink >
                     </div>
-                </div>
-            </nav>
-        </header>
+                    <div className='navbar__side-container'>
+                        {!isLoggedIn ? (<h2 onClick={handleLogin} className='navbar__welcome'> Login</h2>) :
+                            (<h2 onClick={handleLogout} className='navbar__welcome'> Logout</h2>)
+                        }
+
+                        {/* <h3 className='navbar__welcome' onClick={handleProfessional}>Are you a Professional?</h3> */}
+                        {isLoggedIn &&
+                            <div className='navbar__dropdown'>
+                                <div className="navbar__dropdown--hamburger" onClick={toggleMenu}>
+                                    <div className="bar"></div>
+                                    <div className="bar"></div>
+                                    <div className="bar"></div>
+                                </div>
+                                <ul className={`navbar__dropdown--links ${isMenuOpen ? 'open' : ''}`}>
+                                    <li className="navbar__dropdown--links--list dashboard">
+                                        <NavLink to="/dashboard" onClick={toggleMenu} className="navbar__dropdown--links--item">My Dashboard</NavLink >
+                                    </li>
+                                    <li className="navbar__dropdown--links--list providers">
+                                        <NavLink to="/providers" onClick={toggleMenu} className="navbar__dropdown--links--item">See all Professionals</NavLink >
+                                    </li>
+                                </ul>
+                            </div>
+                        }
+                    </div>
+                </nav>
+            </header>
+            {!loggedIn &&
+                <section className='login--popup'>
+                    <LoginPopUp onClose={closePopup} />
+                </section>
+            }
+            {loggedOut &&
+                <section className='login--popup'>
+                    <div className="popup--modal">
+                        <h3>Logged Out Successfully !</h3>
+                    </div>
+                </section>
+            }
+
+        </>
     )
 }
 

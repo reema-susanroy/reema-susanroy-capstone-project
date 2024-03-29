@@ -11,8 +11,8 @@ function ShowProvider({ selectedList ,flag }) {
 
     return (
         <>
-            <div className="providerDetails">
-                <section className='providerDetails__data'>
+            <div className="show--provider">
+                <section className='show--provider__data'>
 
                     {/* <h2 className="providerDetails__name padding">{selectedList.provider_name}</h2> */}
 

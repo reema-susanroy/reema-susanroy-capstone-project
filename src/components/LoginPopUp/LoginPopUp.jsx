@@ -3,7 +3,11 @@ import axios from "axios";
 import { useNavigate } from "react-router";
 import { NavLink } from "react-router-dom";
 import '../../pages/Login/Login.scss';
-function LoginPopUp({ provider, providerId }) {
+import { useAuth } from '../../utils/AuthContext';
+
+function LoginPopUp({ provider, providerId, onClose }) {
+    const { login } = useAuth();
+
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         user_name: '',
@@ -12,7 +16,7 @@ function LoginPopUp({ provider, providerId }) {
     });
     const [loginSuccess, setLoginSuccess] = useState(true);
     const [userId, setUserId] = useState('');
-    const [login, setLogin] = useState(true);
+    const [toLogin, setToLogin] = useState(true);
     const [registerSuccess, setRegisterSuccess] = useState(true);
     const [name, setName] = useState();
     const [email, setEmail] = useState();
@@ -39,7 +43,9 @@ function LoginPopUp({ provider, providerId }) {
             if (response.data.message && response.data.message.includes("Login Successful")) {
                 // navigate('/services');
                 setLoginSuccess(true);
-                navigate(`/booking/${providerId}`, { state: { provider } });
+                login();
+                // navigate(`/booking/${providerId}`, { state: { provider } });
+                // navigate(-1);
             }
         } catch (error) {
             setLoginSuccess(false);
@@ -47,18 +53,10 @@ function LoginPopUp({ provider, providerId }) {
         }
     };
 
-    const handleNameChange = (value) => {
-        setName(value)
-    }
-    const handleEmailChange = (value) => {
-        setEmail(value)
-    }
-    const handlePasswordChange = (value) => {
-        setPassword(value)
-    }
-    const handleConfirmPasswordChange = (value) => {
-        setConfirmPassword(value)
-    }
+    const handleNameChange = (value) => {setName(value)}
+    const handleEmailChange = (value) => {setEmail(value)}
+    const handlePasswordChange = (value) => {setPassword(value)}
+    const handleConfirmPasswordChange = (value) => {setConfirmPassword(value)}
 
     const Validate = () => {
         if (password !== confirmPassword) {
@@ -90,8 +88,8 @@ function LoginPopUp({ provider, providerId }) {
                     // setTimeout(()=>{
                     //     navigate('/services');
                     // },2000)
-                    setLogin(true);
-                    
+                    setToLogin(true);
+
                 }
             } catch (error) {
                 setRegisterSuccess(false);
@@ -103,16 +101,12 @@ function LoginPopUp({ provider, providerId }) {
     };
 
 
-    const handleRegister = () => {
-        setLogin(false);
-    }
-    const handleLogin = () => {
-        setLogin(true)
-    }
-
+    const handleRegister = () => {setToLogin(false);}
+    const handleLogin = () => {setToLogin(true)}
+    const closePopup = () => {onClose();}
     return (
         <>
-            {login &&
+            {toLogin &&
                 <section className="popup--modal">
                     <h3>Login</h3>
                     <div className="login-container">
@@ -143,12 +137,20 @@ function LoginPopUp({ provider, providerId }) {
                                 {/* <p className='login__form--button--text'> New User? <strong><NavLink to={'/register'} className='login__form--button--navink'>Register</NavLink> </strong> instead !</p> */}
                                 <p onClick={handleRegister}>Register</p>
                             </section>
+                            {/* <section>
+                                <button onClick={closePopup} className='modal__button'>X</button>
+                            </section> */}
                         </form>
+                        {loginSuccess &&
+                            <section>
+                                <button onClick={closePopup} className='modal__button'>X</button>
+                            </section>
+                        }
                     </div>
                 </section>
             }
 
-            {!login &&
+            {!toLogin &&
                 <section className="popup--modal">
                     <h3>Register</h3>
                     <div className="login-container">

@@ -81,7 +81,7 @@ function ProvidersComponent({ serviceId , flag}) {
                             <div className='provider--list__items-provider' >
                                 <img className='provider--list-__items-provider-img' src={`${process.env.REACT_APP_BASE_URL}${provider.provider_image}`} alt="provider-image" />
                             </div>
-                            <div>
+                            <div className="provider--list__items-container">
                                 <div className="provider--lists__items-nameCont">
                                     <span>{provider.provider_name} </span>
                                     <div className="provider--lis__items-rating"><p>Rating: {provider.rating} </p></div>

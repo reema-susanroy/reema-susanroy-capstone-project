@@ -13,9 +13,9 @@ function ShowBooking({bookingData, updateDelete }) {
             {
                 bookingData.length > 0 ?
                     (<section className='dashboard__details'>
-                        {bookingData.map((bookings) => (
+                        {bookingData.map((bookings, index) => (
                             <>
-                                <li key={bookings.id} className='dashboard__details--list'>
+                                <li key={bookings.id} className={`dashboard__details--list ${(index % 2 == 0) ? 'backgroundBrown' : 'backgroundOffwhite'}`}>
                                     <div className='data--container'>
                                         <section className='dashboard__details--list--label'>
                                             <p>Service</p>

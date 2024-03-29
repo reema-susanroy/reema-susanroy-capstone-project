@@ -1,24 +1,53 @@
 @use '../../styles/partials/mixins' as *;
-.booking__details--form{
+
+.booking__details--header {
+    height: 4rem;
+    padding: 1rem 3rem;
+}
+
+.booking__details--form {
     display: flex;
     flex-direction: column;
 }
-.choose__date--option{
+
+.choose__date--option {
     padding: 0 .3rem;
 }
-.booking__deatils--form--label{
+
+.booking__deatils--form--label {
     display: flex;
     flex-direction: column;
     padding: .5rem 0;
     gap: .2rem;
     font-weight: 600;
+    margin: 1rem 3rem;
 }
-.booking__deatils--form--input{
+
+.booking__deatils--form--input {
     width: 90%;
     height: fit-content;
     border-radius: 20px;
     margin: 0 auto;
     padding: .5rem;
+}
+
+.booking__details--button {
+    margin: 1rem 3rem;
+    display: flex;
+    justify-content: space-around;
+
+    &__item {
+        cursor: pointer;
+        background-color: #635046;
+        color: white;
+        border: none;
+        width: 20%;
+        height: 2rem;
+        border-radius: 12px;
+        &:hover {
+            background-color: #222;
+        }
+    }
 }
 
 .modal-overlay {

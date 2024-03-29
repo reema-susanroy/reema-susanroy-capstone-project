@@ -20,17 +20,23 @@
         border-radius: 8px;
         background-color: #f1f1ec;
         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
-        /* Adjust the values as needed */
+        font-size: 14px;
 
         &:hover {
             cursor: pointer;
             background-color: rgb(186, 183, 179);
         }
-        
+
         &-provider {
             width: 80px;
         }
-        &-nameCont{
+
+        &-container {
+            display: flex;
+            gap: 20rem;
+        }
+
+        &-nameCont {
             display: flex;
             flex-direction: row;
             gap: 13rem;
@@ -40,7 +46,8 @@
             display: flex;
             gap: .5rem;
         }
-        &-wrapper{
+
+        &-wrapper {
             display: flex;
             gap: .5rem;
         }
@@ -64,7 +71,8 @@
         height: 4rem;
         width: 4rem;
     }
-    &-nameCon{
+
+    &-nameCon {
         display: flex;
         flex-direction: row;
         gap: 13rem;
@@ -77,6 +85,7 @@
     height: 4rem;
     width: 4rem;
 }
-.provider--list__items__side{
+
+.provider--list__items__side {
     display: flex;
 }
