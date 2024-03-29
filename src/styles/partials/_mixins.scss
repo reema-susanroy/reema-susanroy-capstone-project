@@ -1,3 +1,5 @@
+@use './variables' as *;
+
 @mixin tablet {
     @media (min-width: 768px) {
         @content;
@@ -14,3 +16,32 @@
 @mixin desktop-margin{
     margin: 1rem 2rem;
 }
+
+@mixin default-input {
+    appearance: none;
+    outline: none;
+    border: 1px solid lightgray;
+    height: 2.25rem;
+    &::placeholder {
+    //   font-family: "Titillium Web";
+      color: $divider_color;
+    }
+  }
+
+  @mixin active-input {
+    @include default-input;
+    border: 1px solid blue;
+    &::placeholder {
+    //   font-family: "Titillium Web";
+      color: black;
+    }
+  }
+
+  @keyframes underline {
+    0% {
+      width: 100%;
+    }
+    100% {
+      width: 0%;
+    }
+  }

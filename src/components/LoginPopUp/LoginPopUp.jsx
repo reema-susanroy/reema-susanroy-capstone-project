@@ -4,6 +4,7 @@ import { useNavigate } from "react-router";
 import { NavLink } from "react-router-dom";
 import '../../pages/Login/Login.scss';
 import { useAuth } from '../../utils/AuthContext';
+import logo from '../../assets/images/slogan.png'
 
 function LoginPopUp({ provider, providerId, onClose }) {
     const { login } = useAuth();
@@ -53,10 +54,10 @@ function LoginPopUp({ provider, providerId, onClose }) {
         }
     };
 
-    const handleNameChange = (value) => {setName(value)}
-    const handleEmailChange = (value) => {setEmail(value)}
-    const handlePasswordChange = (value) => {setPassword(value)}
-    const handleConfirmPasswordChange = (value) => {setConfirmPassword(value)}
+    const handleNameChange = (value) => { setName(value) }
+    const handleEmailChange = (value) => { setEmail(value) }
+    const handlePasswordChange = (value) => { setPassword(value) }
+    const handleConfirmPasswordChange = (value) => { setConfirmPassword(value) }
 
     const Validate = () => {
         if (password !== confirmPassword) {
@@ -101,14 +102,19 @@ function LoginPopUp({ provider, providerId, onClose }) {
     };
 
 
-    const handleRegister = () => {setToLogin(false);}
-    const handleLogin = () => {setToLogin(true)}
-    const closePopup = () => {onClose();}
+    const handleRegister = () => { setToLogin(false); }
+    const handleLogin = () => { setToLogin(true) }
+    const closePopup = () => { onClose(); }
     return (
         <>
             {toLogin &&
                 <section className="popup--modal">
-                    <h3>Login</h3>
+                    <h3 className="popup--modal__title">Login</h3>
+                    {/* <section className="popup--modal__logo">
+                        <div className="popup--modal__logo-cont">
+                            <img src={logo} alt="logo" />
+                        </div>
+                    </section> */}
                     <div className="login-container">
                         <form onSubmit={handleFormLogin} className='login__form'>
                             <section className='login__form__cont'>
@@ -135,7 +141,7 @@ function LoginPopUp({ provider, providerId, onClose }) {
                             <section className='login__form--button'>
                                 <button className='login__form--button--item' type="submit" >Login</button>
                                 {/* <p className='login__form--button--text'> New User? <strong><NavLink to={'/register'} className='login__form--button--navink'>Register</NavLink> </strong> instead !</p> */}
-                                <p onClick={handleRegister}>Register</p>
+                                <p onClick={handleRegister} className="login__form--button--next">Register</p>
                             </section>
                             {/* <section>
                                 <button onClick={closePopup} className='modal__button'>X</button>
@@ -143,6 +149,7 @@ function LoginPopUp({ provider, providerId, onClose }) {
                         </form>
                         {loginSuccess &&
                             <section>
+                                
                                 <button onClick={closePopup} className='modal__button'>X</button>
                             </section>
                         }
@@ -152,7 +159,7 @@ function LoginPopUp({ provider, providerId, onClose }) {
 
             {!toLogin &&
                 <section className="popup--modal">
-                    <h3>Register</h3>
+                    <h3 className="popup--modal__title">Register</h3>
                     <div className="login-container">
                         <form onSubmit={handleFormRegister} className='login__form'>
                             <section className='login__form__cont'>
@@ -181,7 +188,7 @@ function LoginPopUp({ provider, providerId, onClose }) {
                             <section className='login__form--button'>
                                 <button className='login__form--button--item' type="submit" >Register</button>
                                 {/* <p className='login__form--button--text'> New User? <strong><NavLink to={'/register'} className='login__form--button--navink'>Register</NavLink> </strong> instead !</p> */}
-                                <p onClick={handleLogin}>Login</p>
+                                <p onClick={handleLogin} className="login__form--button--next">Login</p>
                             </section>
 
                             {!registerSuccess &&
