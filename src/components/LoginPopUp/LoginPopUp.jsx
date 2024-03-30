@@ -1,20 +1,20 @@
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router";
-import { NavLink } from "react-router-dom";
+// import { useNavigate } from "react-router";
+// import { NavLink } from "react-router-dom";
 import '../../pages/Login/Login.scss';
 import { useAuth } from '../../utils/AuthContext';
-import logo from '../../assets/images/slogan.png'
+// import logo from '../../assets/images/slogan.png'
 
 function LoginPopUp({ provider, providerId, onClose }) {
     const { login } = useAuth();
 
-    const navigate = useNavigate();
-    const [formData, setFormData] = useState({
-        user_name: '',
-        contact_email: '',
-        password: ''
-    });
+    // const navigate = useNavigate();
+    // const [formData, setFormData] = useState({
+    //     user_name: '',
+    //     contact_email: '',
+    //     password: ''
+    // });
     const [loginSuccess, setLoginSuccess] = useState(true);
     const [userId, setUserId] = useState('');
     const [toLogin, setToLogin] = useState(true);
@@ -28,24 +28,26 @@ function LoginPopUp({ provider, providerId, onClose }) {
     const [passwordValidation, setPasswordValidation] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
 
-    const handleNameChange = (value) => { setName(value);setErrorMessage("");  }
-    const handleEmailChange = (value) => { setEmail(value);setErrorMessage("");  }
-    const handlePasswordChange = (value) => { setPassword(value);setErrorMessage("");  }
-    const handleConfirmPasswordChange = (value) => { setConfirmPassword(value);setErrorMessage("");  }
+    const handleNameChange = (value) => { setName(value); setErrorMessage(""); }
+    const handleEmailChange = (value) => { setEmail(value); setErrorMessage(""); }
+    const handlePasswordChange = (value) => { setPassword(value); setErrorMessage(""); }
+    const handleConfirmPasswordChange = (value) => { setConfirmPassword(value); setErrorMessage(""); }
 
-    const validation= ()=>{
-        if(!name ||!email||!password ){
+    const validation = () => {
+        console.log(name, email,password);
+        if (!name || !email || !password) {
             setErrorMessage("Fields cannot be empty");
+            setLoginSuccess(false);
             return false;
         }
         return true;
     }
     const handleFormLogin = async (e) => {
         e.preventDefault();
-        e.target.reset();
+        // e.target.reset();
         console.log("clicked")
         const formValidate = validation();
-        if(formValidate){
+        if (formValidate) {
             try {
                 const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/users/login`, {
                     user_name: name,
@@ -67,27 +69,28 @@ function LoginPopUp({ provider, providerId, onClose }) {
                 setLoginSuccess(false);
                 console.error('Registration failed:', error);
             }
-            setName('');
-            setEmail('');
-            setPassword('');
         }
+        setName('');
+        setEmail('');
+        setPassword('');
     };
 
     const Validate = () => {
-        if (password !== confirmPassword) {
+        if(!name || !email ||!password || !confirmPassword){
+            setErrorMessage("Fields cannot be empty");
             return false;
-        }
+        }else if (password !== confirmPassword) {
+            setErrorMessage("Password mismatch!");
+            return false;
+        } 
         console.log("validation done")
         return true;
     }
     const handleFormRegister = async (e) => {
         e.preventDefault();
-        e.target.reset();
-        console.log("clicked")
         const validation = Validate();
         if (!validation) {
-            console.log("damn vlidation failed")
-            setRegisterSuccess(false);
+            // setRegisterSuccess(false);
             setPasswordValidation(true);
         } else {
             console.log("inside")
@@ -114,7 +117,7 @@ function LoginPopUp({ provider, providerId, onClose }) {
         setName('');
         setEmail('');
         setPassword('');
-        setConfirmPassword('');    
+        setConfirmPassword('');
     };
 
     const handleRegister = () => { setToLogin(false); }
@@ -197,7 +200,7 @@ function LoginPopUp({ provider, providerId, onClose }) {
                             </section>
                         </form>
                         {passwordValidation &&
-                            <div className=''> <p className='register--message'>Password Mismatch!</p></div>
+                            <div className=''> <p className='register--message'>{errorMessage}</p></div>
                         }
                         {!registerSuccess &&
                             <div className=''> <p className='register--message'>{message}</p></div>

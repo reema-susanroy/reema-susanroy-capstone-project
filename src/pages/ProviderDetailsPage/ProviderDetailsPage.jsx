@@ -106,7 +106,7 @@ function ProviderDetailsPage() {
         console.log("closePopup")
         setLoggedIn(true);
     }
-    console.log({loggedIn});
+    console.log({ loggedIn });
     if (isLoading) {
         return (
             <Loading />
@@ -122,9 +122,11 @@ function ProviderDetailsPage() {
                             <div className="providerDetails__data--avatar--cont">
                                 <img className='providerDetails__data--avatar--img' src={`${process.env.REACT_APP_BASE_URL}${provider.provider_image}`} />
                             </div>
-                            <div className='providerDetails__favorite--cont'>
-                                <img onClick={toggleFavorite} src={isFavorite ? black : star} alt="favorite" />
-                            </div>
+                            {userId &&
+                                <div className='providerDetails__favorite--cont'>
+                                    <img onClick={toggleFavorite} src={isFavorite ? black : star} alt="favorite" />
+                                </div>
+                            }
                         </section>
 
                         <h2 className="providerDetails__name padding">{provider.provider_name}</h2>
@@ -133,16 +135,16 @@ function ProviderDetailsPage() {
                                 <div className='provider--Details__container--experience'>
                                     <p className="providerDetails__data--service padding"> Expertise: {provider.service_name}</p>
                                     <p className="providerDetails__data--exp padding"> Experience : </p>
-                                {/* </div>
+                                    {/* </div>
                                 <div className='provider--details__contact'> */}
                                     <p className="providerDetails__data--contact padding"> Contact Details:</p>
                                     <p className="providerDetails__data--contact--value padding">Phone: {provider.contact_phone}</p>
                                     <p className="providerDetails__data--contact--value padding">Email: {provider.contact_email}</p>
                                 </div>
                             </div>
-                            
+
                             <ul>
-                            <p>Service Charge:</p>
+                                <p>Service Charge:</p>
                                 {serviceList.map((service, index) => (
                                     <li className='service__provided--list padding' key={index}>
                                         <strong>{service.serviceName}</strong>: {service.price}
@@ -181,8 +183,8 @@ function ProviderDetailsPage() {
                 <button className='button__cont--item' onClick={handleBook}>Book</button>
                 {/* </Link> */}
             </section>
-            {(loggedIn===false) &&
-                <section className={`login--popup ${(close) ? 'close' : ''}`}>
+            {(loggedIn === false) &&
+                <section className='login--popup'>
                     <LoginPopUp provider={provider} providerId={id} onClose={closePopup} />
                 </section>
 

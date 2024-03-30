@@ -4,14 +4,12 @@ import logo from '../../assets/images/slogan.png';
 import { NavLink, useNavigate } from "react-router-dom";
 import LoginPopUp from "../LoginPopUp/LoginPopUp";
 import { useAuth } from '../../utils/AuthContext';
-import ProfessionalLogin from "../ProfessionalLogin/ProfessionalLogin";
 
 function Header() {
     let { isLoggedIn, logout } = useAuth();
-    // console.log({isLoggedIn});
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [userId, setUserId] = useState();
-    const [showDropDown, setShowDropDown] = useState(false);
+    // const [showDropDown, setShowDropDown] = useState(false);
     const [loggedIn, setLoggedIn] = useState(true);
     const [loggedOut, setLoggedOut] = useState(false);
     const navigate = useNavigate();
@@ -23,7 +21,7 @@ function Header() {
         const storedUserId = sessionStorage.getItem('userId');
         if (storedUserId) {
             setUserId(storedUserId);
-            setShowDropDown(true);
+            // setShowDropDown(true);
             setLoggedIn(true);//added
         }
     }, []);
@@ -50,17 +48,16 @@ function Header() {
             <header>
                 <nav className='navbar'>
                     <div className='navbar__logo'>
-                        <NavLink to="/">
-                            <div className="navbar__logo--cont">
+                        <div className="navbar__logo--cont">
+                            <NavLink to="/">
                                 <img className='navbar__logo--image' src={logo} alt='logo' />
-                            </div>
-                        </NavLink >
+                            </NavLink >
+                        </div>
                     </div>
                     <div className='navbar__side-container'>
                         {!isLoggedIn ? (<h2 onClick={handleLogin} className='navbar__welcome'> Login</h2>) :
                             (<h2 onClick={handleLogout} className='navbar__welcome'> Logout</h2>)
                         }
-
                         {/* <h3 className='navbar__welcome' onClick={handleProfessional}>Are you a Professional?</h3> */}
                         {isLoggedIn &&
                             <div className='navbar__dropdown'>
@@ -90,7 +87,7 @@ function Header() {
             {loggedOut &&
                 <section className='login--popup'>
                     <div className="popup--modal">
-                        <h3 className="popup--modal__title">Logged Out Successfully ! <br/> Navigating to home page!</h3>
+                        <h3 className="popup--modal__title">Logged Out Successfully ! <br /> Navigating to home page!</h3>
                     </div>
                 </section>
             }
