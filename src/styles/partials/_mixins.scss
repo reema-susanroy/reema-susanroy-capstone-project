@@ -1,47 +1,64 @@
 @use './variables' as *;
 
 @mixin tablet {
-    @media (min-width: 768px) {
-        @content;
-    }
+  @media (min-width: 768px) {
+    @content;
+  }
 }
 
 @mixin desktop {
-    @media (min-width: 1280px) {
-        @content;
-    }
+  @media (min-width: 1280px) {
+    @content;
+  }
 }
 
 
-@mixin desktop-margin{
-    margin: 1rem 2rem;
+@mixin desktop-margin {
+  margin: 1rem 2rem;
 }
 
 @mixin default-input {
-    appearance: none;
-    outline: none;
-    border: 1px solid lightgray;
-    height: 2.25rem;
-    &::placeholder {
+  appearance: none;
+  outline: none;
+  border: 1px solid lightgray;
+  height: 2.25rem;
+
+  &::placeholder {
     //   font-family: "Titillium Web";
-      color: $divider_color;
-    }
+    color: $divider_color;
+  }
+}
+
+@mixin active-input {
+  @include default-input;
+  border: 1px solid blue;
+
+  &::placeholder {
+    //   font-family: "Titillium Web";
+    color: black;
+  }
+}
+
+@keyframes underline {
+  0% {
+    width: 100%;
   }
 
-  @mixin active-input {
-    @include default-input;
-    border: 1px solid blue;
-    &::placeholder {
-    //   font-family: "Titillium Web";
-      color: black;
-    }
+  100% {
+    width: 0%;
   }
+}
 
-  @keyframes underline {
-    0% {
-      width: 100%;
-    }
-    100% {
-      width: 0%;
-    }
+@mixin login-button {
+  cursor: pointer;
+  font-size: 12px;
+  font-family: cursive;
+  text-decoration: none;
+  border: 1px solid lightblue;
+  border-radius: 6px;
+  text-align: center;
+
+  &:hover {
+    box-shadow: 2px 1px 10px rgba(0, 0, 0, .5);
   }
+}

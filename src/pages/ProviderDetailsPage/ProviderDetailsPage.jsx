@@ -90,20 +90,23 @@ function ProviderDetailsPage() {
         navigate(url);
     }
     const handleBook = () => {
+        console.log("clicked")
         if (userId !== '') {
-            console.log("??")
+            console.log("userId !== ''")
             setLoggedIn(true);
             login();
             navigate(`/booking/${id}`, { state: { provider } });
         } else {
+            console.log("userId === ''")
             setLoggedIn(false);
         }
     }
     const closePopup = () => {
-        setClose(true);
+        // setClose(true);
+        console.log("closePopup")
         setLoggedIn(true);
     }
-
+    console.log({loggedIn});
     if (isLoading) {
         return (
             <Loading />
@@ -178,7 +181,7 @@ function ProviderDetailsPage() {
                 <button className='button__cont--item' onClick={handleBook}>Book</button>
                 {/* </Link> */}
             </section>
-            {!loggedIn &&
+            {(loggedIn===false) &&
                 <section className={`login--popup ${(close) ? 'close' : ''}`}>
                     <LoginPopUp provider={provider} providerId={id} onClose={closePopup} />
                 </section>

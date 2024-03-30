@@ -38,6 +38,7 @@
     background-color: #ffffff;
     display: flex;
     flex-direction: column;
+
     @include tablet {
         height: 60vh;
     }
@@ -62,7 +63,9 @@ form {
     border: 1px solid lightgray;
     border-radius: 6px;
     outline: none;
-    &:focus {   
+    width: 10rem;
+
+    &:focus {
         border: 2px solid #13424a;
         // outline: blue;
     }
@@ -85,20 +88,23 @@ form {
     }
 
     &--item {
+        @include login-button;
         font-size: 18px;
-        font-family: cursive;
-        text-decoration: none;
         color: black;
-        border: 1px solid lightblue;
         padding: .2rem .5rem;
-        // width: 50%;
-        border-radius: 6px;
-        text-align: center;
+       
     }
 
     &--next {
         font-size: 14px;
-    font-weight: 600;
+        font-weight: 600;
+        padding-top: 1rem;
+        font-style: italic;
+        cursor: pointer;
+
+        &:hover {
+            color: #13424a;
+        }
     }
 
     // &--navink {
@@ -116,6 +122,8 @@ form {
 
 .errorMessage {
     display: flex;
+    color: #d80b0b;
+    font-weight: 400;
 }
 
 .popup--modal {
@@ -153,4 +161,34 @@ form {
         color: white;
         align-self: center;
     }
+}
+
+.close {
+    display: none;
+}
+
+.loginSuccess {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
+
+    &--message {
+        font-size: 14px;
+        color: #13424a;
+        align-items: center;
+        display: flex;
+
+    }
+
+    &--button {
+        @include login-button();
+    }
+
+}
+
+.register--message{
+    margin-top: 2rem;
+    color: red;
+    font-size: 14px;
+
 }
