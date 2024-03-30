@@ -6,8 +6,6 @@ import Loading from "../Loading/Loading";
 import ErrorPage from "../ErrorPage/ErrorPage";
 
 function ServicesPage() {
-    const base_url = process.env.REACT_APP_BASE_URL;
-
     const [isLoading, setIsLoading] = useState(true);
     const [hasError, sethasError] = useState(false);
     const [serviceData, setServiceData] = useState();
@@ -15,7 +13,7 @@ function ServicesPage() {
     useEffect(() => {
         const getServices = async () => {
             try {
-                const response = await axios.get("http://localhost:8080/api/services");
+                const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/services`);
                 console.log(response.data)
                 setIsLoading(false);
                 sethasError(false);
