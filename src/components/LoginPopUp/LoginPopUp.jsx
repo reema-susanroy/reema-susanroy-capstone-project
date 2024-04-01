@@ -1,20 +1,10 @@
 import { useState } from "react";
 import axios from "axios";
-// import { useNavigate } from "react-router";
-// import { NavLink } from "react-router-dom";
-import '../../pages/Login/Login.scss';
+import './LoginPopUp.scss';
 import { useAuth } from '../../utils/AuthContext';
-// import logo from '../../assets/images/slogan.png'
 
 function LoginPopUp({ provider, providerId, onClose }) {
     const { login } = useAuth();
-
-    // const navigate = useNavigate();
-    // const [formData, setFormData] = useState({
-    //     user_name: '',
-    //     contact_email: '',
-    //     password: ''
-    // });
     const [loginSuccess, setLoginSuccess] = useState(true);
     const [userId, setUserId] = useState('');
     const [toLogin, setToLogin] = useState(true);
@@ -44,7 +34,6 @@ function LoginPopUp({ provider, providerId, onClose }) {
     }
     const handleFormLogin = async (e) => {
         e.preventDefault();
-        // e.target.reset();
         console.log("clicked")
         const formValidate = validation();
         if (formValidate) {
@@ -83,24 +72,20 @@ function LoginPopUp({ provider, providerId, onClose }) {
             setErrorMessage("Password mismatch!");
             return false;
         } 
-        console.log("validation done")
         return true;
     }
     const handleFormRegister = async (e) => {
         e.preventDefault();
         const validation = Validate();
         if (!validation) {
-            // setRegisterSuccess(false);
             setPasswordValidation(true);
         } else {
-            console.log("inside")
             try {
                 const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/users/register`, {
                     user_name: name,
                     contact_email: email,
                     password: password,
                 });
-                console.log(response.data);
                 setRegisterSuccess(true);
                 if (response.data.message && response.data.message.includes("Registered Successful")) {
                     setMessage("Registered Sussessfully");
@@ -195,7 +180,6 @@ function LoginPopUp({ provider, providerId, onClose }) {
                                     <input className='login__form--input' type="password" name="password" placeholder="re-enter password" value={confirmPassword} onChange={(e) => { handleConfirmPasswordChange(e.target.value); }} />
                                 </div>
                             </section>
-
 
                             <section className='login__form--button'>
                                 <button className='login__form--button--item' type="submit" >Register</button>

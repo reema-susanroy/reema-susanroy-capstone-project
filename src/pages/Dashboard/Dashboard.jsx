@@ -75,7 +75,7 @@ function Dashboard() {
     }
     return (
         <>
-            <h2 className='dashboard__name'>Hello {profileData.user_name},</h2>
+            <h2 className='dashboard__name'>Welcome {profileData.user_name},</h2>
             <section className="dashboard__cards">
                 <h3 className="dashboard__cards--item" onClick={handleProfile}>Edit Profile</h3>
 

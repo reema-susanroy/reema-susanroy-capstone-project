@@ -1,4 +1,5 @@
 @use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/variables' as *;
 
 .provider--component {
     display: flex;
@@ -14,13 +15,11 @@
 
 .provider--list {
     &__items {
-        border: 1px solid #22222226;
-        // padding: 1rem;
         line-height: 1.8rem;
         letter-spacing: .2px;
         margin: 1rem;
         border-radius: 8px;
-        background-color: #f1f1ec;
+        background-color: $provider_list_background;
         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
         font-size: 12px;
         @include tablet{
@@ -60,15 +59,10 @@
 
         &-cont {
             width: 20px;
-            // display: flex;
-            // align-items: center;
         }
 
         &-img {
-            // width: 30px; /* Adjust the width as needed */
-            // height: auto; /* Maintain aspect ratio */
             margin-right: 10px;
-            /* Adjust spacing between image and text */
         }
     }
 

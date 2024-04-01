@@ -1,4 +1,5 @@
 @use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/variables' as *;
 
 .provider-pin {
     width: 3rem;
@@ -8,8 +9,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #13424a;
-    color: white;
+    background-color: $primary_background_color;
+    color: $primary_text_color;
     justify-content: space-around;
     margin-top: 17rem;
     padding: 1rem 0;
@@ -18,6 +19,7 @@
         margin-top: 2rem;
         padding: 0;
         flex-direction: row;
+        font-size: 14px;
     }
     &-label {
         gap: 2rem;
@@ -41,32 +43,31 @@
         height: 1.5rem;
         text-align: center;
         border-radius: 6px;
-        background-color: #95795d;
-        color: white;
+        background-color: $lightbrown_background;
+        color: $primary_text_color;
         font-weight: 600;
         font-size: 12px;
-        background-color: #7d5f4b;
+        background-color: $brown_background;
         border: none;
         
         &:focus{
-            border:1px solid red;
+            border:1px solid $error_color;
         }
         &::placeholder{
-            color: wheat;
+            color: $placeholder_color;
         }
         @include tablet{
             font-size: 13px;
             height: 2rem;
         }
     }
-
 }
 
 .map__notice {
     text-align: center;
     padding: 1rem;
-    color: #ff1500;
-    background-color: beige;
+    color: $error_color;
+    background-color: $light_background_color;
     padding: 1rem 0;
     font-size: 14px;
 }

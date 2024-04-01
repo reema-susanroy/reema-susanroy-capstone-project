@@ -8,39 +8,24 @@
 
 .providerDetails {
     display: flex;
-    padding: .5rem 1rem;
+    padding: 1rem 1rem;
     font-size: 12px;
 
     @include tablet {
         gap: 5rem;
     }
 
-    &__name {
-        // font-family: ui-sans-serif;
-        }
-
     &__data {
 
         &--data{
             font-size: 14px;
-
+            font-weight: bold;
             &--value{
                 font-size: 13px;
             }
         }
         @include tablet {
             margin: 1rem 3rem;
-
-        }
-
-        &--service {
-            // color: red;
-        }
-
-        &--exp {}
-
-        &--contact {
-            &--value {}
         }
 
         &--avatar {
@@ -52,7 +37,6 @@
                 display: flex;
                 justify-content: space-between;
                 gap: 25rem;
-
             }
 
             &--img {
@@ -61,7 +45,6 @@
             }
         }
     }
-
 }
 
 .provider__reviews {
@@ -79,7 +62,7 @@
         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
         padding: 1rem;
         border-radius: 16px;
-        border: 1px solid gray;
+        border: 1px solid $border-color;
         @include tablet{
             margin: 1rem 3rem 2rem;
         }
@@ -136,14 +119,14 @@
         margin-top: 1rem;
         width: 100px;
         height: 30px;
-        border-color: #95795d;
+        border-color: $lightbrown_background;
         border-radius: 40px;
-        background-color: #635046;
-        color: white;
+        background-color: $button_background;
+        color: $primary_text_color;
 
         &:hover{
             cursor: pointer;
-            background-color: #222;
+            background-color: $button_hover;
         }
     }
 }
@@ -155,11 +138,11 @@
     }
 
     &--experience {
+        margin-bottom: .5rem;
         @include tablet {
-            border-right: 1px solid gray;
+            border-right: 1px solid $border-color;
             padding: 0 3rem 0 0;
         }
-
     }
 }
 
@@ -179,9 +162,7 @@
     justify-content: center;
     align-items: center;
     z-index: 100;
-    border: 1px solid black;
-
-
+    border: 1px solid $black_text;
 }
 
 .close {
@@ -191,22 +172,20 @@
 .show--provider {
 
     &__data {
-        border: 1px solid #13424a;
+        border: 1px solid $primary_background_color;
         margin: 1rem;
     }
 }
 
 .backgroundTeal {
-    background-color: #13424a;
-    color: white;
+    background-color: $primary_background_color;
+    color: $primary_text_color;
 }
 
 .backgroundWhite {
-    background-color: white;
-    color: black;
+    background-color: $primary_text_color;
+    color: $black_text;
 }
-
-
 
 .providerDetails__data--avatar--cont {
     display: flex;
@@ -215,11 +194,13 @@
 }
 
 .provider--details {
-    display: flex;
-    gap: 3rem;
+    @include tablet{
+        display: flex;
+        gap: 3rem;
+    }
 }
 
 .provider--details__contact {
-    border-right: 1px solid gray;
+    border-right: 1px solid $border-color;
     padding: 0 3rem 0 0;
 }

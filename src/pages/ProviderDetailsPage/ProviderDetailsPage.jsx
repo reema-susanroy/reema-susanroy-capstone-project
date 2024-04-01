@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import './ProviderDetailsPage.scss'
 import { useNavigate, useParams } from "react-router-dom";
-import { useLocation } from "react-router-dom";
 import axios from 'axios';
 import { TimeFormat } from '../../utils/TimeFormat';
 import Loading from "../Loading/Loading";
@@ -12,9 +11,6 @@ import { useAuth } from '../../utils/AuthContext';
 
 function ProviderDetailsPage() {
     const { login } = useAuth();
-
-    // const location = useLocation();
-    // const { flag } = location.state;
     const { id } = useParams(); //providerId
     console.log("provider ID" + id);
     const [provider, setProvider] = useState();
@@ -25,7 +21,7 @@ function ProviderDetailsPage() {
     const navigate = useNavigate();
     const [userId, setUserId] = useState('');
     const [loggedIn, setLoggedIn] = useState(true);
-    let url;
+
     useEffect(() => {
         const storedUserId = sessionStorage.getItem('userId');
         if (storedUserId) {
@@ -41,7 +37,6 @@ function ProviderDetailsPage() {
                 setIsFavorite(providerData.data[0].isFavorite);
                 setPricing(providerData.data[0].pricing);
                 setIsLoading(false);
-
             } catch (error) {
                 console.log("Unable to load provider details :" + error);
             }
@@ -54,7 +49,6 @@ function ProviderDetailsPage() {
                 const review = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/providers/${id}/reviews`);
                 setIsLoading(false);
                 setReviewContent(review.data);
-
             } catch (error) {
                 setIsLoading(false);
                 console.log("Error while fecthing reviews: " + error);
@@ -80,35 +74,20 @@ function ProviderDetailsPage() {
     };
 
     const handleGoBack = () => {
-        // if (flag === "servicePage") {
-        //     url = `/services/${provider.service_id}`;
-        // } else if (flag === "dashboard") {
-        //     url = '/dashboard';
-        // }
-        // navigate(`/services/${provider.service_id}`)
         navigate(-1);
     }
     const handleBook = () => {
-        console.log("clicked")
         if (userId !== '') {
-            console.log("userId !== ''")
             setLoggedIn(true);
-            // navigate(`/booking/${id}`, { state: { provider } });
             navigate(`/booking/${id}`);
-
             login();
-            
         } else {
-            console.log("userId === ''")
             setLoggedIn(false);
         }
     }
     const closePopup = () => {
-        // setClose(true);
-        console.log("closePopup")
         setLoggedIn(true);
     }
-    console.log({ loggedIn });
     if (isLoading) {
         return (
             <Loading />
@@ -120,7 +99,6 @@ function ProviderDetailsPage() {
                 <div className="providerDetails">
                     <section className='providerDetails__data'>
                         <section className='providerDetails__avatar--cont'>
-                            {/* <p className="providerDetails__data--avatar"> </p> */}
                             <div className="providerDetails__data--avatar--cont">
                                 <img className='providerDetails__data--avatar--img' src={`${process.env.REACT_APP_BASE_URL}${provider.provider_image}`} />
                             </div>
@@ -130,21 +108,17 @@ function ProviderDetailsPage() {
                                 </div>
                             }
                         </section>
-
                         <h2 className="providerDetails__name padding">{provider.provider_name}</h2>
                         <section className='provider--details'>
                             <div className='provider--Details__container'>
                                 <div className='provider--Details__container--experience'>
                                     <p className="providerDetails__data--data padding"> Expertise: {provider.service_name}</p>
                                     <p className="providerDetails__data--data padding"> Experience : {provider.experience}</p>
-                                    {/* </div>
-                                <div className='provider--details__contact'> */}
                                     <p className="providerDetails__data--data padding"> Contact Details:</p>
                                     <p className="providerDetails__data--data--value padding">Phone: {provider.contact_phone}</p>
                                     <p className="providerDetails__data--data--value padding">Email: {provider.contact_email}</p>
                                 </div>
                             </div>
-
                             <ul>
                                 <p className="providerDetails__data--data" >Service Charge:</p>
                                 {serviceList.map((service, index) => (
@@ -167,29 +141,23 @@ function ProviderDetailsPage() {
                                 <div className='provider__reviews__list--details--data'>
                                     <p className={`provider__reviews__list--name padding ${(index % 2 == 0) ? 'backgroundTeal' : 'backgroundWhite'}`}>{review.user_name}</p>
                                     <p className='provider__reviews__list--date padding'>{TimeFormat(review.created_at)}</p>
-
                                 </div>
                                 <div className='provider__reviews__list--dateCont'>
                                     <p className={`provider__reviews__list--review padding ${(index % 2 == 0) ? 'backgroundTeal' : 'backgroundWhite'}`}>{review.user_review}</p>
-
                                 </div>
                             </div>
-
                         </div>
                     </li>
                 ))}
             </section>
             <section className='button__cont'>
                 <button className='button__cont--item' onClick={handleGoBack}>Go Back</button>
-                {/* <Link to = {`/booking/${provider.id}`}  > */}
                 <button className='button__cont--item' onClick={handleBook}>Book</button>
-                {/* </Link> */}
             </section>
             {(loggedIn === false) &&
                 <section className='login--popup'>
                     <LoginPopUp provider={provider} providerId={id} onClose={closePopup} />
                 </section>
-
             }
         </>
     )

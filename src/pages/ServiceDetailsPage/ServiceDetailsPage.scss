@@ -1,12 +1,12 @@
 @use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/variables' as *;
 
 .service {
     justify-content: center;
     align-items: center;
-    color: black;
+    color: $black_text;
     display: flex;
     flex-direction: column;
-    // margin: 1rem;
     gap: 1rem;
     @include tablet{
         margin: 1rem 2rem;
@@ -31,8 +31,6 @@
             width: 50%;
         }
     }
-
-    &--title {}
 
     &--description {
         font-size: 14px;
@@ -62,7 +60,6 @@
 
 .map__container {
     height: 350px;
-    // width: 500px;
 }
 
 .map {
@@ -70,7 +67,7 @@
 }
 
 .padding {
-    padding: 0.5rem 0
+    padding: 0.5rem 0;
 }
 
 .service__background {
@@ -78,40 +75,13 @@
     height: 13rem;
 
     @include tablet {
-        // width: 40%;
-        // height: 13rem;
         width: 40%;
-        // height: auto;
         flex: 1;
     }
 
-
     &--image {
-        border: 1px solid #13424a;
-        // background-color: transparent;
+        border: 1px solid $primary_background_color;
         padding: .5rem;
-        // object-position: right;
-
-        @include tablet {
-            // border-radius: 4px;
-            // object-fit: contain;
-            // object-position: right;
-            // position: absolute;
-            // width: 30%;
-            // height: 40%;
-            // bottom: 45%;
-            // border-radius: 4px;
-            // object-fit: contain;
-            // object-position: right;
-            // position: absolute;
-            // width: 30%;
-            // height: 40%;
-            // bottom: 45%;
-            // flex: 1;
-            // display: flex;
-            // background-color: #1a3238;
-
-        }
     }
 }
 

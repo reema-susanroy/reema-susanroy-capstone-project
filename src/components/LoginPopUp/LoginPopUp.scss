@@ -1,0 +1,165 @@
+@use '../../styles/partials/mixins' as*;
+@use '../../styles/partials/variables' as *;
+
+.login__form {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+
+    @include tablet {
+        flex-direction: row;
+    }
+
+    &__cont {
+        display: flex;
+        flex-direction: column;
+        margin: auto auto;
+        gap: 2rem;
+
+        &--div {
+            display: flex;
+        }
+    }
+
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+    background-color: $primary_text_color;
+    display: flex;
+    flex-direction: column;
+
+    @include tablet {
+        height: 60vh;
+    }
+
+    &__heading {
+        margin-bottom: 4rem;
+        font-family: cursive;
+    }
+}
+
+.login__form--label {
+    font-size: 18px;
+    margin-right: 2rem;
+    width: 100%;
+    font-family: cursive;
+    align-items: center;
+    display: flex;
+}
+
+.login__form--input {
+    padding: .5rem;
+    border: 1px solid $lightgray;
+    border-radius: 6px;
+    outline: none;
+    width: 10rem;
+
+    &:focus {
+        border: 2px solid $primary_background_color;
+    }
+}
+
+.login__form--button {
+    align-items: flex-start;
+    display: flex;
+    margin-left: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 1.2rem;
+
+    @include tablet {
+        justify-content: center;
+        align-items: center;
+    }
+
+    &--item {
+        @include login-button;
+        font-size: 18px;
+        color: $black_text;
+        padding: .2rem .5rem;
+    }
+
+    &--next {
+        font-size: 14px;
+        font-weight: 600;
+        padding-top: 1rem;
+        font-style: italic;
+        cursor: pointer;
+
+        &:hover {
+            color: $primary_background_color;
+        }
+    }
+}
+
+.errorMessage {
+    display: flex;
+    color: $error_color;
+    font-weight: 400;
+}
+
+.popup--modal {
+    background-color: $lightbrown_background;
+    padding: 1.25rem;
+    width: 90%;
+    height: 100%;
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    background-color: $primary_background_color;
+    gap: 2rem;
+
+    @include tablet {
+        border-radius: 4px;
+        width: 80%;
+        height: 70%;
+        margin: auto;
+        margin-top: 16vh;
+        font-size: 14px;
+    }
+
+    @include desktop {
+        width: 60%;
+        height: 70%;
+    }
+
+    &__title {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: $primary_text_color;
+        align-self: center;
+    }
+}
+
+.close {
+    display: none;
+}
+
+.loginSuccess {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
+
+    &--message {
+        font-size: 14px;
+        color: $primary_background_color;
+        align-items: center;
+        display: flex;
+    }
+
+    &--button {
+        @include login-button();
+    }
+}
+
+.register--message {
+    margin-top: 2rem;
+    color: $error_color;
+    font-size: 14px;
+}

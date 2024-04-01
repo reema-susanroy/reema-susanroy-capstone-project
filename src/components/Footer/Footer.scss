@@ -1,4 +1,5 @@
 @use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/variables' as *;
 
 .footer {
     padding: 1rem;
@@ -6,17 +7,15 @@
     justify-content: space-between;
     height: 3rem;
     flex-wrap: nowrap;
-    background-color: gray;
     z-index: 2;
     bottom: 1.5rem;
     left: 20%;
-    background-color: #1a3238;
-    color: white;
+    background-color: $dark_text_color;
+    color: $primary_text_color;
     height: 7rem;
     display: flex;
     flex-direction: column;
     margin-top: 20rem;
-
 
     @include tablet {
         padding: 1.5rem;
@@ -34,7 +33,7 @@
         display: flex;
         justify-content: space-between;
         &__email{
-            color: white;
+            color: $primary_text_color;
             text-decoration: none;
         }
         &__label{
@@ -55,7 +54,6 @@
     &-copyright {
         text-align: center;
         margin-top: 0.1rem;
-
     }
 
     &-copyright-icon {
@@ -85,6 +83,6 @@
     height: 1.2rem;
 
     &--iconimages {
-        background-color: white;
+        background-color: $primary_text_color;
     }
 }

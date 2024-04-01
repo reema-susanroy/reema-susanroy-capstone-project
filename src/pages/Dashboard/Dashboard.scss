@@ -35,8 +35,8 @@
         font-weight: 600;
         align-self: stretch;
         cursor: pointer;
-        background-color: #13424a;
-        color: white;
+        background-color: $primary_background_color;
+        color: $primary_text_color;
         @include tablet{
             font-size: 14px;
         }
@@ -44,7 +44,7 @@
             font-size: 16px;
         }
         &:hover {
-            background-color: #2e616a;
+            background-color: $dashboard_hover;
         }
     }
 }
@@ -70,7 +70,7 @@
         flex-direction: column;
         letter-spacing: 0.5px;
         padding: 1rem;
-        border: 1px solid lightgray;
+        border: 1px solid $lightgray;
         margin: 1rem;
         display: flex;
         flex-direction: column;
@@ -95,7 +95,6 @@
             }
         }
     }
-
 }
 
 .dashboard__image {
@@ -114,11 +113,8 @@
     }
 }
 
-.green {
-    color: green;
-}
 .orange {
-    color: orange;
+    color: $dashboard_pending;
 }
 
 .data--container {
@@ -163,11 +159,11 @@
     }
     &--item {
         font-size: 12px;
-        width: 60%;
+        width: 70%;
         padding: 2%;
         margin: .5rem 0;
         @include desktop{
-            font-size: 14px;
+            font-size: 16px;
         }
     }
 }
@@ -182,26 +178,27 @@
     &--button {
         display: flex;
         border: none;
-        border: 1px solid gray;
+        border: 1px solid $border-color;
         align-items: center;
         text-align: center;
         justify-content: center;
         gap: .4rem;
         border-radius: 6px;
-        background-color: #635046;
-        color: white;
-        width: 20%;
+        background-color: $button_background;
+        color: $primary_text_color;
+        width: 30%;
         height: 2rem;
-        font-size: 10px;
+        font-size: 12px;
         @include tablet{
-            font-size: 12px;
+            font-size: 14px;
             gap: 1rem;
+            width: 20%;
         }
         @include desktop{
-            font-size: 14px;
+            font-size: 16px;
         }
         &:hover {
-            background-color: #222;
+            background-color: $button_hover;
         }
     }
     &--cont {
@@ -211,12 +208,12 @@
     }
 }
 .backgroundBrown {
-    background-color: #8f786c;
-    color: black;
+    background-color: $dashboard_card_dark;
+    color: $black_text;
 }
 .backgroundOffwhite {
-    background-color: #dbd3d0;
-    color: black;
+    background-color: $dashboard_card_light;
+    color: $black_text;
 }
 .booking-details {
     display: flex;

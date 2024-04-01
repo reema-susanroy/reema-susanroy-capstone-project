@@ -26,11 +26,10 @@
 @mixin default-input {
   appearance: none;
   outline: none;
-  border: 1px solid lightgray;
+  border: 1px solid $lightgray;
   height: 2.25rem;
 
   &::placeholder {
-    //   font-family: "Titillium Web";
     color: $divider_color;
   }
 }
@@ -40,8 +39,7 @@
   border: 1px solid blue;
 
   &::placeholder {
-    //   font-family: "Titillium Web";
-    color: black;
+    color: $black_text;
   }
 }
 

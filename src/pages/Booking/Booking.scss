@@ -1,4 +1,5 @@
 @use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/variables' as *;
 
 .booking__details--header {
     height: 4rem;
@@ -43,15 +44,15 @@
 
     &__item {
         cursor: pointer;
-        background-color: #635046;
-        color: white;
+        background-color: $button_background;
+        color: $primary_text_color;
         border: none;
         width: 10%;
         height: 2rem;
         border-radius: 12px;
 
         &:hover {
-            background-color: #222;
+            background-color: $button_hover;
         }
     }
 }
@@ -68,7 +69,7 @@
 }
 
 .modal {
-    background-color: lightgray;
+    background-color: $lightgray;
     padding: 20px;
     border-radius: 8px;
     width: 80%;
@@ -83,7 +84,6 @@
     }
 
     &__title-cont {
-        // color: black;
         display: flex;
         align-items: center;
         flex-direction: column;
@@ -92,26 +92,17 @@
     }
 
     &__title {
-        color: white;
+        color: $primary_text_color;
         font-size: 17px;
         display: flex;
         text-align: center;
 
         &--title {
             font-size: 20px;
-            color: white;
+            color: $primary_text_color;
             text-align: center;
         }
     }
-
-    // &__title {
-    //     color: black;
-
-    //     @include tablet {
-    //         font-size: 16px;
-    //     }
-    // }
-
     &__button {
         cursor: pointer;
         align-self: flex-end;
@@ -119,7 +110,7 @@
         height: 2rem;
         border: none;
         background-color: transparent;
-        color: white;
+        color: $primary_text_color;
         font-weight: bolder;
         margin-top: 1.5rem;
 

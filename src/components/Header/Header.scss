@@ -1,21 +1,19 @@
 @use '../../styles/partials/mixins' as *;
 @use '../../styles/partials/resets' as *;
+@use '../../styles/partials/variables' as *;
+
 
 .navbar {
     display: flex;
     padding: .5rem 0;
-    // background-color: rgb(244 244 244 / 80%);
-    // background-color: #34a5cdcc;
-    background-color: #edddc8;
-    color: #1a3238;
+    background-color: $navbar_background_color;
+    color: $dark_text_color;
     justify-content: space-between;
     padding: 1rem 2rem;
 
     &__logo {
-        //
         width: 50%;
         padding-left: 1rem;
-
         @include tablet {
             width: 70%;
         }
@@ -23,21 +21,12 @@
         &--cont {
             width: 30px;
         }
-
-        // &--image{
-        //     //
-        // }
     }
 }
 
 .navbar__side-container {
     display: flex;
-    // width: 50%;
     gap: 5rem;
-
-    @include tablet {
-        // width: 20%;
-    }
 }
 
 .navbar__welcome {
@@ -58,7 +47,7 @@
         left: 0;
         width: 100%;
         height: 2px;
-        background-color: #13424a;
+        background-color: $primary_background_color;
         animation: underline 0.3s ease-in-out forwards;
     }
 }
@@ -73,7 +62,6 @@
 }
 
 .navbar__dropdown--hamburger {
-    // display: none;
     flex-direction: column;
     cursor: pointer;
     z-index: 10;
@@ -86,14 +74,13 @@
         transition: all 0.3s ease;
     }
 
-    @media (max-width: 768px) {
+    @include tablet {
         display: flex;
     }
 }
 
 .navbar__dropdown--links {
     display: none;
-    // display: flex;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -102,7 +89,6 @@
     top: 50vh;
     left: 50vw;
     transform: translate(-50%, -50%);
-    background-color: lightgray;
     padding: 20px;
     border-radius: 10px;
     z-index: 1;
@@ -110,7 +96,6 @@
     @include tablet {
         top: 20%;
         left: 90%;
-        // z-index: 1
     }
 
     &--list {
@@ -126,7 +111,7 @@
     &--item {
         text-decoration: none;
         list-style-type: none;
-        color: white;
+        color: $primary_text_color;
     }
 
     &.open {
@@ -134,36 +119,19 @@
         flex-direction: column;
         width: 100%;
         height: 100%;
-        background-color: #7d5f4b;
-        // border-radius: 20px;
+        background-color: $brown_background;
 
         @include tablet {
             display: flex;
             flex-direction: column;
             width: 40%;
             height: 100%;
-            background-color: #7d5f4b;            
+            background-color: $brown_background;            
             overflow: hidden;
             position: absolute;
             left: 80%;
         }
-
-
-
     }
-
-    // li {
-    //     margin-right: 20px;
-    //     @include tablet{
-    //         position: absolute;
-    //         bottom: 25rem;
-    //         padding: 1rem 0;
-    //     }
-
-    //     &:last-child {
-    //         margin-right: 0;
-    //     }
-    // }
 }
 
 .dashboard {
@@ -172,7 +140,6 @@
         bottom: 23rem;
         padding: 1rem;
     }
-
 }
 
 .providers {
@@ -181,5 +148,4 @@
         bottom: 20rem;
         padding: 1rem;
     }
-
 }
