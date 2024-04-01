@@ -87,7 +87,8 @@ function Header() {
             {loggedOut &&
                 <section className='login--popup'>
                     <div className="popup--modal">
-                        <h3 className="popup--modal__title">Logged Out Successfully ! <br /> Navigating to home page!</h3>
+                        <h3 className="popup--modal__title">Logged Out Successfully !</h3>
+                        <h3 className="popup--modal__title"> Navigating to home page!</h3>
                     </div>
                 </section>
             }

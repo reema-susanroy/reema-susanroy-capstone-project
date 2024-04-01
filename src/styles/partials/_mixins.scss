@@ -16,7 +16,13 @@
 @mixin desktop-margin {
   margin: 1rem 2rem;
 }
+@mixin mobile-margin{
+  margin: 1rem;
+}
 
+@mixin tablet-margin{
+  margin: 2rem;
+}
 @mixin default-input {
   appearance: none;
   outline: none;

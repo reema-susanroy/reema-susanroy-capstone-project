@@ -1,11 +1,23 @@
 @use '../../styles/partials/mixins' as *;
 @use '../../styles/partials/variables' as *;
 
+.dashboard__name{
+    margin : 1rem;
+    font-size: 14px;
+
+    @include tablet{
+        margin: 1rem 2rem;
+        font-size: 16px;
+    }
+    @include desktop{
+        margin: 2rem 4rem;
+        font-size: 18px;
+    }
+}
 .dashboard__cards {
     display: flex;
     align-items: center;
     justify-content: center;
-    // margin: 1rem;
 
     &--item {
         padding: .5rem;
@@ -19,14 +31,18 @@
         align-items: center;
         justify-content: center;
         margin: 1rem;
-        font-size: 14px;
+        font-size: 12px;
         font-weight: 600;
         align-self: stretch;
-        cursor: pointer;    
+        cursor: pointer;
         background-color: #13424a;
         color: white;
-
-
+        @include tablet{
+            font-size: 14px;
+        }
+        @include desktop{
+            font-size: 16px;
+        }
         &:hover {
             background-color: #2e616a;
         }
@@ -36,10 +52,19 @@
 .dashboard__details {
     display: flex;
     flex-wrap: wrap;
-    &--link{
+    justify-content: center;
+    @include tablet{
+        margin: 1rem 2rem;
+    }
+    @include desktop{
+        margin: 2rem 3rem;
+    }
+
+    &--link {
         text-decoration: none;
         font-weight: 900;
     }
+
     &--list {
         display: flex;
         flex-direction: column;
@@ -54,23 +79,21 @@
         width: 15rem;
         font-weight: 400;
 
-        &--label {}
+        &--label {
+            font-size: 14px;
+        }
+        &--data{
+            font-size: 14px;
+        }
 
         &--image {
             width: 6rem;
-
 
             &--src {
                 object-fit: contain;
                 border-radius: 20%;
             }
         }
-
-        // &--data{
-        //     // font-weight: 600;
-        //     // letter-spacing: 1px;
-        //     // line-height: 25px;
-        // }
     }
 
 }
@@ -81,20 +104,28 @@
     padding: 1rem;
     display: flex;
     justify-content: space-between;
-    gap:4rem;
+    gap: 2rem;
+    font-size: 14px;
 
     &--cont {
         width: 1.4rem;
         height: 1rem;
+
+        &-item{
+            object-fit: contain;
+        }
     }
 
 }
-.green{
+
+.green {
     color: green;
 }
-.orange{
-    color:orange;
+
+.orange {
+    color: orange;
 }
+
 // .dashboard__image--cont{
 //     width: 1.4rem;
 //     height: 1rem;
@@ -106,9 +137,19 @@
 }
 
 .profile {
+    margin: 1rem 0;
+    @include tablet{
+        margin: 1rem 1rem;
+    }
+    @include desktop{
+        margin: 2rem 3rem;
+    }
     &__title {
         margin: 1rem;
-        font-size: 18px;
+        font-size: 14px;
+        @include desktop{
+            font-size: 16px;
+        }
     }
 
 }
@@ -127,21 +168,31 @@
 
     &--label {
         font-weight: 600;
+        font-size: 12px;
         display: flex;
         flex-direction: column;
         // padding: 1rem;
-        margin: .5rem 1rem;
+        margin: 1rem 1rem;
+        @include desktop{
+            font-size: 14px;
+        }
     }
 
     &--item {
+        font-size: 12px;
         width: 60%;
-        padding: 0.4rem;
+        padding: 2%;
         margin: .5rem 0;
+        @include desktop{
+            font-size: 14px;
+        }
     }
 }
 
 .profile__save {
     display: flex;
+    justify-content: flex-end;
+    margin: 1rem;
 
     // justify-content: center;
     @include tablet {
@@ -162,14 +213,18 @@
         color: white;
         width: 20%;
         height: 2rem;
-
-        &:hover{
+        font-size: 10px;
+        @include tablet{
+            font-size: 12px;
+            gap: 1rem;
+        }
+        @include desktop{
+            font-size: 14px;
+        }
+        &:hover {
             background-color: #222;
         }
-
-
     }
-
 
     &--cont {
         display: flex;
@@ -178,18 +233,44 @@
     }
 }
 
-// .profile__image--cont{
-//     display: flex;
-//     flex-direction: row;
-//     width: 1.5rem;
-//     align-items: center;
-//     gap: .4rem;
-// }
-.backgroundBrown{
+.backgroundBrown {
     background-color: #8f786c;
     color: black;
 }
-.backgroundOffwhite{
+
+.backgroundOffwhite {
     background-color: #dbd3d0;
     color: black;
 }
+
+.booking-details {
+    display: flex;
+    margin: 4rem;
+    gap: 2rem;
+    align-content: space-around;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    &__item{
+        display: flex;
+        gap: 2rem;
+    }
+    &__cont {
+        width: 12rem;
+        object-fit: cover;
+
+        &--image {
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+
+// .booking-details__cont{
+//     width: 12rem;
+//     object-fit: cover;
+//     &--image{
+//         width: 100%;
+//         height: 100%;
+//     }
+// }

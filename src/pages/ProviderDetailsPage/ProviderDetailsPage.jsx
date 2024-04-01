@@ -13,8 +13,8 @@ import { useAuth } from '../../utils/AuthContext';
 function ProviderDetailsPage() {
     const { login } = useAuth();
 
-    const location = useLocation();
-    const { flag } = location.state;
+    // const location = useLocation();
+    // const { flag } = location.state;
     const { id } = useParams(); //providerId
     console.log("provider ID" + id);
     const [provider, setProvider] = useState();
@@ -25,7 +25,6 @@ function ProviderDetailsPage() {
     const navigate = useNavigate();
     const [userId, setUserId] = useState('');
     const [loggedIn, setLoggedIn] = useState(true);
-    const [close, setClose] = useState(false);
     let url;
     useEffect(() => {
         const storedUserId = sessionStorage.getItem('userId');
@@ -81,21 +80,24 @@ function ProviderDetailsPage() {
     };
 
     const handleGoBack = () => {
-        if (flag === "servicePage") {
-            url = `/services/${provider.service_id}`;
-        } else if (flag === "dashboard") {
-            url = '/dashboard';
-        }
+        // if (flag === "servicePage") {
+        //     url = `/services/${provider.service_id}`;
+        // } else if (flag === "dashboard") {
+        //     url = '/dashboard';
+        // }
         // navigate(`/services/${provider.service_id}`)
-        navigate(url);
+        navigate(-1);
     }
     const handleBook = () => {
         console.log("clicked")
         if (userId !== '') {
             console.log("userId !== ''")
             setLoggedIn(true);
+            // navigate(`/booking/${id}`, { state: { provider } });
+            navigate(`/booking/${id}`);
+
             login();
-            navigate(`/booking/${id}`, { state: { provider } });
+            
         } else {
             console.log("userId === ''")
             setLoggedIn(false);
@@ -133,21 +135,21 @@ function ProviderDetailsPage() {
                         <section className='provider--details'>
                             <div className='provider--Details__container'>
                                 <div className='provider--Details__container--experience'>
-                                    <p className="providerDetails__data--service padding"> Expertise: {provider.service_name}</p>
-                                    <p className="providerDetails__data--exp padding"> Experience : </p>
+                                    <p className="providerDetails__data--data padding"> Expertise: {provider.service_name}</p>
+                                    <p className="providerDetails__data--data padding"> Experience : {provider.experience}</p>
                                     {/* </div>
                                 <div className='provider--details__contact'> */}
-                                    <p className="providerDetails__data--contact padding"> Contact Details:</p>
-                                    <p className="providerDetails__data--contact--value padding">Phone: {provider.contact_phone}</p>
-                                    <p className="providerDetails__data--contact--value padding">Email: {provider.contact_email}</p>
+                                    <p className="providerDetails__data--data padding"> Contact Details:</p>
+                                    <p className="providerDetails__data--data--value padding">Phone: {provider.contact_phone}</p>
+                                    <p className="providerDetails__data--data--value padding">Email: {provider.contact_email}</p>
                                 </div>
                             </div>
 
                             <ul>
-                                <p>Service Charge:</p>
+                                <p className="providerDetails__data--data" >Service Charge:</p>
                                 {serviceList.map((service, index) => (
-                                    <li className='service__provided--list padding' key={index}>
-                                        <strong>{service.serviceName}</strong>: {service.price}
+                                    <li className='providerDetails__provided--list padding' key={index}>
+                                        {service.serviceName} : {service.price}
                                     </li>
                                 ))}
                             </ul>

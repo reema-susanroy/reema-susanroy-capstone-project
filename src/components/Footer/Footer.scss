@@ -2,72 +2,89 @@
 
 .footer {
     padding: 1rem;
-    // margin: 2rem 0;
     display: flex;
     justify-content: space-between;
-    // align-items: center;
     height: 3rem;
     flex-wrap: nowrap;
     background-color: gray;
-    // position: fixed;
     z-index: 2;
     bottom: 1.5rem;
-    left:20%;
+    left: 20%;
     background-color: #1a3238;
     color: white;
-    height: 6rem;
+    height: 7rem;
     display: flex;
     flex-direction: column;
+    margin-top: 20rem;
+
 
     @include tablet {
         padding: 1.5rem;
         bottom: 1rem;
         width: 100%;
         left: 1%;
-        margin-top: 20rem;        
         height: 8rem;
     }
 
     @include desktop {
         padding: 1.5rem 8rem;
     }
-    &--content{
+
+    &--content {
         display: flex;
-    justify-content: space-between;
+        justify-content: space-between;
+        &__email{
+            color: white;
+            text-decoration: none;
+        }
+        &__label{
+            font-size: 12px;
+            margin-bottom: 1rem;
+            @include tablet{
+                font-size: 14px;;
+            }
+        }
+        &__data{
+            font-size: 11px;
+            @include tablet{
+                font-size: 13px;
+            }
+        }
     }
+
     &-copyright {
-        // font-family: "Titillium Web";
         text-align: center;
-        // color: $slate;
-        // @include p3;
         margin-top: 0.1rem;
 
     }
 
     &-copyright-icon {
         padding-right: 0.2rem;
-        // color: $slate;
-
     }
 }
-.footer__copy{
+
+.footer__copy {
     display: flex;
-    // flex-direction: column;
     align-items: flex-end;
     justify-content: center;
+    font-size: 11px;
+    padding-top: 1rem;
+    @include tablet{
+        font-size: 13px;
+    }
 }
-.footer__social{
+
+.footer__social {
     display: flex;
     flex-direction: column;
 }
-.footer__social--icons{
-        /* width: 2.5rem; */
-        display: flex;
-        /* flex-direction: row; */
-        gap: 2rem;
-        height: 2rem;
 
-        &--iconimages{
-            background-color: white;
-        }
+.footer__social--icons {
+    display: flex;
+    gap: 1rem;
+    height: 1.2rem;
+
+    &--iconimages {
+        background-color: white;
+    }
 }

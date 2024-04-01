@@ -33,7 +33,7 @@
 .navbar__side-container {
     display: flex;
     // width: 50%;
-    gap: 1rem;
+    gap: 5rem;
 
     @include tablet {
         // width: 20%;
@@ -46,6 +46,9 @@
     display: flex;
     position: relative;
     text-decoration: none;
+    @include desktop{
+        font-size: 20px;
+    }
 
     &:hover::after {
         content: '';

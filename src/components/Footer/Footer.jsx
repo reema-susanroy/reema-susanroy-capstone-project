@@ -10,18 +10,12 @@ function Footer() {
 
                 <section className='footer--content'>
                     <section>
-                        <h3>Contact Us</h3>
-                        <p>Email</p>
-                        <p> Contact No</p>
+                        <h3 className='footer--content__label'>Contact Us</h3>
+                        <p className='footer--content__data'>Email : <Link to="mailto:serverbuddy@gmail.com" className='footer--content__email'>serverbuddy@gmail.com</Link></p>
+                        <p className='footer--content__data'> Contact No : +1(534)853 4956</p>
                     </section>
-
-                    {/* <section className='footer__copy'>
-                <p className="footer-copyright-icon">©</p>
-                <p className="footer-copyright">Server Buddy. All Right Reserved.</p>
-                </section> */}
-
                     <section className='footer__social'>
-                        <h3>Connect</h3>
+                        <h3 className='footer--content__label'>Connect</h3>
                         <div className="footer__social--icons">
                             <Link to="https://www.instagram.com" target="_blank" >
                                 <img className="footer__social--iconimages" src={instagram} alt="instagram" />

@@ -7,15 +7,8 @@
 }
 
 .providerDetails {
-    // @include desktop-margin();
     display: flex;
-    /* border: 1px solid gray; */
     padding: .5rem 1rem;
-    // border: 1px solid $divider_color;
-    // gap: 5rem;
-    // justify-content: center;
-    // background-image: url('../../assets/images/background\ image\ 1.jpg');
-
     font-size: 12px;
 
     @include tablet {
@@ -24,17 +17,22 @@
 
     &__name {
         font-family: ui-sans-serif;
-        // color: blue;
-        // padding: 1rem;
-    }
+        }
 
     &__data {
+
+        &--data{
+            font-size: 14px;
+
+            &--value{
+                font-size: 13px;
+            }
+        }
         @include tablet {
             margin: 1rem 3rem;
 
         }
 
-        // padding: 0.5rem 1rem;
         &--service {
             // color: red;
         }
@@ -47,8 +45,6 @@
 
         &--avatar {
             &--cont {
-                // width: 100px;
-                // height: 100px;
                 width: 80px;
                 height: 80px;
                 border-radius: 50%;
@@ -72,6 +68,9 @@
     &--review {
         font-size: 16px;
         padding: 1rem .5rem;
+        @include tablet{
+            margin: 0 3rem;
+        }
     }
 
     &__list {
@@ -81,6 +80,9 @@
         padding: 1rem;
         border-radius: 16px;
         border: 1px solid gray;
+        @include tablet{
+            margin: 1rem 3rem 2rem;
+        }
         &--name {
             font-weight: 600;
             color: $secondary_text_color;
@@ -112,7 +114,6 @@
             width: 100%;
 
             &--data {
-                // width: 75%;
                 display: flex;
                 justify-content: space-between;
             }
@@ -120,8 +121,6 @@
 
         &--dateCont {
             flex: 1;
-            /* width: 100%; */
-            // justify-content: flex-end;
             display: flex;
             color: $secondary_text_color;
             font-size: 12px;
@@ -147,8 +146,6 @@
             background-color: #222;
         }
     }
-
-
 }
 
 .provider--Details__container {

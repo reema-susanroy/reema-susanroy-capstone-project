@@ -1,43 +1,79 @@
+@use '../../styles/partials/mixins' as *;
+
 .provider-pin {
     width: 3rem;
-    // height: 2rem;
 }
 
 .map__filter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #13424a;
+    color: white;
+    justify-content: space-around;
+    margin-top: 17rem;
+    padding: 1rem 0;
+    font-size: 13px;
+    @include tablet{
+        margin-top: 2rem;
+        padding: 0;
+        flex-direction: row;
+    }
+    &-label {
+        gap: 2rem;
+        display: flex;
+        align-items: center;
+        @include tablet{
+            font-size: 14px;
+        }
+    }
 
     &-bott {
         display: flex;
-        /* flex-direction: column; */
         justify-content: center;
         align-items: center;
         gap: 2rem;
         margin: 1rem;
-        padding: 1rem;
     }
-    &-select{
+
+    &-select {
         width: 7rem;
-        height: 2rem;
+        height: 1.5rem;
         text-align: center;
         border-radius: 6px;
         background-color: #95795d;
         color: white;
         font-weight: 600;
-        font-size: 14px;
+        font-size: 12px;
         background-color: #7d5f4b;
+        border: none;
+        
+        &:focus{
+            border:1px solid red;
+        }
+        &::placeholder{
+            color: wheat;
+        }
+        @include tablet{
+            font-size: 13px;
+            height: 2rem;
+        }
     }
 
 }
-.map__notice{
+
+.map__notice {
     text-align: center;
-    padding-bottom: 1rem;
+    padding: 1rem;
     color: #ff1500;
     background-color: beige;
+    padding: 1rem 0;
+    font-size: 14px;
 }
 
-
-// .show--provider{
-//     height: 50rem;
-// }
-.map-provider-container{
+.map__popup {
+    cursor: pointer;
+}
+.map-provider-container {
     height: 500px;
 }

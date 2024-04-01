@@ -129,7 +129,9 @@ function LoginPopUp({ provider, providerId, onClose }) {
                 <section className='popup--modal'>
                     <button onClick={closePopup} className='modal__button'>X</button>
                     <div className="login-container">
+                    <h3 className="login-container__heading">Login</h3>
                         <form onSubmit={handleFormLogin} className='login__form'>
+                            
                             <section className='login__form__cont'>
                                 <div className='login__form__cont--div'>
                                     <label htmlFor="" className='login__form--label'> Name</label>
@@ -170,6 +172,7 @@ function LoginPopUp({ provider, providerId, onClose }) {
                 <section className="popup--modal">
                     <p onClick={closePopup} className='modal__button'>X</p>
                     <div className="login-container">
+                    <h3 className="login-container__heading">Register</h3>
                         <form onSubmit={handleFormRegister} className='login__form'>
                             <section className='login__form__cont'>
                                 <div className='login__form__cont--div'>

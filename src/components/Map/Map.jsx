@@ -17,6 +17,7 @@ import ProvidersComponent from "../ProvidersComponent/ProvidersComponent";
 export default function Map({ serviceId }) {
   let nearbyProviders;
   const [userId, setUserId] = useState('');
+  const [city, setCity] = useState();
   const [userData, setUserData] = useState();
   const [userLat, setUserLat] = useState();
   const [userLon, setUserLon] = useState();
@@ -53,24 +54,26 @@ export default function Map({ serviceId }) {
     }
     getUser();
   }, [userId])
+  const handleCityChange = (value) => {
+    setCity(value);
+  }
 
-
-  const userLocation = { latitude: 49.28505325, longitude: -122.79459381 };
-  // useEffect(()=>{
-  //   const getUserData =async ()=>{
-  //     try{
-  //       const getUserLocation= await axios.get(`https://nominatim.openstreetmap.org/search?format=json&q=${userData.city}`);
-  //       console.log(getUserLocation.data[0].lat);
-  //       setUserLat(getUserLocation.data[0].lat);
-  //       console.log(getUserLocation.data[0].lon);
-  //       setUserLon(getUserLocation.data[0].lon);
-  //     }
-  //     catch(error){
-  //       console.log("Unable to fetch longitude and latitude : "+error);
-  //     }
-  //   }
-  //   getUserData();
-  // }, [])
+  // const userLocation = { latitude: 49.28505325, longitude: -122.79459381 };
+  useEffect(()=>{
+    const getUserData =async ()=>{
+      try{
+        const getUserLocation= await axios.get(`https://nominatim.openstreetmap.org/search?format=json&q=${city}`);
+        console.log(getUserLocation.data[0].lat);
+        setUserLat(getUserLocation.data[0].lat);
+        console.log(getUserLocation.data[0].lon);
+        setUserLon(getUserLocation.data[0].lon);
+      }
+      catch(error){
+        console.log("Unable to fetch longitude and latitude : "+error);
+      }
+    }
+    getUserData();
+  })
 
   useEffect(() => {
     const getProviders = async () => {
@@ -90,7 +93,8 @@ export default function Map({ serviceId }) {
 
   if (!isLoading) {
     nearbyProviders = providers.map((provider) => {
-      if (calculateDistance(userLocation.latitude, userLocation.longitude, provider.latitude, provider.longitude) <= selectedCategory) {
+      // if (calculateDistance(userLocation.latitude, userLocation.longitude, provider.latitude, provider.longitude) <= selectedCategory) {
+      if (calculateDistance(userLat, userLon, provider.latitude, provider.longitude) <= selectedCategory) {
         return provider;
       }
       // Return null for providers outside the selected category
@@ -138,9 +142,16 @@ export default function Map({ serviceId }) {
 
         >
           <div className="map__filter">
+            <div>
+              <label className="map__filter-label">Enter your City :
+                <input className="map__filter-select" type="text" placeholder="City" value={city}
+                  onChange={(e) => { handleCityChange(e.target.value); }} />
+              </label>
+
+            </div>
             <div className="map__filter-bott">
 
-              <h3>Find providers near you : </h3>
+              <label>Search providers near you : </label>
               <div className="map__filter-selector">
                 <select
                   className="map__filter-select"
@@ -149,20 +160,20 @@ export default function Map({ serviceId }) {
                 >
                   {/* <option value="1">Radius 10</option> */}
                   {/* <option value="20">Radius 20</option> */}
-                  <option value="20">Radius 20</option>
-                  <option value="40">Radius 40</option>
-                  <option value="60">Radius 60</option>
-                  <option value="100">Radius 100</option>
+                  <option value="20">Within 20Km</option>
+                  <option value="40">Within 40Km</option>
+                  <option value="60">Within 60Km</option>
+                  <option value="100">Within 100Km</option>
                 </select>
                 <span className="map__filter-arrow"> </span>
               </div>
             </div>
           </div>
           <div>
-            <p className="map__notice">Attention! Currently available only in Vancouver.</p>
+            <p className="map__notice">Attention! Currently available only in Lower Main land British Columbia.</p>
           </div>
 
-          <ReactMapGL style={{ width: "100%", height: "80%"}}
+          <ReactMapGL style={{ width: "100%", height: "80%" }}
             initialViewState={{
 
               latitude: 49.21960831,
@@ -207,7 +218,7 @@ export default function Map({ serviceId }) {
                 closeOnClick={false}
                 anchor="top"
               >
-                <div onClick={handleProviderClick}>
+                <div onClick={handleProviderClick} className="map__popup">
                   <h3>{selectedList.provider_name}</h3>
                   <p>Latitude: {selectedList.latitude}</p>
                   <p>Longitude: {selectedList.longitude}</p>

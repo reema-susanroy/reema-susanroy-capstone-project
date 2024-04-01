@@ -16,25 +16,17 @@
         gap: 2rem;
 
         &--div {
-            // align-self: center;
             display: flex;
         }
     }
 
 }
 
-// .login__form__cont{
-//     display: flex;
-//     flex-direction: column;
-//     margin: auto auto;
-// }
-
 .login-container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 70vh;
-    // background-color: #95795d;
     background-color: #ffffff;
     display: flex;
     flex-direction: column;
@@ -42,11 +34,11 @@
     @include tablet {
         height: 60vh;
     }
-}
 
-form {
-    // width: 300px; /* Adjust the width of the form */
-    /* Add other styles as needed */
+    &__heading {
+        margin-bottom: 4rem;
+        font-family: cursive;
+    }
 }
 
 .login__form--label {
@@ -67,7 +59,6 @@ form {
 
     &:focus {
         border: 2px solid #13424a;
-        // outline: blue;
     }
 }
 
@@ -81,8 +72,6 @@ form {
     gap: 1.2rem;
 
     @include tablet {
-        // align-items: center;
-        // align-items: start;
         justify-content: center;
         align-items: center;
     }
@@ -92,7 +81,6 @@ form {
         font-size: 18px;
         color: black;
         padding: .2rem .5rem;
-       
     }
 
     &--next {
@@ -106,18 +94,6 @@ form {
             color: #13424a;
         }
     }
-
-    // &--navink {
-    //     // list-style-type: none;
-    //     @include active-input();
-    //     text-decoration: none;
-    //     color: black;
-    //     cursor: pointer;
-
-    //     &:hover {
-    //         color: blue;
-    //     }
-    // }
 }
 
 .errorMessage {
@@ -127,7 +103,6 @@ form {
 }
 
 .popup--modal {
-    // background-color: white;
     background-color: #95795d;
     padding: 1.25rem;
     width: 90%;
@@ -135,18 +110,16 @@ form {
     font-size: 12px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     background-color: #13424a;
+    gap: 2rem;
 
     @include tablet {
-        // bottom: 20rem;
-        // left: 5rem;
         border-radius: 4px;
         width: 80%;
         height: 70%;
         margin: auto;
         margin-top: 16vh;
-        padding: 1rem;
+        font-size: 14px;
     }
 
     @include desktop {
@@ -186,7 +159,7 @@ form {
 
 }
 
-.register--message{
+.register--message {
     margin-top: 2rem;
     color: red;
     font-size: 14px;

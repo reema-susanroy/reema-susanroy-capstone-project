@@ -19,14 +19,14 @@ function App() {
         <Routes>
           {/* <Route path='/' element={<Login />} /> */}
           <Route path='/' element={<HomePage />} />
-          <Route path='/register' element={<Register />} />
+          {/* <Route path='/register' element={<Register />} /> */}
           <Route path='/dashboard' element={<Dashboard />} />
           {/* <Route path='/home' element={<HomePage />} /> */}
           <Route path='/services/:serviceId' element={<ServiceDetailsPage />} />
           {/* <Route path='/providers' element={<ProvidersPage />} /> */}
           <Route path='/providers/:id' element={<ProviderDetailsPage />} />
           <Route path='/booking/:id' element={<Booking />} />
-          <Route path='/providers/dashboard/:id' element={<ProviderDashboardPage />} />
+          {/* <Route path='/providers/dashboard/:id' element={<ProviderDashboardPage />} /> */}
         </Routes>
         <Footer />
       </BrowserRouter>
