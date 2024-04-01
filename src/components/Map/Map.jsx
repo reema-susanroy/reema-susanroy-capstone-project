@@ -17,7 +17,7 @@ import ProvidersComponent from "../ProvidersComponent/ProvidersComponent";
 export default function Map({ serviceId }) {
   let nearbyProviders;
   const [userId, setUserId] = useState('');
-  const [city, setCity] = useState();
+  const [city, setCity] = useState("Coquitlam");
   const [userData, setUserData] = useState();
   const [userLat, setUserLat] = useState();
   const [userLon, setUserLon] = useState();
@@ -61,19 +61,27 @@ export default function Map({ serviceId }) {
   // const userLocation = { latitude: 49.28505325, longitude: -122.79459381 };
   useEffect(()=>{
     const getUserData =async ()=>{
+      console.log("hi")
       try{
         const getUserLocation= await axios.get(`https://nominatim.openstreetmap.org/search?format=json&q=${city}`);
-        console.log(getUserLocation.data[0].lat);
-        setUserLat(getUserLocation.data[0].lat);
-        console.log(getUserLocation.data[0].lon);
-        setUserLon(getUserLocation.data[0].lon);
+        console.log(getUserLocation.data);
+        const canadaData = (getUserLocation.data).filter(entry => entry.display_name.includes("Canada"));
+        console.log(canadaData);
+        // console.log(getUserLocation.data[0].lat);
+        // setUserLat(getUserLocation.data[0].lat);
+        // console.log(getUserLocation.data[0].lon);
+        // setUserLon(getUserLocation.data[0].lon);
+        console.log(canadaData[0].lat);
+        setUserLat(canadaData[0].lat);
+        console.log(canadaData[0].lon);
+        setUserLon(canadaData[0].lon);
       }
       catch(error){
         console.log("Unable to fetch longitude and latitude : "+error);
       }
     }
     getUserData();
-  })
+  },[city])
 
   useEffect(() => {
     const getProviders = async () => {
@@ -109,9 +117,6 @@ export default function Map({ serviceId }) {
     console.log(selectedList);
   }
   console.log(showProvider);
-  //   useEffect(() => {
-
-  //   }, [nearbyProviders]);
 
   const handleAddClick = (e) => {
     const { lng, lat } = e.lngLat;

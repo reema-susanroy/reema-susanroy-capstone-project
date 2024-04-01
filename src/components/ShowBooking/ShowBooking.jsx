@@ -70,7 +70,7 @@ function ShowBooking({ bookingData, updateDelete, userId }) {
                             <p>{viewDetails.issue_description}</p>
                         </section>
                         <section className='booking-details__item'>
-                            <p className='booking-details__label'>Uploaded Images : </p>
+                            <p className='booking-details__label'>Uploaded Image : </p>
                             <div className='booking-details__cont'>
                                 <img className='booking-details__cont--image' src={`${process.env.REACT_APP_BASE_URL}${viewDetails.image}`} alt='issue-image' />
                             </div>

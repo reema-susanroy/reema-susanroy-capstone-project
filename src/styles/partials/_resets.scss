@@ -6,8 +6,8 @@
   }
   
   body {
-    font-family: sans-serif;
-    // color: $primary_color_brainflix;
+    font-family: 'Nunito';
+    font-weight: 600;
     font-size: 1rem;
     margin: 0;
   }
@@ -25,4 +25,8 @@
   Link{
     list-style-type: none;
     text-decoration: none;
+  }
+  h1,h2{
+    font-family: 'Abril';
+    letter-spacing: 1.5px;
   }

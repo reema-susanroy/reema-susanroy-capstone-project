@@ -27,6 +27,7 @@
     position: relative;
 
     &__name {
+        font-family: 'Abril';
         position: absolute;
         // left: 35%;
         // bottom: 45%;
@@ -39,7 +40,7 @@
         opacity: 0.8;
         font-size: 25px;
         letter-spacing: 0.52px;
-        font-family: sans-serif;
+        // font-family: sans-serif;
         background-color: lightgray;
     }
 

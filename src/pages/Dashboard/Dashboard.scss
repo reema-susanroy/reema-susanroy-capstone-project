@@ -99,37 +99,27 @@
 }
 
 .dashboard__image {
-    // display: flex;
-    // gap: 4rem;
     padding: 1rem;
     display: flex;
     justify-content: space-between;
     gap: 2rem;
     font-size: 14px;
-
     &--cont {
         width: 1.4rem;
         height: 1rem;
-
         &-item{
             object-fit: contain;
+            cursor: pointer;
         }
     }
-
 }
 
 .green {
     color: green;
 }
-
 .orange {
     color: orange;
 }
-
-// .dashboard__image--cont{
-//     width: 1.4rem;
-//     height: 1rem;
-// }
 
 .data--container {
     display: flex;
@@ -151,33 +141,26 @@
             font-size: 16px;
         }
     }
-
 }
 
 .profile__data {
     display: flex;
-
-    // flex-direction: column;
     @include tablet {
         flex-direction: row;
     }
-
     &--cont {
         width: 50%;
     }
-
     &--label {
         font-weight: 600;
         font-size: 12px;
         display: flex;
         flex-direction: column;
-        // padding: 1rem;
         margin: 1rem 1rem;
         @include desktop{
             font-size: 14px;
         }
     }
-
     &--item {
         font-size: 12px;
         width: 60%;
@@ -188,18 +171,14 @@
         }
     }
 }
-
 .profile__save {
     display: flex;
     justify-content: flex-end;
     margin: 1rem;
-
-    // justify-content: center;
     @include tablet {
         justify-content: flex-end;
         margin: 1rem;
     }
-
     &--button {
         display: flex;
         border: none;
@@ -225,24 +204,20 @@
             background-color: #222;
         }
     }
-
     &--cont {
         display: flex;
         flex-direction: row;
         width: 1.5rem;
     }
 }
-
 .backgroundBrown {
     background-color: #8f786c;
     color: black;
 }
-
 .backgroundOffwhite {
     background-color: #dbd3d0;
     color: black;
 }
-
 .booking-details {
     display: flex;
     margin: 4rem;
@@ -256,21 +231,11 @@
         gap: 2rem;
     }
     &__cont {
-        width: 12rem;
+        width: 20rem;
         object-fit: cover;
-
         &--image {
             width: 100%;
             height: 100%;
         }
     }
 }
-
-// .booking-details__cont{
-//     width: 12rem;
-//     object-fit: cover;
-//     &--image{
-//         width: 100%;
-//         height: 100%;
-//     }
-// }
