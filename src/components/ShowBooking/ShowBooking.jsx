@@ -12,12 +12,14 @@ function ShowBooking({ bookingData, updateDelete, userId }) {
         updateDelete(bookingID);
     }
     const handleEdit = async (bookingID) => {
-        setViewBooking(true);
-        try {
-            const bookingDetails = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/users/manage-booking/${userId}/${bookingID}`);
-            setViewDetails(bookingDetails.data[0]);
-        } catch (error) {
-            console.log("Unable to fetch booking data :" + error);
+        setViewBooking(prevViewBooking => !prevViewBooking);
+        if(!viewBooking){
+            try {
+                const bookingDetails = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/users/manage-booking/${userId}/${bookingID}`);
+                setViewDetails(bookingDetails.data[0]);
+            } catch (error) {
+                console.log("Unable to fetch booking data :" + error);
+            }
         }
     }
     useEffect(() => {
