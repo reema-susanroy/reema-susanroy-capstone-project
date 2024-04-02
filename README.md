@@ -22,7 +22,7 @@ In our fast-paced lives, finding time for home maintenance is a challenge. Unexp
 - As a user, I want to be able to book services for a scheduled time.
 
 - Any users can view the services and the service providers near their location. Data set is limited to Vancouver area of BC for this sprint.
-- A User can Login/Register at the landing page or at the time of booking a service.
+- A User can Login/Register either at the landing page or at the time of booking a service.
 - Logged in user can : 
 	-Make a booking
 	-Favorite the Professional
@@ -279,3 +279,8 @@ Paramters:
 - Integrate Map view
 - Ability for users to upload images.
 - Ability to login as Service providers and view dashboard.
+
+## Install with npm
+
+- npm install
+- npm start
