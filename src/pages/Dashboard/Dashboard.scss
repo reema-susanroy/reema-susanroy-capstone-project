@@ -88,6 +88,7 @@
 
         &--image {
             width: 6rem;
+            height: 5rem;
 
             &--src {
                 object-fit: contain;
@@ -220,10 +221,12 @@
 .backgroundBrown {
     background-color: $dashboard_card_dark;
     color: $black_text;
+    height: 80%
 }
 .backgroundOffwhite {
     background-color: $dashboard_card_light;
     color: $black_text;
+    height: 80%
 }
 .booking-details {
     display: flex;
