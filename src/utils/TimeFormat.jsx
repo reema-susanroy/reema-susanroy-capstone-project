@@ -1,10 +1,7 @@
 
 export function TimeFormat(timeVal){
-    console.log("time")
     const currentTime = new Date().getTime();
     const commentDate = new Date(timeVal).getTime();
-    console.log(commentDate);
-    console.log(currentTime);
     const calcTime = currentTime - commentDate;
     const seconds = Math.floor(calcTime / 1000);
     const minutes = Math.floor(seconds / 60);

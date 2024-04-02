@@ -6,10 +6,9 @@ import LoginPopUp from "../LoginPopUp/LoginPopUp";
 import { useAuth } from '../../utils/AuthContext';
 
 function Header() {
-    let { isLoggedIn, logout } = useAuth();
+    let { isLoggedIn, logout } = useAuth(); //to store the login status
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [userId, setUserId] = useState();
-    // const [showDropDown, setShowDropDown] = useState(false);
     const [loggedIn, setLoggedIn] = useState(true);
     const [loggedOut, setLoggedOut] = useState(false);
     const navigate = useNavigate();
@@ -21,8 +20,7 @@ function Header() {
         const storedUserId = sessionStorage.getItem('userId');
         if (storedUserId) {
             setUserId(storedUserId);
-            // setShowDropDown(true);
-            setLoggedIn(true);//added
+            setLoggedIn(true);
         }
     }, []);
 
@@ -32,7 +30,6 @@ function Header() {
     const handleLogout = () => {
         sessionStorage.clear();
         setUserId(null);
-        // alert("logged out successfully")
         setLoggedOut(true);
         logout();
         setTimeout(() => {
@@ -58,7 +55,6 @@ function Header() {
                         {!isLoggedIn ? (<h2 onClick={handleLogin} className='navbar__welcome'> Login</h2>) :
                             (<h2 onClick={handleLogout} className='navbar__welcome'> Logout</h2>)
                         }
-                        {/* <h3 className='navbar__welcome' onClick={handleProfessional}>Are you a Professional?</h3> */}
                         {isLoggedIn &&
                             <div className='navbar__dropdown'>
                                 <div className="navbar__dropdown--hamburger" onClick={toggleMenu}>
@@ -70,9 +66,9 @@ function Header() {
                                     <li className="navbar__dropdown--links--list dashboard">
                                         <NavLink to="/dashboard" onClick={toggleMenu} className="navbar__dropdown--links--item">My Dashboard</NavLink >
                                     </li>
-                                    <li className="navbar__dropdown--links--list providers">
-                                        <NavLink to="/providers" onClick={toggleMenu} className="navbar__dropdown--links--item">See all Professionals</NavLink >
-                                    </li>
+                                    {/* <li className="navbar__dropdown--links--list providers">
+                                        <NavLink to="/providers" onClick={toggleMenu} className="navbar__dropdown--links--item">See all Professionals (coming)</NavLink >
+                                    </li> */}
                                 </ul>
                             </div>
                         }
@@ -92,7 +88,6 @@ function Header() {
                     </div>
                 </section>
             }
-
         </>
     )
 }

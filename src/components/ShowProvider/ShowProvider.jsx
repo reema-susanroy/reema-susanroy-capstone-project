@@ -20,7 +20,7 @@ function ShowProvider({ selectedList ,flag }) {
 
                         <div className="provider--list__items-wrap">
                             <div className='provider--list__items-provider' >
-                                <img className='provider--list-__items-provider-img' src={`${process.env.REACT_APP_BASE_URL}${selectedList.provider_image}`} alt="provider-image" />
+                                <img className='provider--list-__items-provider-img' src={`${process.env.REACT_APP_BASE_URL}${selectedList.provider_image}`} alt="provider" />
                             </div>
                             <div>
                                 <div className="provider--lists__items-nameCont">

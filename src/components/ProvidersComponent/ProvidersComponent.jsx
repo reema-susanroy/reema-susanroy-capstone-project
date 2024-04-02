@@ -56,7 +56,6 @@ function ProvidersComponent({ serviceId , flag}) {
 
 
     const handleKnowMore = (provider) => {
-        // navigate(`/providers/${provider.id}`, { state: { provider } });
         navigate(`/providers/${provider.id}`, {state : {flag}});
     }
 
@@ -69,7 +68,6 @@ function ProvidersComponent({ serviceId , flag}) {
                 <h3>Service Providers</h3>
                 <div className="provider--component--input">
                     <input className='input' type="text" value={searchLocation} placeholder="Search by City" onChange={(e) => setSearchLocation(e.target.value)} />
-                    {/* <button onClick={handleSearch}>Search</button> */}
                 </div>
             </section>
 
@@ -79,14 +77,14 @@ function ProvidersComponent({ serviceId , flag}) {
 
                         <div className="provider--list__items-wrap">
                             <div className='provider--list__items-provider' >
-                                <img className='provider--list-__items-provider-img' src={`${process.env.REACT_APP_BASE_URL}${provider.provider_image}`} alt="provider-image" />
+                                <img className='provider--list-__items-provider-img' src={`${process.env.REACT_APP_BASE_URL}${provider.provider_image}`} alt="provider" />
                             </div>
                             <div className="provider--list__items-container">
                                 <div className="provider--lists__items-nameCont">
                                     <span>{provider.provider_name} </span>
                                     <div className="provider--lis__items-rating"><p>Rating: {provider.rating} </p></div>
                                 </div>
-                                <div className="">
+                                <div>
                                     <div className="provider--list__items-wrapper">
                                         <div className='provider--list__items-cont' >
                                             <img className='provider--list-__items-img' src={pin} alt="location" />
@@ -103,7 +101,7 @@ function ProvidersComponent({ serviceId , flag}) {
                     <li key={provider.id} className="provider--list__items" onClick={() => handleKnowMore(provider)}>
                         <div className="provider--list__items-wrap">
                             <div className='provider--list__items-provider' >
-                                <img className='provider--list-__items-provider-img' src={`${process.env.REACT_APP_BASE_URL}${provider.provider_image}`} alt="provider-image" />
+                                <img className='provider--list-__items-provider-img' src={`${process.env.REACT_APP_BASE_URL}${provider.provider_image}`} alt="provider" />
                             </div>
                             <div>
                                 <div className="provider--lists__items-nameCont">

@@ -11,10 +11,10 @@ function ShowFavorite({ showFavorites, favoriteData }) {
                         {favoriteData.map((favorites ,index) => (
                             <>
                                 <Link to= {`/providers/${favorites.id}`} state= {{flag} } className="dashboard__details--link">
-                                    <li key={favorites.id} className={`dashboard__details--list ${(index % 2 == 0) ? 'backgroundBrown' : 'backgroundOffwhite'}`}>
+                                    <li key={favorites.id} className={`dashboard__details--list ${(index % 2 === 0) ? 'backgroundBrown' : 'backgroundOffwhite'}`}>
                                         <section className='dashboard__details--list--label'>
                                             <div className="dashboard__details--list--image">
-                                                <img className="dashboard__details--list--image--src" src={`${process.env.REACT_APP_BASE_URL}${favorites.provider_image}`} alt={"provider-image"} />
+                                                <img className="dashboard__details--list--image--src" src={`${process.env.REACT_APP_BASE_URL}${favorites.provider_image}`} alt={"provider"} />
                                             </div>
                                         </section>
 

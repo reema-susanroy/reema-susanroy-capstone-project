@@ -2,38 +2,40 @@
 @use '../../styles/partials/variables' as *;
 
 .booking__details--header {
+    font-size: 14px;
     height: 4rem;
-    padding: 1rem 3rem;
+    padding: 1rem ;
+    @include tablet{
+        padding: 1rem 3rem;
+        font-size: 16px;
+    }
 }
 
 .booking__details--form {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    @include tablet{
+        flex-direction: row;
+    }
 
     &--section {
-        width: 50%;
+        @include tablet{
+            width: 50%;
+        }
     }
-}
-
-.choose__date--option {
-    padding: 0 .3rem;
-}
-
-.booking__deatils--form--label {
-    display: flex;
-    flex-direction: column;
-    padding: .5rem 0;
-    gap: .2rem;
-    font-weight: 600;
-    margin: 1rem 3rem;
-}
-
-.booking__deatils--form--input {
-    width: 90%;
-    height: fit-content;
-    border-radius: 20px;
-    margin: 0 auto;
-    padding: .5rem;
+    &--label {
+        display: flex;
+        flex-direction: column;
+        padding: .5rem 0;
+        gap: .2rem;
+        font-weight: 600;
+        margin: 1rem;
+        font-size: 13px;
+        @include tablet{
+            margin: 1rem 3rem;
+            font-size: 16px;
+        }
+    }
 }
 
 .booking__details--button {
@@ -41,16 +43,17 @@
     display: flex;
     justify-content: flex-end;
     gap: 4rem;
-
     &__item {
         cursor: pointer;
         background-color: $button_background;
         color: $primary_text_color;
         border: none;
-        width: 10%;
+        width: 30%;
         height: 2rem;
         border-radius: 12px;
-
+        @include tablet{
+            width: 10%;
+        }
         &:hover {
             background-color: $button_hover;
         }
@@ -82,7 +85,6 @@
     @include tablet {
         font-size: 1rem;
     }
-
     &__title-cont {
         display: flex;
         align-items: center;
@@ -90,13 +92,11 @@
         justify-content: center;
         gap: 2rem;
     }
-
     &__title {
         color: $primary_text_color;
         font-size: 17px;
         display: flex;
         text-align: center;
-
         &--title {
             font-size: 20px;
             color: $primary_text_color;
@@ -113,10 +113,28 @@
         color: $primary_text_color;
         font-weight: bolder;
         margin-top: 1.5rem;
-
         @include tablet {
             width: 3rem;
             height: 2rem;
         }
     }
+}
+.choose__date--option {
+    padding: 0 .3rem;
+}
+
+.booking__details--form--input {
+    width: 90%;
+    height: fit-content;
+    border-radius: 20px;
+    margin: 0 auto;
+    padding: .5rem;
+    font-size: 12px;
+    @include tablet{
+        font-size: 14px;
+    }
+}
+.booking__details--error{
+    padding: 1rem 3rem;    
+    color: $error_color;
 }

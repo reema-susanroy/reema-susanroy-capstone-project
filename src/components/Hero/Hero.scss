@@ -126,6 +126,11 @@
         @include tablet {
             font-size: 16px;
         }
+
+        @include desktop {
+            font-size: 18px;
+            margin-top: 1rem;
+        }
     }
 
     &__search {

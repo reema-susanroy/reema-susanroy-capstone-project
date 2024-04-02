@@ -36,12 +36,9 @@ function Dashboard() {
             console.log("Unable to load the user details: "+error);
         }
     }
-
-    console.log({profileData});
     const handleFavorites = async () => {
         try {
             const favoriteDetails = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/providers/users/favorite`);
-            console.log(favoriteDetails.data)
             setFavoriteData(favoriteDetails.data);
             setShowProfile(false);
             setShowFavorites(true);
@@ -66,8 +63,7 @@ function Dashboard() {
 
     const updateDelete = async(bookingId) =>{
         try{
-            const deleteBooking = await axios.delete(`${process.env.REACT_APP_BASE_URL}/api/users/manage-booking/${bookingId}`)
-            console.log(deleteBooking);
+            await axios.delete(`${process.env.REACT_APP_BASE_URL}/api/users/manage-booking/${bookingId}`)
             handleBooking();
         }catch(error){
             console.log("Unable to delete the booking: "+error);
@@ -78,9 +74,7 @@ function Dashboard() {
             <h2 className='dashboard__name'>Welcome {profileData.user_name},</h2>
             <section className="dashboard__cards">
                 <h3 className="dashboard__cards--item" onClick={handleProfile}>Edit Profile</h3>
-
                 <h3 className="dashboard__cards--item" onClick={handleBooking}>Manage Bookings</h3>
-
                 <h3 className="dashboard__cards--item" onClick={handleFavorites}>Favorites</h3>
             </section>
             {showBooking && !showProfile && !showFavorites &&

@@ -9,10 +9,10 @@ import black from '../../assets/icons/blac-star.png'
 import LoginPopUp from '../../components/LoginPopUp/LoginPopUp';
 import { useAuth } from '../../utils/AuthContext';
 
+//To fetch details of selected provider based on :id from url and disply on the UI.
 function ProviderDetailsPage() {
     const { login } = useAuth();
     const { id } = useParams(); //providerId
-    console.log("provider ID" + id);
     const [provider, setProvider] = useState();
     const [isLoading, setIsLoading] = useState(true);
     const [reviewContent, setReviewContent] = useState();
@@ -42,7 +42,9 @@ function ProviderDetailsPage() {
             }
         }
         getProviderData();
-    }, [])
+    }, [id])
+
+    //To fetch and display reviews of the provider from reviews table.
     useEffect(() => {
         const getReviews = async () => {
             try {
@@ -55,7 +57,7 @@ function ProviderDetailsPage() {
             }
         }
         getReviews();
-    }, []);
+    }, [id]);
 
     const serviceList = pricing && Object.entries(pricing).map(([serviceName, price]) => ({
         serviceName,
@@ -63,14 +65,19 @@ function ProviderDetailsPage() {
     }));
 
     const toggleFavorite = async () => {
-        try {
-            await axios.put(`${process.env.REACT_APP_BASE_URL}/api/providers/${id}/favorite`, {
-                isFavorite: !isFavorite
-            });
-            setIsFavorite(!isFavorite);
-        } catch (error) {
-            console.error('Error toggling favorite status:', error);
+        if(userId !==""){
+            try {
+                await axios.put(`${process.env.REACT_APP_BASE_URL}/api/providers/${id}/favorite`, {
+                    isFavorite: !isFavorite
+                });
+                setIsFavorite(!isFavorite);
+            } catch (error) {
+                console.error('Error toggling favorite status:', error);
+            }
+        }else{
+            setLoggedIn(false); 
         }
+        
     };
 
     const handleGoBack = () => {
@@ -100,13 +107,13 @@ function ProviderDetailsPage() {
                     <section className='providerDetails__data'>
                         <section className='providerDetails__avatar--cont'>
                             <div className="providerDetails__data--avatar--cont">
-                                <img className='providerDetails__data--avatar--img' src={`${process.env.REACT_APP_BASE_URL}${provider.provider_image}`} />
+                                <img className='providerDetails__data--avatar--img' src={`${process.env.REACT_APP_BASE_URL}${provider.provider_image}`} alt="provider"/>
                             </div>
-                            {userId &&
-                                <div className='providerDetails__favorite--cont'>
-                                    <img onClick={toggleFavorite} src={isFavorite ? black : star} alt="favorite" />
-                                </div>
-                            }
+                            {/* {userId && */}
+                            <div className='providerDetails__favorite--cont'>
+                                <img onClick={toggleFavorite} src={isFavorite ? black : star} alt="favorite" />
+                            </div>
+                            {/* } */}
                         </section>
                         <h2 className="providerDetails__name padding">{provider.provider_name}</h2>
                         <section className='provider--details'>
@@ -134,16 +141,16 @@ function ProviderDetailsPage() {
             <section className='provider__reviews'>
                 <h3 className='provider__reviews--review'>Reviews</h3>
                 {Array.isArray(reviewContent) && reviewContent.map((review, index) => (
-                    <li key={index} className={`provider__reviews__list ${(index % 2 == 0) ? 'backgroundTeal' : 'backgroundWhite'}`}>
+                    <li key={index} className={`provider__reviews__list ${(index % 2 === 0) ? 'backgroundTeal' : 'backgroundWhite'}`}>
                         <div className='provider__reviews__list--cont'>
                             <div className='provider__reviews__list--image padding'></div>
                             <div className='provider__reviews__list--details'>
                                 <div className='provider__reviews__list--details--data'>
-                                    <p className={`provider__reviews__list--name padding ${(index % 2 == 0) ? 'backgroundTeal' : 'backgroundWhite'}`}>{review.user_name}</p>
+                                    <p className={`provider__reviews__list--name padding ${(index % 2 === 0) ? 'backgroundTeal' : 'backgroundWhite'}`}>{review.user_name}</p>
                                     <p className='provider__reviews__list--date padding'>{TimeFormat(review.created_at)}</p>
                                 </div>
                                 <div className='provider__reviews__list--dateCont'>
-                                    <p className={`provider__reviews__list--review padding ${(index % 2 == 0) ? 'backgroundTeal' : 'backgroundWhite'}`}>{review.user_review}</p>
+                                    <p className={`provider__reviews__list--review padding ${(index % 2 === 0) ? 'backgroundTeal' : 'backgroundWhite'}`}>{review.user_review}</p>
                                 </div>
                             </div>
                         </div>

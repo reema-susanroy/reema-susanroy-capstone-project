@@ -6,26 +6,28 @@ import ErrorPage from "../ErrorPage/ErrorPage";
 import './ServiceDetailsPage.scss';
 import Map from "../../components/Map/Map";
 
+//To display the details of selected sevice
 function ServiceDetailsPage() {
     const { serviceId } = useParams();
     const [isLoading, setIsLoading] = useState(true);
     const [hasError, sethasError] = useState(false);
     const [serviceData, setServiceData] = useState();
-    const getServiceData = async () => {
-        try {
-            const response = await axios.get(`http://localhost:8080/api/services/${serviceId}`);
-            setServiceData(response.data);
-            setIsLoading(false);
-            sethasError(false);
-        }
-        catch (error) {
-            sethasError(true);
-            setIsLoading(false);
-            console.log("Unable to fetch services from the database: " + error);
-        }
-    };
 
     useEffect(() => {
+        const getServiceData = async () => {
+            try {
+                const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/services/${serviceId}`);
+                setServiceData(response.data);
+                setIsLoading(false);
+                sethasError(false);
+            }
+            catch (error) {
+                sethasError(true);
+                setIsLoading(false);
+                console.log("Unable to fetch services from the database: " + error);
+            }
+        };
+
         getServiceData();
     }, [serviceId])
 

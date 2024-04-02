@@ -8,8 +8,8 @@ function ServicesListItem({ services }) {
                 <li key={services.id} className="service-cards">
                     <Link to={`/services/${services.id}`} className="service-card">
                         <div className="service-cards__cont">
-                            <img className="service-cards__image" src={`${process.env.REACT_APP_BASE_URL}/${services.service_image}`} />
-                            <div class="service-cards__name">{services.service_name}</div>
+                            <img className="service-cards__image" src={`${process.env.REACT_APP_BASE_URL}/${services.service_image}`} alt="service"/>
+                            <div className="service-cards__name">{services.service_name}</div>
                         </div>
                     </Link>
                 </li>

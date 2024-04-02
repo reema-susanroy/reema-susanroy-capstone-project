@@ -77,4 +77,9 @@
 }
 .map-provider-container {
     height: 500px;
+
+    &__dimension{
+        width: 100%;
+        height: calc(100% - 100px);
+    }
 }

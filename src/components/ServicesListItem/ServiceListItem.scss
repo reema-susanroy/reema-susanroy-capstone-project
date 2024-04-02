@@ -57,7 +57,7 @@
         cursor: pointer;
         border-radius: 8px;
         object-fit: cover;
-        transition: filter 0.3s ease;
+        transition: filter 0.2s ease;
         // filter: grayscale(100%);
         &:hover{
             box-shadow: 0px 0px 10px rgba(0, 0, 0, .8);

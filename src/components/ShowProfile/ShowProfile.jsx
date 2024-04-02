@@ -1,5 +1,5 @@
 import { useState } from "react";
-import save from '../../assets/icons/save.svg';
+import save from '../../assets/icons/save.png';
 import axios from "axios";
 
 function ShowProfile({ profileData, userId }) {
@@ -30,7 +30,7 @@ function ShowProfile({ profileData, userId }) {
     }
     const handleSave = async () => {
         try {
-            const sendData = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/users/${userId}`, {
+            await axios.post(`${process.env.REACT_APP_BASE_URL}/api/users/${userId}`, {
                 user_name: userName,
                 user_address: address,
                 city: city,

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { timeCalc } from '../../utils/TimeCalc';
 import view from '../../assets/icons/view.png';
 import del from '../../assets/icons/delete.svg';
@@ -8,29 +8,30 @@ function ShowBooking({ bookingData, updateDelete, userId }) {
     const [viewBooking, setViewBooking] = useState(false);
     const [viewDetails, setViewDetails] = useState();
 
-    console.log(bookingData);
     const handleDelete = async (bookingID) => {
-        console.log("clicked");
         updateDelete(bookingID);
     }
     const handleEdit = async (bookingID) => {
         setViewBooking(true);
         try {
             const bookingDetails = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/users/manage-booking/${userId}/${bookingID}`);
-            console.log(bookingDetails.data)
             setViewDetails(bookingDetails.data[0]);
         } catch (error) {
             console.log("Unable to fetch booking data :" + error);
         }
     }
-    console.log(bookingData);
+    useEffect(() => {
+        if (bookingData.length === 0) {
+            setViewBooking(false);
+        }
+    }, [bookingData]);
     return (
         <>
             {bookingData.length > 0 ?
                 (<section className='dashboard__details'>
                     {bookingData.map((bookings, index) => (
                         <>
-                            <li key={bookings.id} className={`dashboard__details--list ${(index % 2 == 0) ? 'backgroundBrown' : 'backgroundOffwhite'}`}>
+                            <li key={bookings.id} className={`dashboard__details--list ${(index % 2 === 0) ? 'backgroundBrown' : 'backgroundOffwhite'}`}>
                                 <div className='data--container'>
                                     <section className='dashboard__details--list--label'>
                                         <p>Service</p>
@@ -58,7 +59,7 @@ function ShowBooking({ bookingData, updateDelete, userId }) {
                         </>
                     ))}
                 </section>) :
-                (<div> <h2>No Bookings</h2></div>)
+                (<div> <h3 className='dashboard__error'>No Bookings</h3></div>)
             }
             {
                 viewBooking && viewDetails &&
@@ -72,7 +73,7 @@ function ShowBooking({ bookingData, updateDelete, userId }) {
                         <section className='booking-details__item'>
                             <p className='booking-details__label'>Uploaded Image : </p>
                             <div className='booking-details__cont'>
-                                <img className='booking-details__cont--image' src={`${process.env.REACT_APP_BASE_URL}${viewDetails.image}`} alt='issue-image' />
+                                <img className='booking-details__cont--image' src={`${process.env.REACT_APP_BASE_URL}${viewDetails.image}`} alt='issue' />
                             </div>
                         </section>
                     </div>

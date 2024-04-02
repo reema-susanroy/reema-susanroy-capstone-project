@@ -112,6 +112,15 @@
         }
     }
 }
+.dashboard__error{
+    margin: 1rem;
+    @include tablet{
+        margin: 1rem 2rem;
+    }
+    @include desktop{
+        margin: 2rem 4rem;
+    }
+}
 
 .orange {
     color: $dashboard_pending;
@@ -176,6 +185,7 @@
         margin: 1rem;
     }
     &--button {
+        cursor: pointer;
         display: flex;
         border: none;
         border: 1px solid $border-color;

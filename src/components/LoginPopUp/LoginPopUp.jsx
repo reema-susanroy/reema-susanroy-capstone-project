@@ -24,7 +24,6 @@ function LoginPopUp({ provider, providerId, onClose }) {
     const handleConfirmPasswordChange = (value) => { setConfirmPassword(value); setErrorMessage(""); }
 
     const validation = () => {
-        console.log(name, email,password);
         if (!name || !email || !password) {
             setErrorMessage("Fields cannot be empty");
             setLoginSuccess(false);
@@ -34,7 +33,6 @@ function LoginPopUp({ provider, providerId, onClose }) {
     }
     const handleFormLogin = async (e) => {
         e.preventDefault();
-        console.log("clicked")
         const formValidate = validation();
         if (formValidate) {
             try {
@@ -43,8 +41,6 @@ function LoginPopUp({ provider, providerId, onClose }) {
                     contact_email: email,
                     password: password,
                 });
-                console.log(response.data);
-                console.log(response.data.user.id);
                 setLoginSuccess(true);
                 sessionStorage.setItem('userId', response.data.user.id);
                 setUserId(response.data.user.id);

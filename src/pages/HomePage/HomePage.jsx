@@ -14,7 +14,6 @@ function ServicesPage() {
         const getServices = async () => {
             try {
                 const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/services`);
-                console.log(response.data)
                 setIsLoading(false);
                 sethasError(false);
                 setServiceData(response.data);

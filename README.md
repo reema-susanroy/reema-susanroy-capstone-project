@@ -20,7 +20,14 @@ In our fast-paced lives, finding time for home maintenance is a challenge. Unexp
 - As a user, I want to be able to create an account and manage the bookings I have made. 
 - As a user, I want to be able to see the service providers closest to my location, their reviews and contact information.
 - As a user, I want to be able to book services for a scheduled time.
-- As a user, I want to be able to provide a review to the assistant. 
+
+- Any users can view the services and the service providers near their location. Data set is limited to Vancouver area of BC for this sprint.
+- A User can Login/Register at the landing page or at the time of booking a service.
+- Logged in user can : 
+	-Make a booking
+	-Favorite the Professional
+	-View the dashboard
+	-Manage bookings, edit user profile & view favorites.
 
 ## Implementation
 
@@ -43,7 +50,7 @@ In our fast-paced lives, finding time for home maintenance is a challenge. Unexp
 
 ### APIs
 
-No external APIs will be used as of current planning.
+Use MapBoxAPI to access map view. Require access token.
 
 ### Sitemap
 
