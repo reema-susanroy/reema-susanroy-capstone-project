@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import './Header.scss';
 import logo from '../../assets/images/slogan.png';
+import close from '../../assets/icons/close.png'
 import { NavLink, useNavigate } from "react-router-dom";
 import LoginPopUp from "../LoginPopUp/LoginPopUp";
 import { useAuth } from '../../utils/AuthContext';
@@ -35,7 +36,7 @@ function Header() {
         setTimeout(() => {
             setLoggedOut(false);
             navigate('/');
-        }, 3000)
+        }, 2000)
     }
     const closePopup = () => {
         setLoggedIn(true)
@@ -58,17 +59,26 @@ function Header() {
                         {isLoggedIn &&
                             <div className='navbar__dropdown'>
                                 <div className="navbar__dropdown--hamburger" onClick={toggleMenu}>
+                                {!isMenuOpen ? (
+                                    <>
                                     <div className="bar"></div>
                                     <div className="bar"></div>
                                     <div className="bar"></div>
+                                    </>
+                                ):
+                                (   <div className="navbar__dropdown--close">
+                                    <img src={close} alt="close-menu" />
+                                    </div>
+                                )
+                                }
                                 </div>
                                 <ul className={`navbar__dropdown--links ${isMenuOpen ? 'open' : ''}`}>
                                     <li className="navbar__dropdown--links--list dashboard">
                                         <NavLink to="/dashboard" onClick={toggleMenu} className="navbar__dropdown--links--item">My Dashboard</NavLink >
                                     </li>
-                                    {/* <li className="navbar__dropdown--links--list providers">
-                                        <NavLink to="/providers" onClick={toggleMenu} className="navbar__dropdown--links--item">See all Professionals (coming)</NavLink >
-                                    </li> */}
+                                    <li className="navbar__dropdown--links--list providers">
+                                        <NavLink to="/providers" onClick={toggleMenu} className="navbar__dropdown--links--item">See all Professionals (coming soon)</NavLink >
+                                    </li>
                                 </ul>
                             </div>
                         }

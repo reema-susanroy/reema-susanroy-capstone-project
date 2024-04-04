@@ -65,7 +65,7 @@ function ShowProfile({ profileData, userId }) {
                         <label className="profile__data--label"> City
                             <input className="profile__data--item" type="text" value={city} onChange={(e) => { handleCityChange(e.target.value); }} />
                         </label>
-                        <label className="profile__data--label"> County
+                        <label className="profile__data--label"> Country
                             <input className="profile__data--item" type="text" value={country} onChange={(e) => { handleCountryChange(e.target.value); }} />
                         </label>
                     </div>

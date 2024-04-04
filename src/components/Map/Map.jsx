@@ -11,7 +11,7 @@ import ProvidersComponent from "../ProvidersComponent/ProvidersComponent";
 
 export default function Map({ serviceId }) {
   let nearbyProviders;
-  const [city, setCity] = useState("Coquitlam");
+  const [city, setCity] = useState();
   const [userLat, setUserLat] = useState();
   const [userLon, setUserLon] = useState();
   const [providers, setProviders] = useState();

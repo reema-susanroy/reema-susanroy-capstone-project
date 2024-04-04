@@ -24,6 +24,9 @@
         display: flex;
         gap: 2rem;
     }
+    @include desktop{
+        gap: 5rem;
+    }
 
     &--cont {
         width: 100%;
@@ -82,6 +85,9 @@
     &--image {
         border: 1px solid $primary_background_color;
         padding: .5rem;
+        @include desktop{
+            width: 25rem;
+        }
     }
 }
 

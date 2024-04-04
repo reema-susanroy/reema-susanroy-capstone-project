@@ -5,6 +5,7 @@
     font-size: 14px;
     height: 4rem;
     padding: 1rem ;
+    color: $primary_text_color;
     @include tablet{
         padding: 1rem 3rem;
         font-size: 16px;
@@ -31,6 +32,7 @@
         font-weight: 600;
         margin: 1rem;
         font-size: 13px;
+        color: $primary_text_color;
         @include tablet{
             margin: 1rem 3rem;
             font-size: 16px;
@@ -51,6 +53,7 @@
         width: 30%;
         height: 2rem;
         border-radius: 12px;
+        font-weight: bolder;
         @include tablet{
             width: 10%;
         }
@@ -137,4 +140,11 @@
 .booking__details--error{
     padding: 1rem 3rem;    
     color: $error_color;
+}
+.booking__details--bgImage{
+    background: linear-gradient(rgb(0, 0, 0, .8), rgba(50, 50, 50, .8)), url('../../assets/images/R.png');
+    height: 35rem;
+    background-repeat: no-repeat;
+    width: 100%;
+    background-size: cover;
 }

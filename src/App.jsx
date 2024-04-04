@@ -8,6 +8,7 @@ import Dashboard from './pages/Dashboard/Dashboard';
 import Footer from './components/Footer/Footer';
 
 function App() {
+  document.title = 'Service Buddy';
   return (
     <div className="App">
       <BrowserRouter>

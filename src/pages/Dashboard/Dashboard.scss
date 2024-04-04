@@ -1,19 +1,21 @@
 @use '../../styles/partials/mixins' as *;
 @use '../../styles/partials/variables' as *;
 
-.dashboard__name{
-    margin : 1rem;
+.dashboard__name {
+    margin: 1rem;
     font-size: 14px;
 
-    @include tablet{
+    @include tablet {
         margin: 1rem 2rem;
         font-size: 16px;
     }
-    @include desktop{
+
+    @include desktop {
         margin: 2rem 4rem;
         font-size: 18px;
     }
 }
+
 .dashboard__cards {
     display: flex;
     align-items: center;
@@ -37,12 +39,15 @@
         cursor: pointer;
         background-color: $primary_background_color;
         color: $primary_text_color;
-        @include tablet{
+
+        @include tablet {
             font-size: 14px;
         }
-        @include desktop{
+
+        @include desktop {
             font-size: 16px;
         }
+
         &:hover {
             background-color: $dashboard_hover;
         }
@@ -53,10 +58,12 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    @include tablet{
+
+    @include tablet {
         margin: 1rem 2rem;
     }
-    @include desktop{
+
+    @include desktop {
         margin: 2rem 3rem;
     }
 
@@ -82,7 +89,8 @@
         &--label {
             font-size: 14px;
         }
-        &--data{
+
+        &--data {
             font-size: 14px;
         }
 
@@ -104,21 +112,26 @@
     justify-content: space-between;
     gap: 2rem;
     font-size: 14px;
+
     &--cont {
         width: 1.4rem;
         height: 1rem;
-        &-item{
+
+        &-item {
             object-fit: contain;
             cursor: pointer;
         }
     }
 }
-.dashboard__error{
+
+.dashboard__error {
     margin: 1rem;
-    @include tablet{
+
+    @include tablet {
         margin: 1rem 2rem;
     }
-    @include desktop{
+
+    @include desktop {
         margin: 2rem 4rem;
     }
 }
@@ -134,16 +147,20 @@
 
 .profile {
     margin: 1rem 0;
-    @include tablet{
+
+    @include tablet {
         margin: 1rem 1rem;
     }
-    @include desktop{
+
+    @include desktop {
         margin: 2rem 3rem;
     }
+
     &__title {
         margin: 1rem;
         font-size: 14px;
-        @include desktop{
+
+        @include desktop {
             font-size: 16px;
         }
     }
@@ -151,40 +168,49 @@
 
 .profile__data {
     display: flex;
+
     @include tablet {
         flex-direction: row;
     }
+
     &--cont {
         width: 50%;
     }
+
     &--label {
         font-weight: 600;
         font-size: 12px;
         display: flex;
         flex-direction: column;
         margin: 1rem 1rem;
-        @include desktop{
+
+        @include desktop {
             font-size: 14px;
         }
     }
+
     &--item {
         font-size: 12px;
         width: 70%;
         padding: 2%;
         margin: .5rem 0;
-        @include desktop{
+
+        @include desktop {
             font-size: 16px;
         }
     }
 }
+
 .profile__save {
     display: flex;
     justify-content: flex-end;
     margin: 1rem;
+
     @include tablet {
         justify-content: flex-end;
         margin: 1rem;
     }
+
     &--button {
         cursor: pointer;
         display: flex;
@@ -200,34 +226,43 @@
         width: 30%;
         height: 2rem;
         font-size: 12px;
-        @include tablet{
+
+        @include tablet {
             font-size: 14px;
             gap: 1rem;
             width: 20%;
         }
-        @include desktop{
+
+        @include desktop {
             font-size: 16px;
         }
+
         &:hover {
             background-color: $button_hover;
         }
     }
+
     &--cont {
         display: flex;
         flex-direction: row;
         width: 1.5rem;
     }
 }
+
 .backgroundBrown {
     background-color: $dashboard_card_dark;
     color: $black_text;
-    height: 80%
+    // height: 80%
+    max-height: 80rem;
 }
+
 .backgroundOffwhite {
     background-color: $dashboard_card_light;
     color: $black_text;
-    height: 80%
+    // height: 80%
+    max-height: 80rem;
 }
+
 .booking-details {
     display: flex;
     margin: 4rem;
@@ -236,16 +271,22 @@
     flex-direction: column;
     flex-wrap: wrap;
     align-items: flex-start;
-    &__item{
+
+    &__item {
         display: flex;
         gap: 2rem;
     }
+
     &__cont {
         width: 20rem;
         object-fit: cover;
+
         &--image {
-            width: 100%;
-            height: 100%;
+            // width: 100%;
+            // height: 100%;
+            width: 20rem;
+            // height: 20rem;
+            object-fit: contain;
         }
     }
 }

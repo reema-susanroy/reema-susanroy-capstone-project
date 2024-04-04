@@ -90,17 +90,17 @@ function Booking() {
             }
             setUploadForm(true);
             setTimeout(() => {
-                navigate("/dashboard")
-            }, 2000)
+                navigate("/")
+            }, 1000)
         }
     }
     return (
         <>
         {
             provider &&
-            <>
+            <div className='booking__details--bgImage'>
             <h3 className='booking__details--header'>Confirm booking with <span> {provider.provider_name} </span> for <span>{provider.service_name} </span>service</h3>
-            <form>
+            <form >
                 <section className='booking__details--form'>
                     <section className='booking__details--form--section'>
                         <label className="booking__details--form--label">Choose a Date :
@@ -139,14 +139,14 @@ function Booking() {
                     <p className='booking__details--error' >Kinldy enter the details</p>
                 }
             </form>
-            </>
+            </div>
         }
             {uploadForm && (
                 <div className="modal-overlay">
                     <div className="popup--modal">
                         <section className='modal__title-cont'>
                             <h2 className='modal__title--title'>Success</h2>
-                            <p className='modal__title'>Your booking has confirmed! Taking to the dashboard</p>
+                            <p className='modal__title'>Your booking has confirmed! Taking to the homepage</p>
                         </section>
                     </div>
                 </div>
