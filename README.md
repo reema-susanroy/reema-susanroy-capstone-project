@@ -85,6 +85,17 @@ Use MapBoxAPI to access map view. Require access token.
 
 ![user-register-page](./public/images/user-register.png)
 
+### Project Demo
+
+![home-page](./public/servicebuddy/capstone2.png)
+![map](./public/servicebuddy/capstone1.png)
+![provider-page](./public/servicebuddy/capstone3.png)
+![login-page](./public/servicebuddy/capstone4.png)
+![booking-page](./public/servicebuddy/capstone5.png)
+![dashboard](./public/servicebuddy/capstone6.png)
+![manage-booking](./public/servicebuddy/capstone7.png)
+![favorites](./public/servicebuddy/capstone1.png)
+
 ### Data
 **Database Relationship**
 

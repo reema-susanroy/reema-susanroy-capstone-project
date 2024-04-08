@@ -13,6 +13,7 @@ function ServicesPage() {
     useEffect(() => {
         const getServices = async () => {
             try {
+                console.log(`${process.env.REACT_APP_BASE_URL}/api/services`);
                 const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/services`);
                 setIsLoading(false);
                 sethasError(false);
